@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageSquare, Send, Trash2 } from "lucide-react";
+import { MessageSquare, Send, Trash2, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
@@ -59,8 +59,12 @@ const CommentsSection = ({ targetId, targetType }: CommentsSectionProps) => {
         <div className="space-y-3 mb-6">
           {comments.map((c) => (
             <div key={c.id} className="flex gap-3 rounded-lg border border-border bg-card p-4">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-bold text-muted-foreground">
-                {c.profiles?.display_name?.charAt(0) ?? "?"}
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent overflow-hidden">
+                {c.profiles?.avatar_url ? (
+                  <img src={c.profiles.avatar_url} alt="" className="h-full w-full object-cover" />
+                ) : (
+                  <User className="h-4 w-4 text-muted-foreground" />
+                )}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">

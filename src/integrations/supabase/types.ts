@@ -400,6 +400,10 @@ export type Database = {
         }
         Returns: boolean
       }
+      increment_view_count: {
+        Args: { row_id: string; table_name: string }
+        Returns: undefined
+      }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"

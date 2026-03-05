@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ChevronUp, ChevronDown, CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useQuestion, useAnswers, useCreateAnswer } from "@/hooks/useQuestions";
+import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrentProfile } from "@/hooks/useProfile";
 import { toast } from "sonner";
@@ -20,6 +21,13 @@ const QuestionDetail = () => {
   const { data: profile } = useCurrentProfile();
   const createAnswer = useCreateAnswer();
   const [answerBody, setAnswerBody] = useState("");
+
+  // Increment view count once
+  useEffect(() => {
+    if (id) {
+      supabase.rpc("increment_view_count", { table_name: "questions", row_id: id });
+    }
+  }, [id]);
 
   const handleSubmitAnswer = async (e: React.FormEvent) => {
     e.preventDefault();

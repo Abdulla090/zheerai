@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Eye, ExternalLink, Github, Calendar, MessageSquare, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,13 @@ const ProjectDetail = () => {
     },
     enabled: !!id,
   });
+
+  // Increment view count once
+  useEffect(() => {
+    if (id) {
+      supabase.rpc("increment_view_count", { table_name: "projects", row_id: id });
+    }
+  }, [id]);
 
   if (isLoading) {
     return (
