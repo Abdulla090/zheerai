@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { Eye, ExternalLink, Github, Calendar, MessageSquare } from "lucide-react";
+import { Eye, ExternalLink, Github, Calendar, MessageSquare, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
