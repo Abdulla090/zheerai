@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageSquare, Send, Trash2 } from "lucide-react";
+import { MessageSquare, Send, Trash2, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
