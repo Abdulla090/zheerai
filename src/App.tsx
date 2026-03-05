@@ -7,7 +7,11 @@ import { AuthProvider } from "@/hooks/useAuth";
 import Layout from "@/components/layout/Layout";
 import Index from "./pages/Index";
 import Projects from "./pages/Projects";
+import NewProject from "./pages/NewProject";
+import ProjectDetail from "./pages/ProjectDetail";
 import QA from "./pages/QA";
+import NewQuestion from "./pages/NewQuestion";
+import QuestionDetail from "./pages/QuestionDetail";
 import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
@@ -29,7 +33,11 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/projects/new" element={<NewProject />} />
+              <Route path="/projects/:id" element={<ProjectDetail />} />
               <Route path="/qa" element={<QA />} />
+              <Route path="/qa/new" element={<NewQuestion />} />
+              <Route path="/qa/:id" element={<QuestionDetail />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
