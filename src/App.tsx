@@ -22,6 +22,7 @@ import About from "./pages/About";
 import UserProfile from "./pages/UserProfile";
 import EditProfile from "./pages/EditProfile";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Layout>
             <Routes>
               <Route path="/" element={<Index />} />
