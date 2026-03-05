@@ -64,9 +64,14 @@ const ProjectDetail = () => {
 
         <h1 className="text-2xl font-bold text-foreground md:text-3xl">{project.title}</h1>
 
-        <div className="mt-3 flex items-center gap-4 text-sm text-muted-foreground">
+        <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
           {project.author_id && (
-            <Link to={`/user/${project.author_id}`} className="hover:text-primary transition-colors">
+            <Link to={`/user/${project.author_id}`} className="inline-flex items-center gap-2 rounded-lg border border-border bg-accent/50 px-3 py-1.5 font-medium text-foreground hover:border-primary/40 hover:bg-primary/5 transition-colors">
+              {project.profiles?.avatar_url ? (
+                <img src={project.profiles.avatar_url} alt="" className="h-5 w-5 rounded-full object-cover" />
+              ) : (
+                <User className="h-4 w-4 text-muted-foreground" />
+              )}
               {project.profiles?.display_name}
             </Link>
           )}
