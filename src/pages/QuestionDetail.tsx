@@ -25,7 +25,7 @@ const QuestionDetail = () => {
   // Increment view count once
   useEffect(() => {
     if (id) {
-      supabase.rpc("increment_view_count", { table_name: "questions", row_id: id });
+      supabase.rpc("increment_view_count", { table_name: "questions", row_id: id }).then();
     }
   }, [id]);
 
