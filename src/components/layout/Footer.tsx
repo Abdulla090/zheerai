@@ -26,18 +26,17 @@ const Footer = () => {
           <div>
             <h4 className="mb-3 text-sm font-semibold text-foreground">کۆمەڵگا</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">دەربارەی ئێمە</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">یاسا و مەرجەکان</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">پەیوەندی</a></li>
+              <li><Link to="/about" className="hover:text-primary transition-colors">دەربارەی ئێمە</Link></li>
+              <li><Link to="/profile" className="hover:text-primary transition-colors">پرۆفایل</Link></li>
+              <li><Link to="/login" className="hover:text-primary transition-colors">چوونەژوورەوە</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="mb-3 text-sm font-semibold text-foreground">سۆشیال میدیا</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">تویتەر</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">گیتهەب</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">تێلیگرام</a></li>
+              <li><a href="https://t.me/zheer_saz" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">تێلیگرامی ژیر ساز</a></li>
+              <li><a href="https://t.me/KurdistanAI01" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">تێلیگرامی Kurdistan AI</a></li>
             </ul>
           </div>
         </div>
