@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrentProfile, useUserRole } from "@/hooks/useProfile";
@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { ImagePlus, X, Loader2 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -18,12 +19,15 @@ const NewBlogPost = () => {
   const { data: roles } = useUserRole();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [title, setTitle] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [body, setBody] = useState("");
   const [tags, setTags] = useState("");
   const [coverUrl, setCoverUrl] = useState("");
+  const [coverPreview, setCoverPreview] = useState("");
+  const [uploading, setUploading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   const isAdmin = roles?.includes("admin");
@@ -35,6 +39,49 @@ const NewBlogPost = () => {
       </div>
     );
   }
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast({ title: "هەڵە", description: "تکایە فایلی وێنە هەڵبژێرە", variant: "destructive" });
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      toast({ title: "هەڵە", description: "قەبارەی وێنە دەبێت لە ٥ مێگابایت کەمتر بێت", variant: "destructive" });
+      return;
+    }
+
+    setUploading(true);
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${user.id}/${Date.now()}.${fileExt}`;
+
+    const { error } = await supabase.storage
+      .from("blog-covers")
+      .upload(fileName, file);
+
+    if (error) {
+      toast({ title: "هەڵە", description: error.message, variant: "destructive" });
+      setUploading(false);
+      return;
+    }
+
+    const { data: urlData } = supabase.storage
+      .from("blog-covers")
+      .getPublicUrl(fileName);
+
+    setCoverUrl(urlData.publicUrl);
+    setCoverPreview(urlData.publicUrl);
+    setUploading(false);
+  };
+
+  const removeCover = () => {
+    setCoverUrl("");
+    setCoverPreview("");
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,9 +133,47 @@ const NewBlogPost = () => {
             <Input id="excerpt" value={excerpt} onChange={(e) => setExcerpt(e.target.value)} placeholder="پوختەیەکی کورت" />
           </div>
 
+          {/* Cover Image Upload */}
           <div className="space-y-2">
-            <Label htmlFor="cover">لینکی وێنەی سەرەوە (ئارەزوومەندانە)</Label>
-            <Input id="cover" value={coverUrl} onChange={(e) => setCoverUrl(e.target.value)} placeholder="https://..." />
+            <Label>وێنەی سەرەوە (ئارەزوومەندانە)</Label>
+            {coverPreview ? (
+              <div className="relative group">
+                <img
+                  src={coverPreview}
+                  alt="Cover preview"
+                  className="w-full aspect-video object-cover rounded-lg border border-border"
+                />
+                <button
+                  type="button"
+                  onClick={removeCover}
+                  className="absolute top-2 left-2 rounded-full bg-destructive p-1.5 text-destructive-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+            ) : (
+              <div
+                onClick={() => fileInputRef.current?.click()}
+                className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-border bg-accent/30 py-10 text-muted-foreground transition-colors hover:border-primary/40 hover:bg-accent/50"
+              >
+                {uploading ? (
+                  <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                ) : (
+                  <>
+                    <ImagePlus className="h-8 w-8" />
+                    <span className="text-sm">کلیک بکە بۆ هەڵبژاردنی وێنە</span>
+                    <span className="text-xs text-muted-foreground/70">PNG, JPG, WEBP — حەدی زۆر ٥MB</span>
+                  </>
+                )}
+              </div>
+            )}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="hidden"
+            />
           </div>
 
           <div className="space-y-2">
