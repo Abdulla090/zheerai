@@ -16,6 +16,7 @@ const navLinks = [
   { href: "/projects", label: "پڕۆژەکان" },
   { href: "/qa", label: "پرسیار و وەڵام" },
   { href: "/blog", label: "بڵاوکراوەکان" },
+  { href: "/about", label: "دەربارەی ئێمە" },
 ];
 
 const Navbar = () => {
