@@ -47,6 +47,9 @@ const App = () => (
               <Route path="/qa/new" element={<NewQuestion />} />
               <Route path="/qa/:id" element={<QuestionDetail />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/new" element={<NewBlogPost />} />
+              <Route path="/blog/:id" element={<BlogPostDetail />} />
+              <Route path="/admin/blog-approval" element={<AdminBlogApproval />} />
               <Route path="/about" element={<About />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile/edit" element={<EditProfile />} />
