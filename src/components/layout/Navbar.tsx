@@ -1,8 +1,15 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Search } from "lucide-react";
+import { Menu, X, Search, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const navLinks = [
   { href: "/", label: "سەرەتا" },
@@ -14,16 +21,21 @@ const navLinks = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between">
-        {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <span className="text-xl font-bold tracking-tight text-primary">ZHEERAI</span>
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.href;
@@ -48,15 +60,36 @@ const Navbar = () => {
           })}
         </nav>
 
-        {/* Desktop Actions */}
         <div className="hidden items-center gap-3 md:flex">
           <Button variant="ghost" size="icon" aria-label="گەڕان">
             <Search className="h-4 w-4" />
           </Button>
-          <Button size="sm">چوونەژوورەوە</Button>
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="gap-2">
+                  <User className="h-3.5 w-3.5" />
+                  {user.user_metadata?.full_name || "پرۆفایل"}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start">
+                <DropdownMenuItem onClick={() => navigate("/profile")}>
+                  <User className="h-3.5 w-3.5 ml-2" />
+                  پرۆفایل
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignOut}>
+                  <LogOut className="h-3.5 w-3.5 ml-2" />
+                  دەرچوون
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button size="sm" asChild>
+              <Link to="/login">چوونەژوورەوە</Link>
+            </Button>
+          )}
         </div>
 
-        {/* Mobile Toggle */}
         <Button
           variant="ghost"
           size="icon"
@@ -68,7 +101,6 @@ const Navbar = () => {
         </Button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -94,7 +126,20 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="mt-2 border-t border-border pt-3">
-                <Button className="w-full" size="sm">چوونەژوورەوە</Button>
+                {user ? (
+                  <div className="flex flex-col gap-2">
+                    <Button variant="outline" size="sm" className="w-full" onClick={() => { setMobileOpen(false); navigate("/profile"); }}>
+                      پرۆفایل
+                    </Button>
+                    <Button variant="ghost" size="sm" className="w-full" onClick={() => { setMobileOpen(false); handleSignOut(); }}>
+                      دەرچوون
+                    </Button>
+                  </div>
+                ) : (
+                  <Button className="w-full" size="sm" asChild>
+                    <Link to="/login" onClick={() => setMobileOpen(false)}>چوونەژوورەوە</Link>
+                  </Button>
+                )}
               </div>
             </nav>
           </motion.div>
