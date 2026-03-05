@@ -95,6 +95,14 @@ const Profile = () => {
                 )}
               </div>
               <p className="mt-1 text-sm text-muted-foreground">{profile?.bio || "هێشتا بایۆیەک نەنووسراوە"}</p>
+              <div className="mt-2">
+                <Link to="/profile/edit">
+                  <Button variant="outline" size="sm" className="gap-1.5 text-xs">
+                    <Settings className="h-3 w-3" />
+                    دەستکاریکردنی پرۆفایل
+                  </Button>
+                </Link>
+              </div>
               <div className="mt-3 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground sm:justify-start">
                 <span className="flex items-center gap-1"><Mail className="h-3 w-3" />{user.email}</span>
                 <span className="flex items-center gap-1"><Calendar className="h-3 w-3" />ئەندام لە {new Date(profile?.created_at ?? user.created_at).toLocaleDateString("ku")}</span>
