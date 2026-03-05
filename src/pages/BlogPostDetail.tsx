@@ -89,7 +89,7 @@ const BlogPostDetail = () => {
         </article>
 
         <div className="mb-8">
-          <LikeButton targetId={post.id} targetType="blog_post" initialCount={post.likes_count} />
+          <LikeButton targetId={post.id} targetType="blog_post" />
         </div>
 
         <CommentsSection targetId={post.id} targetType="blog_post" />
