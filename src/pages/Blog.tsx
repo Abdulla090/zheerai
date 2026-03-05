@@ -34,12 +34,12 @@ const Blog = () => {
   return (
     <div className="py-10 md:py-14">
       <div className="container">
-        <div className="mb-10 flex items-start justify-between gap-4">
+        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold text-foreground md:text-3xl">بڵاوکراوەکان</h1>
             <p className="mt-2 text-sm text-muted-foreground">بابەت، فێرکاری، و هەواڵی زیرەکی دەستکرد</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {isAdmin && (
               <Button variant="outline" size="sm" asChild>
                 <Link to="/admin/blog-approval"><Shield className="h-4 w-4 ml-1" />پەسەندکردن</Link>
