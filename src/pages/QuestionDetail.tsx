@@ -22,6 +22,13 @@ const QuestionDetail = () => {
   const createAnswer = useCreateAnswer();
   const [answerBody, setAnswerBody] = useState("");
 
+  // Increment view count once
+  useEffect(() => {
+    if (id) {
+      supabase.rpc("increment_view_count", { table_name: "questions", row_id: id });
+    }
+  }, [id]);
+
   const handleSubmitAnswer = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user || !profile || !id) return;

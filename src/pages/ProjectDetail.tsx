@@ -35,6 +35,13 @@ const ProjectDetail = () => {
     enabled: !!id,
   });
 
+  // Increment view count once
+  useEffect(() => {
+    if (id) {
+      supabase.rpc("increment_view_count", { table_name: "projects", row_id: id });
+    }
+  }, [id]);
+
   if (isLoading) {
     return (
       <div className="py-10 md:py-14"><div className="container max-w-3xl space-y-4">
