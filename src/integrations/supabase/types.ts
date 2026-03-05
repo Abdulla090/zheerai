@@ -21,6 +21,7 @@ export type Database = {
           created_at: string
           id: string
           is_accepted: boolean
+          likes_count: number
           question_id: string
           updated_at: string
           votes_count: number
@@ -31,6 +32,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_accepted?: boolean
+          likes_count?: number
           question_id: string
           updated_at?: string
           votes_count?: number
@@ -41,6 +43,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_accepted?: boolean
+          likes_count?: number
           question_id?: string
           updated_at?: string
           votes_count?: number
@@ -66,10 +69,12 @@ export type Database = {
         Row: {
           author_id: string | null
           body: string
+          comments_count: number
           cover_image_url: string | null
           created_at: string
           excerpt: string | null
           id: string
+          likes_count: number
           published: boolean
           tags: string[] | null
           title: string
@@ -79,10 +84,12 @@ export type Database = {
         Insert: {
           author_id?: string | null
           body: string
+          comments_count?: number
           cover_image_url?: string | null
           created_at?: string
           excerpt?: string | null
           id?: string
+          likes_count?: number
           published?: boolean
           tags?: string[] | null
           title: string
@@ -92,10 +99,12 @@ export type Database = {
         Update: {
           author_id?: string | null
           body?: string
+          comments_count?: number
           cover_image_url?: string | null
           created_at?: string
           excerpt?: string | null
           id?: string
+          likes_count?: number
           published?: boolean
           tags?: string[] | null
           title?: string
@@ -111,6 +120,68 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      comments: {
+        Row: {
+          author_id: string
+          content: string
+          created_at: string
+          id: string
+          target_id: string
+          target_type: string
+          updated_at: string
+        }
+        Insert: {
+          author_id: string
+          content: string
+          created_at?: string
+          id?: string
+          target_id: string
+          target_type: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          target_id?: string
+          target_type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comments_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      likes: {
+        Row: {
+          created_at: string
+          id: string
+          target_id: string
+          target_type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          target_id: string
+          target_type: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          target_id?: string
+          target_type?: string
+          user_id?: string
+        }
+        Relationships: []
       }
       profiles: {
         Row: {
@@ -146,10 +217,12 @@ export type Database = {
         Row: {
           author_id: string | null
           category: Database["public"]["Enums"]["project_category"]
+          comments_count: number
           created_at: string
           demo_url: string | null
           description: string | null
           id: string
+          likes_count: number
           source_url: string | null
           tags: string[] | null
           thumbnail_url: string | null
@@ -160,10 +233,12 @@ export type Database = {
         Insert: {
           author_id?: string | null
           category?: Database["public"]["Enums"]["project_category"]
+          comments_count?: number
           created_at?: string
           demo_url?: string | null
           description?: string | null
           id?: string
+          likes_count?: number
           source_url?: string | null
           tags?: string[] | null
           thumbnail_url?: string | null
@@ -174,10 +249,12 @@ export type Database = {
         Update: {
           author_id?: string | null
           category?: Database["public"]["Enums"]["project_category"]
+          comments_count?: number
           created_at?: string
           demo_url?: string | null
           description?: string | null
           id?: string
+          likes_count?: number
           source_url?: string | null
           tags?: string[] | null
           thumbnail_url?: string | null
@@ -200,9 +277,11 @@ export type Database = {
           answers_count: number
           author_id: string | null
           body: string
+          comments_count: number
           created_at: string
           id: string
           is_solved: boolean
+          likes_count: number
           tags: string[] | null
           title: string
           updated_at: string
@@ -212,9 +291,11 @@ export type Database = {
           answers_count?: number
           author_id?: string | null
           body: string
+          comments_count?: number
           created_at?: string
           id?: string
           is_solved?: boolean
+          likes_count?: number
           tags?: string[] | null
           title: string
           updated_at?: string
@@ -224,9 +305,11 @@ export type Database = {
           answers_count?: number
           author_id?: string | null
           body?: string
+          comments_count?: number
           created_at?: string
           id?: string
           is_solved?: boolean
+          likes_count?: number
           tags?: string[] | null
           title?: string
           updated_at?: string
