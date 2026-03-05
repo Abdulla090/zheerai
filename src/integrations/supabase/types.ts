@@ -14,7 +14,279 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      answers: {
+        Row: {
+          author_id: string | null
+          body: string
+          created_at: string
+          id: string
+          is_accepted: boolean
+          question_id: string
+          updated_at: string
+          votes_count: number
+        }
+        Insert: {
+          author_id?: string | null
+          body: string
+          created_at?: string
+          id?: string
+          is_accepted?: boolean
+          question_id: string
+          updated_at?: string
+          votes_count?: number
+        }
+        Update: {
+          author_id?: string | null
+          body?: string
+          created_at?: string
+          id?: string
+          is_accepted?: boolean
+          question_id?: string
+          updated_at?: string
+          votes_count?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "answers_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "answers_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      blog_posts: {
+        Row: {
+          author_id: string | null
+          body: string
+          cover_image_url: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          published: boolean
+          tags: string[] | null
+          title: string
+          updated_at: string
+          views_count: number
+        }
+        Insert: {
+          author_id?: string | null
+          body: string
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published?: boolean
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+          views_count?: number
+        }
+        Update: {
+          author_id?: string | null
+          body?: string
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published?: boolean
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+          views_count?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_posts_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          display_name: string
+          id: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string
+          id?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string
+          id?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          author_id: string | null
+          category: Database["public"]["Enums"]["project_category"]
+          created_at: string
+          demo_url: string | null
+          description: string | null
+          id: string
+          source_url: string | null
+          tags: string[] | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          views_count: number
+        }
+        Insert: {
+          author_id?: string | null
+          category?: Database["public"]["Enums"]["project_category"]
+          created_at?: string
+          demo_url?: string | null
+          description?: string | null
+          id?: string
+          source_url?: string | null
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          views_count?: number
+        }
+        Update: {
+          author_id?: string | null
+          category?: Database["public"]["Enums"]["project_category"]
+          created_at?: string
+          demo_url?: string | null
+          description?: string | null
+          id?: string
+          source_url?: string | null
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          views_count?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      questions: {
+        Row: {
+          answers_count: number
+          author_id: string | null
+          body: string
+          created_at: string
+          id: string
+          is_solved: boolean
+          tags: string[] | null
+          title: string
+          updated_at: string
+          votes_count: number
+        }
+        Insert: {
+          answers_count?: number
+          author_id?: string | null
+          body: string
+          created_at?: string
+          id?: string
+          is_solved?: boolean
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+          votes_count?: number
+        }
+        Update: {
+          answers_count?: number
+          author_id?: string | null
+          body?: string
+          created_at?: string
+          id?: string
+          is_solved?: boolean
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+          votes_count?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "questions_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tags: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      votes: {
+        Row: {
+          created_at: string
+          id: string
+          user_id: string
+          vote_type: Database["public"]["Enums"]["vote_type"]
+          voteable_id: string
+          voteable_type: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          user_id: string
+          vote_type: Database["public"]["Enums"]["vote_type"]
+          voteable_id: string
+          voteable_type: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          user_id?: string
+          vote_type?: Database["public"]["Enums"]["vote_type"]
+          voteable_id?: string
+          voteable_type?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +295,13 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      project_category:
+        | "ai_website"
+        | "ai_mobile_app"
+        | "ai_tool"
+        | "ai_solution"
+        | "other"
+      vote_type: "upvote" | "downvote"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +428,15 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      project_category: [
+        "ai_website",
+        "ai_mobile_app",
+        "ai_tool",
+        "ai_solution",
+        "other",
+      ],
+      vote_type: ["upvote", "downvote"],
+    },
   },
 } as const
