@@ -33,6 +33,12 @@ const Blog = () => {
   }
 
   return (
+    <>
+      <SEOHead
+        title="بڵاوکراوەکان"
+        description="بابەت، فێرکاری، و هەواڵی زیرەکی دەستکرد بە زمانی کوردی"
+        canonical="https://zheerai.lovable.app/blog"
+      />
     <div className="py-10 md:py-14">
       <div className="container">
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
