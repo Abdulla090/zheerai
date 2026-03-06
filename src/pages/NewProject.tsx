@@ -105,8 +105,9 @@ const NewProject = () => {
     }
   };
 
-  if (!user) {
-    navigate("/login");
+  if (!user || user.is_anonymous) {
+    navigate(user?.is_anonymous ? "/" : "/login");
+    toast.error(user?.is_anonymous ? "میوانەکان ناتوانن پڕۆژە زیاد بکەن" : undefined);
     return null;
   }
 
