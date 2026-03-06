@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
+import { ThemeProvider } from "next-themes";
 import Layout from "@/components/layout/Layout";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
@@ -51,46 +52,48 @@ const PageFallback = () => (
 );
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <AuthProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <Layout>
-            <Suspense fallback={<PageFallback />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/projects/new" element={<NewProject />} />
-                <Route path="/projects/:id" element={<ProjectDetail />} />
-                <Route path="/projects/:id/edit" element={<EditProject />} />
-                <Route path="/qa" element={<QA />} />
-                <Route path="/qa/new" element={<NewQuestion />} />
-                <Route path="/qa/:id" element={<QuestionDetail />} />
-                <Route path="/qa/:id/edit" element={<EditQuestion />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/new" element={<NewBlogPost />} />
-                <Route path="/blog/:id" element={<BlogPostDetail />} />
-                <Route path="/blog/:id/edit" element={<EditBlogPost />} />
-                <Route path="/admin/blog-approval" element={<AdminBlogApproval />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/profile/edit" element={<EditProfile />} />
-                <Route path="/user/:id" element={<UserProfile />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/forgot-password" element={<ForgotPassword />} />
-                <Route path="/reset-password" element={<ResetPassword />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </Layout>
-        </BrowserRouter>
-      </AuthProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <AuthProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <ScrollToTop />
+            <Layout>
+              <Suspense fallback={<PageFallback />}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/projects" element={<Projects />} />
+                  <Route path="/projects/new" element={<NewProject />} />
+                  <Route path="/projects/:id" element={<ProjectDetail />} />
+                  <Route path="/projects/:id/edit" element={<EditProject />} />
+                  <Route path="/qa" element={<QA />} />
+                  <Route path="/qa/new" element={<NewQuestion />} />
+                  <Route path="/qa/:id" element={<QuestionDetail />} />
+                  <Route path="/qa/:id/edit" element={<EditQuestion />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/new" element={<NewBlogPost />} />
+                  <Route path="/blog/:id" element={<BlogPostDetail />} />
+                  <Route path="/blog/:id/edit" element={<EditBlogPost />} />
+                  <Route path="/admin/blog-approval" element={<AdminBlogApproval />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/profile/edit" element={<EditProfile />} />
+                  <Route path="/user/:id" element={<UserProfile />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/forgot-password" element={<ForgotPassword />} />
+                  <Route path="/reset-password" element={<ResetPassword />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </Layout>
+          </BrowserRouter>
+        </AuthProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;
