@@ -87,7 +87,7 @@ const BlogPostDetail = () => {
         </Link>
 
         {post.cover_image_url && (
-          <img src={post.cover_image_url} alt={post.title} className="w-full aspect-video object-cover rounded-lg mb-6" />
+          <img src={post.cover_image_url} alt={post.title} className="w-full aspect-video object-cover rounded-lg mb-6" loading="lazy" decoding="async" />
         )}
 
         <div className="flex flex-wrap gap-1.5 mb-3">
