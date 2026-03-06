@@ -41,16 +41,16 @@ const Profile = () => {
   const { data: stats } = useQuery({
     queryKey: ["user_stats", profile?.id],
     queryFn: async () => {
-      const [projectsRes, questionsRes, answersRes, commentsRes] = await Promise.all([
+      const [projectsRes, questionsRes, blogsRes, commentsRes] = await Promise.all([
         supabase.from("projects").select("id", { count: "exact", head: true }).eq("author_id", profile!.id),
         supabase.from("questions").select("id", { count: "exact", head: true }).eq("author_id", profile!.id),
-        supabase.from("answers").select("id", { count: "exact", head: true }).eq("author_id", profile!.id),
+        supabase.from("blog_posts").select("id", { count: "exact", head: true }).eq("author_id", profile!.id),
         supabase.from("comments").select("id", { count: "exact", head: true }).eq("author_id", profile!.id),
       ]);
       return {
         projects: projectsRes.count ?? 0,
         questions: questionsRes.count ?? 0,
-        answers: answersRes.count ?? 0,
+        blogs: blogsRes.count ?? 0,
         comments: commentsRes.count ?? 0,
       };
     },
