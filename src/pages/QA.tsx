@@ -10,7 +10,7 @@ import { useQuestions } from "@/hooks/useQuestions";
 import { useAuth } from "@/hooks/useAuth";
 import { containerFast, fadeUpSmall } from "@/lib/animations";
 
-type SortMode = "newest" | "votes" | "unanswered";
+type SortMode = "newest" | "votes" | "comments";
 
 const timeAgo = (dateStr: string) => {
   const diff = Date.now() - new Date(dateStr).getTime();
