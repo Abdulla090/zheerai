@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -13,6 +13,7 @@ import remarkGfm from "remark-gfm";
 import type { BlogPost } from "@/hooks/useBlogPosts";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrentProfile, useUserRole } from "@/hooks/useProfile";
+import SEOHead from "@/components/SEOHead";
 
 const BlogPostDetail = () => {
   const { id } = useParams<{ id: string }>();
