@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Eye, Filter, Plus } from "lucide-react";
@@ -8,6 +8,7 @@ import { useProjects } from "@/hooks/useProjects";
 import { useAuth } from "@/hooks/useAuth";
 import { containerFast, fadeUpSmall } from "@/lib/animations";
 import { Skeleton } from "@/components/ui/skeleton";
+import SEOHead from "@/components/SEOHead";
 
 const projectCategories = [
   { value: "ai_website", label: "ماڵپەڕی AI" },
