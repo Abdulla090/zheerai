@@ -43,23 +43,25 @@ const Navbar = () => {
           <span className="text-xl font-bold tracking-tight text-primary">ZHEERAI</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-0.5 md:flex">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.href;
             return (
               <Link
                 key={link.href}
                 to={link.href}
-                className={`relative px-4 py-2 text-sm transition-colors ${
-                  isActive ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
+                className={`relative px-4 py-2 text-sm rounded-lg transition-all duration-200 ${
+                  isActive
+                    ? "text-primary font-semibold bg-primary/8"
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent/70"
                 }`}
               >
                 {link.label}
                 {isActive && (
                   <motion.div
                     layoutId="nav-indicator"
-                    className="absolute bottom-0 right-0 left-0 h-0.5 bg-primary"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    className="absolute bottom-0 right-2 left-2 h-[2px] rounded-full bg-primary"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
                   />
                 )}
               </Link>
