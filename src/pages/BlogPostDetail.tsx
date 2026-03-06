@@ -73,7 +73,14 @@ const BlogPostDetail = () => {
           ))}
         </div>
 
-        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4">{post.title}</h1>
+        <div className="flex items-center gap-3 mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground flex-1">{post.title}</h1>
+          {profile && (post.author_id === profile.id || isAdmin) && (
+            <Link to={`/blog/${post.id}/edit`}>
+              <Button variant="outline" size="sm" className="gap-1.5"><Pencil className="h-3.5 w-3.5" />دەستکاری</Button>
+            </Link>
+          )}
+        </div>
 
         <div className="flex items-center gap-4 text-sm text-muted-foreground mb-8 pb-6 border-b border-border">
           {post.author_id && (
