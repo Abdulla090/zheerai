@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import zheerSazLogo from "@/assets/zheer-saz-logo.jpg";
 import kurdistanAiLogo from "@/assets/kurdistan-ai-logo.jpg";
+import SEOHead from "@/components/SEOHead";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
