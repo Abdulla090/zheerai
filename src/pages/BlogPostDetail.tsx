@@ -56,7 +56,29 @@ const BlogPostDetail = () => {
     return <div className="py-20 text-center text-muted-foreground">بابەتەکە نەدۆزرایەوە</div>;
   }
 
+  const jsonLd = useMemo(() => post ? ({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt || post.body?.slice(0, 160),
+    image: post.cover_image_url || undefined,
+    datePublished: post.created_at,
+    dateModified: post.updated_at,
+    author: { "@type": "Person", name: post.profiles?.display_name },
+  }) : undefined, [post]);
+
   return (
+    <>
+      {post && (
+        <SEOHead
+          title={post.title}
+          description={post.excerpt || post.body?.slice(0, 160)}
+          canonical={`https://zheerai.lovable.app/blog/${post.id}`}
+          ogImage={post.cover_image_url || undefined}
+          ogType="article"
+          jsonLd={jsonLd}
+        />
+      )}
     <div className="py-10 md:py-14">
       <div className="container max-w-3xl">
         <Link to="/blog" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6">
