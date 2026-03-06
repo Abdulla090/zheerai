@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -5,32 +6,49 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import Layout from "@/components/layout/Layout";
-import Index from "./pages/Index";
-import Projects from "./pages/Projects";
-import NewProject from "./pages/NewProject";
-import ProjectDetail from "./pages/ProjectDetail";
-import EditProject from "./pages/EditProject";
-import QA from "./pages/QA";
-import NewQuestion from "./pages/NewQuestion";
-import QuestionDetail from "./pages/QuestionDetail";
-import EditQuestion from "./pages/EditQuestion";
-import Blog from "./pages/Blog";
-import NewBlogPost from "./pages/NewBlogPost";
-import BlogPostDetail from "./pages/BlogPostDetail";
-import EditBlogPost from "./pages/EditBlogPost";
-import AdminBlogApproval from "./pages/AdminBlogApproval";
-import Profile from "./pages/Profile";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
-import About from "./pages/About";
-import UserProfile from "./pages/UserProfile";
-import EditProfile from "./pages/EditProfile";
-import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import Index from "./pages/Index";
 
-const queryClient = new QueryClient();
+// Lazy load non-critical routes
+const Projects = lazy(() => import("./pages/Projects"));
+const NewProject = lazy(() => import("./pages/NewProject"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const EditProject = lazy(() => import("./pages/EditProject"));
+const QA = lazy(() => import("./pages/QA"));
+const NewQuestion = lazy(() => import("./pages/NewQuestion"));
+const QuestionDetail = lazy(() => import("./pages/QuestionDetail"));
+const EditQuestion = lazy(() => import("./pages/EditQuestion"));
+const Blog = lazy(() => import("./pages/Blog"));
+const NewBlogPost = lazy(() => import("./pages/NewBlogPost"));
+const BlogPostDetail = lazy(() => import("./pages/BlogPostDetail"));
+const EditBlogPost = lazy(() => import("./pages/EditBlogPost"));
+const AdminBlogApproval = lazy(() => import("./pages/AdminBlogApproval"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const About = lazy(() => import("./pages/About"));
+const UserProfile = lazy(() => import("./pages/UserProfile"));
+const EditProfile = lazy(() => import("./pages/EditProfile"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 2, // 2 min
+      gcTime: 1000 * 60 * 10, // 10 min
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
+
+const PageFallback = () => (
+  <div className="flex min-h-[50vh] items-center justify-center">
+    <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+  </div>
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -41,31 +59,33 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <Layout>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/projects/new" element={<NewProject />} />
-              <Route path="/projects/:id" element={<ProjectDetail />} />
-              <Route path="/projects/:id/edit" element={<EditProject />} />
-              <Route path="/qa" element={<QA />} />
-              <Route path="/qa/new" element={<NewQuestion />} />
-              <Route path="/qa/:id" element={<QuestionDetail />} />
-              <Route path="/qa/:id/edit" element={<EditQuestion />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/new" element={<NewBlogPost />} />
-              <Route path="/blog/:id" element={<BlogPostDetail />} />
-              <Route path="/blog/:id/edit" element={<EditBlogPost />} />
-              <Route path="/admin/blog-approval" element={<AdminBlogApproval />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/profile/edit" element={<EditProfile />} />
-              <Route path="/user/:id" element={<UserProfile />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <Suspense fallback={<PageFallback />}>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/projects/new" element={<NewProject />} />
+                <Route path="/projects/:id" element={<ProjectDetail />} />
+                <Route path="/projects/:id/edit" element={<EditProject />} />
+                <Route path="/qa" element={<QA />} />
+                <Route path="/qa/new" element={<NewQuestion />} />
+                <Route path="/qa/:id" element={<QuestionDetail />} />
+                <Route path="/qa/:id/edit" element={<EditQuestion />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/new" element={<NewBlogPost />} />
+                <Route path="/blog/:id" element={<BlogPostDetail />} />
+                <Route path="/blog/:id/edit" element={<EditBlogPost />} />
+                <Route path="/admin/blog-approval" element={<AdminBlogApproval />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/edit" element={<EditProfile />} />
+                <Route path="/user/:id" element={<UserProfile />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
           </Layout>
         </BrowserRouter>
       </AuthProvider>
