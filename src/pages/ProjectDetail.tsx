@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Eye, ExternalLink, Github, Calendar, MessageSquare, User, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,7 @@ import LikeButton from "@/components/LikeButton";
 import CommentsSection from "@/components/CommentsSection";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrentProfile } from "@/hooks/useProfile";
+import SEOHead from "@/components/SEOHead";
 
 const categories: Record<string, string> = {
   ai_website: "ماڵپەڕی AI",
