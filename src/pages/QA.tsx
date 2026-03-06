@@ -9,6 +9,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useQuestions } from "@/hooks/useQuestions";
 import { useAuth } from "@/hooks/useAuth";
 import { containerFast, fadeUpSmall } from "@/lib/animations";
+import SEOHead from "@/components/SEOHead";
 
 type SortMode = "newest" | "votes" | "comments";
 
