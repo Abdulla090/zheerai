@@ -13,6 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useCurrentProfile } from "@/hooks/useProfile";
 import { useCreateProject } from "@/hooks/useProjects";
 import { supabase } from "@/integrations/supabase/client";
+import { compressImage } from "@/lib/imageCompression";
 import { toast } from "sonner";
 
 const categories = [
@@ -36,9 +37,10 @@ const NewProject = () => {
   const [sourceUrl, setSourceUrl] = useState("");
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState<string[]>([]);
-  const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
+  const [thumbnailBlob, setThumbnailBlob] = useState<Blob | null>(null);
   const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [compressing, setCompressing] = useState(false);
 
   const addTag = () => {
     const t = tagInput.trim();
@@ -50,15 +52,19 @@ const NewProject = () => {
 
   const removeTag = (tag: string) => setTags(tags.filter((t) => t !== tag));
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        toast.error("قەبارەی وێنە زۆرە (حەدی زۆر ٥ میگابایت)");
-        return;
-      }
-      setThumbnailFile(file);
-      setThumbnailPreview(URL.createObjectURL(file));
+    if (!file) return;
+
+    setCompressing(true);
+    try {
+      const { blob } = await compressImage(file);
+      setThumbnailBlob(blob);
+      setThumbnailPreview(URL.createObjectURL(blob));
+    } catch {
+      toast.error("کێشەیەک لە فشردنی وێنە ڕوویدا");
+    } finally {
+      setCompressing(false);
     }
   };
 
@@ -71,10 +77,9 @@ const NewProject = () => {
     try {
       let thumbnailUrl: string | null = null;
 
-      if (thumbnailFile) {
-        const fileExt = thumbnailFile.name.split(".").pop();
-        const filePath = `${user.id}/${crypto.randomUUID()}.${fileExt}`;
-        const { error: uploadError } = await supabase.storage.from("project-images").upload(filePath, thumbnailFile);
+      if (thumbnailBlob) {
+        const filePath = `${user.id}/${crypto.randomUUID()}.webp`;
+        const { error: uploadError } = await supabase.storage.from("project-images").upload(filePath, thumbnailBlob, { contentType: "image/webp" });
         if (uploadError) throw uploadError;
         const { data: { publicUrl } } = supabase.storage.from("project-images").getPublicUrl(filePath);
         thumbnailUrl = publicUrl;
@@ -122,16 +127,22 @@ const NewProject = () => {
                     {thumbnailPreview ? (
                       <div className="relative">
                         <img src={thumbnailPreview} alt="preview" className="aspect-video w-full rounded-md object-cover border border-border" />
-                        <Button type="button" variant="destructive" size="icon" className="absolute top-2 left-2 h-7 w-7" onClick={() => { setThumbnailFile(null); setThumbnailPreview(null); }}>
+                        <Button type="button" variant="destructive" size="icon" className="absolute top-2 left-2 h-7 w-7" onClick={() => { setThumbnailBlob(null); setThumbnailPreview(null); }}>
                           <X className="h-3.5 w-3.5" />
                         </Button>
                       </div>
                     ) : (
                       <label className="flex aspect-video w-full cursor-pointer items-center justify-center rounded-md border-2 border-dashed border-border bg-accent/50 hover:bg-accent transition-colors">
                         <div className="flex flex-col items-center gap-2 text-muted-foreground">
-                          <Upload className="h-8 w-8" />
-                          <span className="text-sm">وێنە هەڵبژێرە</span>
-                          <span className="text-xs">PNG, JPG, WEBP (حەدی زۆر ٥MB)</span>
+                          {compressing ? (
+                            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                          ) : (
+                            <>
+                              <Upload className="h-8 w-8" />
+                              <span className="text-sm">وێنە هەڵبژێرە</span>
+                              <span className="text-xs">بە فۆرماتی WebP فشرد دەکرێت</span>
+                            </>
+                          )}
                         </div>
                         <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
                       </label>
