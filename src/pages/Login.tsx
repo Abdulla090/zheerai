@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,6 +17,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [guestLoading, setGuestLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,6 +38,18 @@ const Login = () => {
     });
     if (error) {
       toast.error("هەڵەیەک ڕوویدا لە چوونەژوورەوە بە گووگڵ");
+    }
+  };
+
+  const handleGuestLogin = async () => {
+    setGuestLoading(true);
+    const { error } = await supabase.auth.signInAnonymously();
+    setGuestLoading(false);
+    if (error) {
+      toast.error("هەڵەیەک ڕوویدا لە چوونەژوورەوە وەک میوان");
+    } else {
+      toast.success("بە سەرکەوتوویی وەک میوان چوویتەژوورەوە");
+      navigate("/");
     }
   };
 
@@ -65,6 +78,20 @@ const Login = () => {
               </svg>
               چوونەژوورەوە بە گووگڵ
             </Button>
+
+            {/* Guest Login */}
+            <Button
+              variant="outline"
+              className="w-full gap-2 border-dashed"
+              onClick={handleGuestLogin}
+              disabled={guestLoading}
+            >
+              <UserRound className="h-4 w-4" />
+              {guestLoading ? "چاوەڕوان بە..." : "چوونەژوورەوە وەک میوان"}
+            </Button>
+            <p className="text-center text-[11px] text-muted-foreground -mt-3">
+              میوانەکان تەنها دەتوانن پرسیار بنێرن
+            </p>
 
             <div className="flex items-center gap-3">
               <Separator className="flex-1" />

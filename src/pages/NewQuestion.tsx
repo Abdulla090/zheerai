@@ -17,7 +17,7 @@ import { toast } from "sonner";
 
 const NewQuestion = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, isGuest } = useAuth();
   const { data: profile } = useCurrentProfile();
   const createQuestion = useCreateQuestion();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -67,7 +67,7 @@ const NewQuestion = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user || !profile) return;
+    if (!user) return;
     if (!title.trim()) { toast.error("بابەتی پرسیار پێویستە"); return; }
     if (!body.trim()) { toast.error("ناوەڕۆکی پرسیار پێویستە"); return; }
 
@@ -75,7 +75,7 @@ const NewQuestion = () => {
     try {
       let imageUrl: string | null = null;
 
-      if (imageFile) {
+      if (imageFile && !isGuest) {
         const filePath = `${user.id}/${crypto.randomUUID()}.webp`;
         const { error: uploadError } = await supabase.storage
           .from("project-images")
@@ -89,7 +89,7 @@ const NewQuestion = () => {
         title: title.trim(),
         body: body.trim(),
         tags,
-        author_id: profile.id,
+        author_id: isGuest ? null : profile?.id ?? null,
         image_url: imageUrl,
       } as any);
       toast.success("پرسیارەکە بە سەرکەوتوویی نێردرا!");

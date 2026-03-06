@@ -34,10 +34,12 @@ const NewBlogPost = () => {
 
   const isAdmin = roles?.includes("admin");
 
-  if (!user) {
+  if (!user || user.is_anonymous) {
     return (
       <div className="py-20 text-center">
-        <p className="text-muted-foreground">تکایە پێشتر <a href="/login" className="text-primary underline">بچۆرە ژوورەوە</a></p>
+        <p className="text-muted-foreground">
+          {user?.is_anonymous ? "میوانەکان ناتوانن بابەت بنووسن" : <>تکایە پێشتر <a href="/login" className="text-primary underline">بچۆرە ژوورەوە</a></>}
+        </p>
       </div>
     );
   }
