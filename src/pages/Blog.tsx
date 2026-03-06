@@ -122,6 +122,7 @@ const Blog = () => {
           <div className="py-20 text-center text-sm text-muted-foreground">هیچ بابەتێک نەدۆزرایەوە</div>
         )}
       </div>
+    </div>
     </>
   );
 };
