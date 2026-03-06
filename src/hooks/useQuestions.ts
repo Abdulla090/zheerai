@@ -10,7 +10,7 @@ export type Answer = Tables<"answers"> & {
   profiles: Pick<Tables<"profiles">, "display_name" | "avatar_url"> | null;
 };
 
-export const useQuestions = (sort: "newest" | "votes" | "unanswered" = "newest") => {
+export const useQuestions = (sort: "newest" | "votes" | "comments" = "newest") => {
   return useQuery({
     queryKey: ["questions", sort],
     queryFn: async () => {
@@ -19,7 +19,7 @@ export const useQuestions = (sort: "newest" | "votes" | "unanswered" = "newest")
         .select("*, profiles(display_name, avatar_url)");
 
       if (sort === "votes") query = query.order("votes_count", { ascending: false });
-      else if (sort === "unanswered") query = query.order("answers_count", { ascending: true });
+      else if (sort === "comments") query = query.order("comments_count", { ascending: false });
       else query = query.order("created_at", { ascending: false });
 
       const { data, error } = await query;

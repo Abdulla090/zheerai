@@ -137,7 +137,7 @@ const QA = () => {
                       </span>
                       <span className="flex items-center gap-1">
                         <MessageCircle className="h-3.5 w-3.5" />
-                        {q.answers_count} وەڵام
+                        {q.comments_count} کۆمێنت
                       </span>
                     </div>
                   </div>

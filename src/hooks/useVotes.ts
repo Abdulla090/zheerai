@@ -30,16 +30,13 @@ export const useVotes = (voteableId: string, voteableType: string) => {
 
       if (userVote) {
         if (userVote.vote_type === type) {
-          // Remove vote
           const { error } = await supabase.from("votes").delete().eq("id", userVote.id);
           if (error) throw error;
         } else {
-          // Change vote
           const { error } = await supabase.from("votes").update({ vote_type: type }).eq("id", userVote.id);
           if (error) throw error;
         }
       } else {
-        // New vote
         const { error } = await supabase.from("votes").insert({
           voteable_id: voteableId,
           voteable_type: voteableType,
@@ -51,8 +48,11 @@ export const useVotes = (voteableId: string, voteableType: string) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["user_vote", voteableId, voteableType, user?.id] });
-      queryClient.invalidateQueries({ queryKey: ["question"] });
-      queryClient.invalidateQueries({ queryKey: ["answers"] });
+      queryClient.invalidateQueries({ queryKey: ["questions"] });
+      queryClient.invalidateQueries({ queryKey: ["question", voteableId] });
+      if (voteableType === "answer") {
+        queryClient.invalidateQueries({ queryKey: ["answers"] });
+      }
     },
   });
 
