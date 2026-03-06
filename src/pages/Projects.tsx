@@ -24,6 +24,12 @@ const Projects = () => {
   const { user } = useAuth();
 
   return (
+    <>
+      <SEOHead
+        title="پڕۆژەکان"
+        description="پڕۆژەکانی زیرەکی دەستکرد لە کوردستان — ماڵپەڕ، ئەپ، ئامراز و چارەسەری AI"
+        canonical="https://zheerai.lovable.app/projects"
+      />
     <div className="py-10 md:py-14">
       <div className="container">
         <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
