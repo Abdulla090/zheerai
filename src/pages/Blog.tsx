@@ -8,6 +8,7 @@ import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserRole } from "@/hooks/useProfile";
 import { containerFast, fadeUpSmall } from "@/lib/animations";
+import SEOHead from "@/components/SEOHead";
 
 const Blog = () => {
   const { data: posts, isLoading } = useBlogPosts();
