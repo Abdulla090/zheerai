@@ -280,6 +280,7 @@ export type Database = {
           comments_count: number
           created_at: string
           id: string
+          image_url: string | null
           is_solved: boolean
           likes_count: number
           tags: string[] | null
@@ -294,6 +295,7 @@ export type Database = {
           comments_count?: number
           created_at?: string
           id?: string
+          image_url?: string | null
           is_solved?: boolean
           likes_count?: number
           tags?: string[] | null
@@ -308,6 +310,7 @@ export type Database = {
           comments_count?: number
           created_at?: string
           id?: string
+          image_url?: string | null
           is_solved?: boolean
           likes_count?: number
           tags?: string[] | null

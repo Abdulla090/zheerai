@@ -226,6 +226,18 @@ const QuestionDetail = () => {
 
             <p className="text-sm text-foreground/90 whitespace-pre-wrap leading-relaxed mb-4">{question.body}</p>
 
+            {/* Question image */}
+            {(question as any).image_url && (
+              <div className="mb-4">
+                <img
+                  src={(question as any).image_url}
+                  alt=""
+                  className="w-full max-h-[400px] object-contain rounded-lg border border-border bg-accent/20"
+                  loading="lazy"
+                />
+              </div>
+            )}
+
             {question.tags && question.tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mb-1">
                 {question.tags.map((tag) => (
