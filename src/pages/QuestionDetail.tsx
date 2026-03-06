@@ -237,6 +237,8 @@ const QuestionDetail = () => {
                 />
               </div>
             )}
+
+            {question.tags && question.tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mb-1">
                 {question.tags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="text-[11px] font-medium">
