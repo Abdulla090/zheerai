@@ -70,7 +70,7 @@ const Projects = () => {
                 <Link to={`/projects/${project.id}`}>
                   <Card className="group h-full cursor-pointer border-border transition-shadow hover:shadow-md">
                     {project.thumbnail_url ? (
-                      <img src={project.thumbnail_url} alt={project.title} className="aspect-video w-full object-cover" />
+                      <img src={project.thumbnail_url} alt={project.title} className="aspect-video w-full object-cover" loading="lazy" decoding="async" />
                     ) : (
                       <div className="aspect-video w-full bg-accent" />
                     )}
