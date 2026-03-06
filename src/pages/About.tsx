@@ -58,6 +58,12 @@ const values = [
 
 const About = () => {
   return (
+    <>
+      <SEOHead
+        title="دەربارەی ئێمە"
+        description="دەربارەی ZHEERAI — پلاتفۆرمی زیرەکی دەستکرد لە کوردستان لەلایەن ژیرساز و Kurdistan AI"
+        canonical="https://zheerai.lovable.app/about"
+      />
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden bg-purple-soft py-20 md:py-28">
