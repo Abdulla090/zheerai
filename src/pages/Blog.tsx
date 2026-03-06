@@ -8,6 +8,7 @@ import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserRole } from "@/hooks/useProfile";
 import { containerFast, fadeUpSmall } from "@/lib/animations";
+import SEOHead from "@/components/SEOHead";
 
 const Blog = () => {
   const { data: posts, isLoading } = useBlogPosts();
@@ -32,6 +33,12 @@ const Blog = () => {
   }
 
   return (
+    <>
+      <SEOHead
+        title="بڵاوکراوەکان"
+        description="بابەت، فێرکاری، و هەواڵی زیرەکی دەستکرد بە زمانی کوردی"
+        canonical="https://zheerai.lovable.app/blog"
+      />
     <div className="py-10 md:py-14">
       <div className="container">
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -58,7 +65,7 @@ const Blog = () => {
               <Card className="group cursor-pointer overflow-hidden border-border transition-shadow hover:shadow-md">
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   {featured.cover_image_url ? (
-                    <img src={featured.cover_image_url} alt={featured.title} className="aspect-video object-cover md:aspect-auto md:min-h-[280px] w-full" />
+                    <img src={featured.cover_image_url} alt={featured.title} className="aspect-video object-cover md:aspect-auto md:min-h-[280px] w-full" loading="lazy" decoding="async" />
                   ) : (
                     <div className="aspect-video bg-accent md:aspect-auto md:min-h-[280px]" />
                   )}
@@ -88,7 +95,7 @@ const Blog = () => {
                 <Link to={`/blog/${post.id}`}>
                   <Card className="group h-full cursor-pointer border-border transition-shadow hover:shadow-md">
                     {post.cover_image_url ? (
-                      <img src={post.cover_image_url} alt={post.title} className="aspect-[16/9] w-full object-cover" />
+                      <img src={post.cover_image_url} alt={post.title} className="aspect-[16/9] w-full object-cover" loading="lazy" decoding="async" />
                     ) : (
                       <div className="aspect-[16/9] w-full bg-accent" />
                     )}
@@ -116,6 +123,7 @@ const Blog = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

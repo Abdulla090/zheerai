@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Eye, ExternalLink, Github, Calendar, MessageSquare, User, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,7 @@ import LikeButton from "@/components/LikeButton";
 import CommentsSection from "@/components/CommentsSection";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrentProfile } from "@/hooks/useProfile";
+import SEOHead from "@/components/SEOHead";
 
 const categories: Record<string, string> = {
   ai_website: "ماڵپەڕی AI",
@@ -46,6 +47,15 @@ const ProjectDetail = () => {
     }
   }, [id]);
 
+  const jsonLd = useMemo(() => project ? ({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: project.title,
+    description: project.description || "",
+    image: project.thumbnail_url || undefined,
+    author: { "@type": "Person", name: project.profiles?.display_name },
+  }) : undefined, [project]);
+
   if (isLoading) {
     return (
       <div className="py-10 md:py-14"><div className="container max-w-3xl space-y-4">
@@ -59,10 +69,20 @@ const ProjectDetail = () => {
   }
 
   return (
+    <>
+      {project && (
+        <SEOHead
+          title={project.title}
+          description={project.description || `پڕۆژەی ${project.title} لە ZHEERAI`}
+          canonical={`https://zheerai.lovable.app/projects/${project.id}`}
+          ogImage={project.thumbnail_url || undefined}
+          jsonLd={jsonLd}
+        />
+      )}
     <div className="py-10 md:py-14">
       <div className="container max-w-3xl">
         {project.thumbnail_url ? (
-          <img src={project.thumbnail_url} alt={project.title} className="aspect-video w-full rounded-lg object-cover border border-border mb-6" />
+          <img src={project.thumbnail_url} alt={project.title} className="aspect-video w-full rounded-lg object-cover border border-border mb-6" loading="lazy" decoding="async" />
         ) : (
           <div className="aspect-video w-full rounded-lg bg-accent mb-6" />
         )}
@@ -129,6 +149,7 @@ const ProjectDetail = () => {
         <CommentsSection targetId={project.id} targetType="project" />
       </div>
     </div>
+    </>
   );
 };
 

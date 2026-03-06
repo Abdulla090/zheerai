@@ -9,6 +9,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useQuestions } from "@/hooks/useQuestions";
 import { useAuth } from "@/hooks/useAuth";
 import { containerFast, fadeUpSmall } from "@/lib/animations";
+import SEOHead from "@/components/SEOHead";
 
 type SortMode = "newest" | "votes" | "comments";
 
@@ -31,6 +32,12 @@ const QA = () => {
   const { user } = useAuth();
 
   return (
+    <>
+      <SEOHead
+        title="پرسیار و وەڵام"
+        description="پرسیار بکە و وەڵام وەربگرە لە کۆمەڵگای زیرەکی دەستکرد لە کوردستان"
+        canonical="https://zheerai.lovable.app/qa"
+      />
     <div className="py-8 md:py-12">
       <div className="container max-w-3xl">
         {/* Header */}
@@ -155,6 +162,7 @@ const QA = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

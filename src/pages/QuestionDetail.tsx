@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { MessageCircle, Clock, User, Send, ChevronDown, ChevronUp, Pencil } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,6 +15,7 @@ import { useCurrentProfile } from "@/hooks/useProfile";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import VoteButtons from "@/components/VoteButtons";
+import SEOHead from "@/components/SEOHead";
 
 const timeAgo = (dateStr: string) => {
   const diff = Date.now() - new Date(dateStr).getTime();
@@ -185,6 +186,26 @@ const QuestionDetail = () => {
   }
 
   return (
+    <>
+      {question && (
+        <SEOHead
+          title={question.title}
+          description={question.body?.slice(0, 160)}
+          canonical={`https://zheerai.lovable.app/qa/${question.id}`}
+          ogType="article"
+          jsonLd={{
+            "@context": "https://schema.org",
+            "@type": "QAPage",
+            mainEntity: {
+              "@type": "Question",
+              name: question.title,
+              text: question.body,
+              dateCreated: question.created_at,
+              author: { "@type": "Person", name: question.profiles?.display_name },
+            },
+          }}
+        />
+      )}
     <div className="py-6 md:py-10">
       <div className="container max-w-3xl">
         <motion.div
@@ -287,6 +308,7 @@ const QuestionDetail = () => {
         </motion.div>
       </div>
     </div>
+    </>
   );
 };
 

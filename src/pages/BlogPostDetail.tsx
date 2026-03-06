@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -13,6 +13,7 @@ import remarkGfm from "remark-gfm";
 import type { BlogPost } from "@/hooks/useBlogPosts";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrentProfile, useUserRole } from "@/hooks/useProfile";
+import SEOHead from "@/components/SEOHead";
 
 const BlogPostDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -40,6 +41,17 @@ const BlogPostDetail = () => {
     }
   }, [id]);
 
+  const jsonLd = useMemo(() => post ? ({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt || post.body?.slice(0, 160),
+    image: post.cover_image_url || undefined,
+    datePublished: post.created_at,
+    dateModified: post.updated_at,
+    author: { "@type": "Person", name: post.profiles?.display_name },
+  }) : undefined, [post]);
+
   if (isLoading) {
     return (
       <div className="py-10 md:py-14">
@@ -56,6 +68,17 @@ const BlogPostDetail = () => {
   }
 
   return (
+    <>
+      {post && (
+        <SEOHead
+          title={post.title}
+          description={post.excerpt || post.body?.slice(0, 160)}
+          canonical={`https://zheerai.lovable.app/blog/${post.id}`}
+          ogImage={post.cover_image_url || undefined}
+          ogType="article"
+          jsonLd={jsonLd}
+        />
+      )}
     <div className="py-10 md:py-14">
       <div className="container max-w-3xl">
         <Link to="/blog" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6">
@@ -64,7 +87,7 @@ const BlogPostDetail = () => {
         </Link>
 
         {post.cover_image_url && (
-          <img src={post.cover_image_url} alt={post.title} className="w-full aspect-video object-cover rounded-lg mb-6" />
+          <img src={post.cover_image_url} alt={post.title} className="w-full aspect-video object-cover rounded-lg mb-6" loading="lazy" decoding="async" />
         )}
 
         <div className="flex flex-wrap gap-1.5 mb-3">
@@ -108,6 +131,7 @@ const BlogPostDetail = () => {
         <CommentsSection targetId={post.id} targetType="blog_post" />
       </div>
     </div>
+    </>
   );
 };
 

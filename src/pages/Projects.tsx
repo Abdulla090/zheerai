@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Eye, Filter, Plus } from "lucide-react";
@@ -8,6 +8,7 @@ import { useProjects } from "@/hooks/useProjects";
 import { useAuth } from "@/hooks/useAuth";
 import { containerFast, fadeUpSmall } from "@/lib/animations";
 import { Skeleton } from "@/components/ui/skeleton";
+import SEOHead from "@/components/SEOHead";
 
 const projectCategories = [
   { value: "ai_website", label: "ماڵپەڕی AI" },
@@ -23,6 +24,12 @@ const Projects = () => {
   const { user } = useAuth();
 
   return (
+    <>
+      <SEOHead
+        title="پڕۆژەکان"
+        description="پڕۆژەکانی زیرەکی دەستکرد لە کوردستان — ماڵپەڕ، ئەپ، ئامراز و چارەسەری AI"
+        canonical="https://zheerai.lovable.app/projects"
+      />
     <div className="py-10 md:py-14">
       <div className="container">
         <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
@@ -63,7 +70,7 @@ const Projects = () => {
                 <Link to={`/projects/${project.id}`}>
                   <Card className="group h-full cursor-pointer border-border transition-shadow hover:shadow-md">
                     {project.thumbnail_url ? (
-                      <img src={project.thumbnail_url} alt={project.title} className="aspect-video w-full object-cover" />
+                      <img src={project.thumbnail_url} alt={project.title} className="aspect-video w-full object-cover" loading="lazy" decoding="async" />
                     ) : (
                       <div className="aspect-video w-full bg-accent" />
                     )}
@@ -94,6 +101,7 @@ const Projects = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import zheerSazLogo from "@/assets/zheer-saz-logo.jpg";
 import kurdistanAiLogo from "@/assets/kurdistan-ai-logo.jpg";
+import SEOHead from "@/components/SEOHead";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -57,6 +58,12 @@ const values = [
 
 const About = () => {
   return (
+    <>
+      <SEOHead
+        title="دەربارەی ئێمە"
+        description="دەربارەی ZHEERAI — پلاتفۆرمی زیرەکی دەستکرد لە کوردستان لەلایەن ژیرساز و Kurdistan AI"
+        canonical="https://zheerai.lovable.app/about"
+      />
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden bg-purple-soft py-20 md:py-28">
@@ -195,6 +202,7 @@ const About = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 
