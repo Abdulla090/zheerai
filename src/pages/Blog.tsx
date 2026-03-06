@@ -65,7 +65,7 @@ const Blog = () => {
               <Card className="group cursor-pointer overflow-hidden border-border transition-shadow hover:shadow-md">
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   {featured.cover_image_url ? (
-                    <img src={featured.cover_image_url} alt={featured.title} className="aspect-video object-cover md:aspect-auto md:min-h-[280px] w-full" />
+                    <img src={featured.cover_image_url} alt={featured.title} className="aspect-video object-cover md:aspect-auto md:min-h-[280px] w-full" loading="lazy" decoding="async" />
                   ) : (
                     <div className="aspect-video bg-accent md:aspect-auto md:min-h-[280px]" />
                   )}
