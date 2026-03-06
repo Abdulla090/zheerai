@@ -193,6 +193,7 @@ const Index = () => {
             <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 gap-5 md:grid-cols-3">
               {blogPosts?.slice(0, 3).map((post) => (
                 <motion.div key={post.id} variants={fadeUp}>
+                  <Link to={`/blog/${post.id}`}>
                   <Card className="group h-full cursor-pointer border-border transition-shadow hover:shadow-md">
                     {post.cover_image_url ? (
                       <img src={post.cover_image_url} alt={post.title} className="aspect-[16/9] w-full object-cover" />
@@ -213,6 +214,7 @@ const Index = () => {
                       </div>
                     </CardContent>
                   </Card>
+                  </Link>
                 </motion.div>
               ))}
             </motion.div>
