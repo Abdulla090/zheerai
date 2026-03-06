@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { User, FolderOpen, MessageCircleQuestion, Crown, Shield, Calendar, Heart, MessageSquare, Eye } from "lucide-react";
+import { User, FolderOpen, MessageCircleQuestion, Crown, Shield, Calendar, Heart, MessageSquare, Eye, FileText } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
