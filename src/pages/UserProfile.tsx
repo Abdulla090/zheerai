@@ -101,7 +101,7 @@ const UserProfile = () => {
             {[
               { label: "پڕۆژە", value: stats?.projects ?? 0, icon: FolderOpen },
               { label: "پرسیار", value: stats?.questions ?? 0, icon: MessageCircleQuestion },
-              { label: "وەڵام", value: stats?.answers ?? 0, icon: MessageSquare },
+              { label: "بابەت", value: stats?.blogs ?? 0, icon: FileText },
             ].map((s) => (
               <div key={s.label} className="flex flex-col items-center gap-1 rounded-xl border border-border bg-background p-3">
                 <s.icon className="h-4 w-4 text-muted-foreground" />
