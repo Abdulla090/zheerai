@@ -131,6 +131,7 @@ const BlogPostDetail = () => {
         <CommentsSection targetId={post.id} targetType="blog_post" />
       </div>
     </div>
+    </>
   );
 };
 

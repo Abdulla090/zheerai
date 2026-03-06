@@ -308,6 +308,7 @@ const QuestionDetail = () => {
         </motion.div>
       </div>
     </div>
+    </>
   );
 };
 

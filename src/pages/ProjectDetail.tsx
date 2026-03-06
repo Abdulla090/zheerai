@@ -149,6 +149,7 @@ const ProjectDetail = () => {
         <CommentsSection targetId={project.id} targetType="project" />
       </div>
     </div>
+    </>
   );
 };
 
