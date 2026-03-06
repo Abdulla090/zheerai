@@ -186,6 +186,26 @@ const QuestionDetail = () => {
   }
 
   return (
+    <>
+      {question && (
+        <SEOHead
+          title={question.title}
+          description={question.body?.slice(0, 160)}
+          canonical={`https://zheerai.lovable.app/qa/${question.id}`}
+          ogType="article"
+          jsonLd={{
+            "@context": "https://schema.org",
+            "@type": "QAPage",
+            mainEntity: {
+              "@type": "Question",
+              name: question.title,
+              text: question.body,
+              dateCreated: question.created_at,
+              author: { "@type": "Person", name: question.profiles?.display_name },
+            },
+          }}
+        />
+      )}
     <div className="py-6 md:py-10">
       <div className="container max-w-3xl">
         <motion.div
