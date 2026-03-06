@@ -16,6 +16,9 @@ import { useCurrentProfile, useUserRole } from "@/hooks/useProfile";
 
 const BlogPostDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const { data: profile } = useCurrentProfile();
+  const { data: roles } = useUserRole();
+  const isAdmin = roles?.includes("admin");
 
   const { data: post, isLoading } = useQuery({
     queryKey: ["blog_post", id],
