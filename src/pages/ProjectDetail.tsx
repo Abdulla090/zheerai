@@ -10,6 +10,8 @@ import { supabase } from "@/integrations/supabase/client";
 import type { Project } from "@/hooks/useProjects";
 import LikeButton from "@/components/LikeButton";
 import CommentsSection from "@/components/CommentsSection";
+import { useAuth } from "@/hooks/useAuth";
+import { useCurrentProfile } from "@/hooks/useProfile";
 
 const categories: Record<string, string> = {
   ai_website: "ماڵپەڕی AI",
