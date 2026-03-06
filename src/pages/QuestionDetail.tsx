@@ -221,6 +221,13 @@ const QuestionDetail = () => {
                   {timeAgo(question.created_at)} لەمەوبەر
                 </div>
               </div>
+              {profile && question.author_id === profile.id && (
+                <Link to={`/qa/${question.id}/edit`} className="shrink-0">
+                  <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-foreground">
+                    <Pencil className="h-3.5 w-3.5" />دەستکاری
+                  </Button>
+                </Link>
+              )}
             </div>
 
             <h1 className="text-lg md:text-xl font-bold text-foreground leading-snug mb-3">{question.title}</h1>
