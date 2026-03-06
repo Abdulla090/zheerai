@@ -153,6 +153,7 @@ const QuestionDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { data: question, isLoading } = useQuestion(id!);
   const { data: questionComments } = useComments(id!, "question");
+  const { data: profile } = useCurrentProfile();
   const [showQuestionComments, setShowQuestionComments] = useState(false);
 
   useEffect(() => {
