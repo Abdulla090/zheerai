@@ -214,6 +214,7 @@ const Index = () => {
                       </div>
                     </CardContent>
                   </Card>
+                  </Link>
                 </motion.div>
               ))}
             </motion.div>
