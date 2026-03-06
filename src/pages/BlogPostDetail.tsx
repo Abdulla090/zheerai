@@ -2,14 +2,17 @@ import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Calendar, Eye, ArrowRight, User } from "lucide-react";
+import { Calendar, Eye, ArrowRight, User, Pencil } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import CommentsSection from "@/components/CommentsSection";
 import LikeButton from "@/components/LikeButton";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { BlogPost } from "@/hooks/useBlogPosts";
+import { useAuth } from "@/hooks/useAuth";
+import { useCurrentProfile, useUserRole } from "@/hooks/useProfile";
 
 const BlogPostDetail = () => {
   const { id } = useParams<{ id: string }>();

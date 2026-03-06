@@ -74,7 +74,14 @@ const ProjectDetail = () => {
           ))}
         </div>
 
-        <h1 className="text-2xl font-bold text-foreground md:text-3xl">{project.title}</h1>
+        <div className="flex items-center gap-3">
+          <h1 className="text-2xl font-bold text-foreground md:text-3xl flex-1">{project.title}</h1>
+          {profile && project.author_id === profile.id && (
+            <Link to={`/projects/${project.id}/edit`}>
+              <Button variant="outline" size="sm" className="gap-1.5"><Pencil className="h-3.5 w-3.5" />دەستکاری</Button>
+            </Link>
+          )}
+        </div>
 
         <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
           {project.author_id && (
