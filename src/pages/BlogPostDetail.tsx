@@ -41,6 +41,17 @@ const BlogPostDetail = () => {
     }
   }, [id]);
 
+  const jsonLd = useMemo(() => post ? ({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt || post.body?.slice(0, 160),
+    image: post.cover_image_url || undefined,
+    datePublished: post.created_at,
+    dateModified: post.updated_at,
+    author: { "@type": "Person", name: post.profiles?.display_name },
+  }) : undefined, [post]);
+
   if (isLoading) {
     return (
       <div className="py-10 md:py-14">
@@ -55,17 +66,6 @@ const BlogPostDetail = () => {
   if (!post) {
     return <div className="py-20 text-center text-muted-foreground">بابەتەکە نەدۆزرایەوە</div>;
   }
-
-  const jsonLd = useMemo(() => post ? ({
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt || post.body?.slice(0, 160),
-    image: post.cover_image_url || undefined,
-    datePublished: post.created_at,
-    dateModified: post.updated_at,
-    author: { "@type": "Person", name: post.profiles?.display_name },
-  }) : undefined, [post]);
 
   return (
     <>
