@@ -47,6 +47,15 @@ const ProjectDetail = () => {
     }
   }, [id]);
 
+  const jsonLd = useMemo(() => project ? ({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: project.title,
+    description: project.description || "",
+    image: project.thumbnail_url || undefined,
+    author: { "@type": "Person", name: project.profiles?.display_name },
+  }) : undefined, [project]);
+
   if (isLoading) {
     return (
       <div className="py-10 md:py-14"><div className="container max-w-3xl space-y-4">
@@ -58,15 +67,6 @@ const ProjectDetail = () => {
   if (!project) {
     return <div className="py-20 text-center text-muted-foreground">پڕۆژەکە نەدۆزرایەوە</div>;
   }
-
-  const jsonLd = useMemo(() => project ? ({
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: project.title,
-    description: project.description || "",
-    image: project.thumbnail_url || undefined,
-    author: { "@type": "Person", name: project.profiles?.display_name },
-  }) : undefined, [project]);
 
   return (
     <>
