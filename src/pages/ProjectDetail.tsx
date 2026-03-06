@@ -59,11 +59,30 @@ const ProjectDetail = () => {
     return <div className="py-20 text-center text-muted-foreground">پڕۆژەکە نەدۆزرایەوە</div>;
   }
 
+  const jsonLd = useMemo(() => project ? ({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: project.title,
+    description: project.description || "",
+    image: project.thumbnail_url || undefined,
+    author: { "@type": "Person", name: project.profiles?.display_name },
+  }) : undefined, [project]);
+
   return (
+    <>
+      {project && (
+        <SEOHead
+          title={project.title}
+          description={project.description || `پڕۆژەی ${project.title} لە ZHEERAI`}
+          canonical={`https://zheerai.lovable.app/projects/${project.id}`}
+          ogImage={project.thumbnail_url || undefined}
+          jsonLd={jsonLd}
+        />
+      )}
     <div className="py-10 md:py-14">
       <div className="container max-w-3xl">
         {project.thumbnail_url ? (
-          <img src={project.thumbnail_url} alt={project.title} className="aspect-video w-full rounded-lg object-cover border border-border mb-6" />
+          <img src={project.thumbnail_url} alt={project.title} className="aspect-video w-full rounded-lg object-cover border border-border mb-6" loading="lazy" decoding="async" />
         ) : (
           <div className="aspect-video w-full rounded-lg bg-accent mb-6" />
         )}
