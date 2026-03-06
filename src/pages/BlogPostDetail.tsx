@@ -2,17 +2,23 @@ import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Calendar, Eye, ArrowRight, User } from "lucide-react";
+import { Calendar, Eye, ArrowRight, User, Pencil } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import CommentsSection from "@/components/CommentsSection";
 import LikeButton from "@/components/LikeButton";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { BlogPost } from "@/hooks/useBlogPosts";
+import { useAuth } from "@/hooks/useAuth";
+import { useCurrentProfile, useUserRole } from "@/hooks/useProfile";
 
 const BlogPostDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const { data: profile } = useCurrentProfile();
+  const { data: roles } = useUserRole();
+  const isAdmin = roles?.includes("admin");
 
   const { data: post, isLoading } = useQuery({
     queryKey: ["blog_post", id],
@@ -67,7 +73,14 @@ const BlogPostDetail = () => {
           ))}
         </div>
 
-        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4">{post.title}</h1>
+        <div className="flex items-center gap-3 mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground flex-1">{post.title}</h1>
+          {profile && (post.author_id === profile.id || isAdmin) && (
+            <Link to={`/blog/${post.id}/edit`}>
+              <Button variant="outline" size="sm" className="gap-1.5"><Pencil className="h-3.5 w-3.5" />دەستکاری</Button>
+            </Link>
+          )}
+        </div>
 
         <div className="flex items-center gap-4 text-sm text-muted-foreground mb-8 pb-6 border-b border-border">
           {post.author_id && (

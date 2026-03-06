@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Eye, ExternalLink, Github, Calendar, MessageSquare, User } from "lucide-react";
+import { Eye, ExternalLink, Github, Calendar, MessageSquare, User, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,8 @@ import { supabase } from "@/integrations/supabase/client";
 import type { Project } from "@/hooks/useProjects";
 import LikeButton from "@/components/LikeButton";
 import CommentsSection from "@/components/CommentsSection";
+import { useAuth } from "@/hooks/useAuth";
+import { useCurrentProfile } from "@/hooks/useProfile";
 
 const categories: Record<string, string> = {
   ai_website: "ماڵپەڕی AI",
@@ -21,6 +23,8 @@ const categories: Record<string, string> = {
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const { user } = useAuth();
+  const { data: profile } = useCurrentProfile();
   const { data: project, isLoading } = useQuery({
     queryKey: ["project", id],
     queryFn: async () => {
@@ -70,7 +74,14 @@ const ProjectDetail = () => {
           ))}
         </div>
 
-        <h1 className="text-2xl font-bold text-foreground md:text-3xl">{project.title}</h1>
+        <div className="flex items-center gap-3">
+          <h1 className="text-2xl font-bold text-foreground md:text-3xl flex-1">{project.title}</h1>
+          {profile && project.author_id === profile.id && (
+            <Link to={`/projects/${project.id}/edit`}>
+              <Button variant="outline" size="sm" className="gap-1.5"><Pencil className="h-3.5 w-3.5" />دەستکاری</Button>
+            </Link>
+          )}
+        </div>
 
         <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
           {project.author_id && (
