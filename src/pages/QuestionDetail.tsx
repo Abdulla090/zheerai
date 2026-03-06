@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { MessageCircle, Clock, User, Send, ChevronDown, ChevronUp } from "lucide-react";
+import { MessageCircle, Clock, User, Send, ChevronDown, ChevronUp, Pencil } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
