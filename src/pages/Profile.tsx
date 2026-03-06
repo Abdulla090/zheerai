@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { User, FolderOpen, MessageCircleQuestion, Crown, Shield, Calendar, Heart, MessageSquare, Eye, Settings, Mail } from "lucide-react";
+import { User, FolderOpen, MessageCircleQuestion, Crown, Shield, Calendar, Heart, MessageSquare, Eye, Settings, Mail, FileText } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -41,16 +41,16 @@ const Profile = () => {
   const { data: stats } = useQuery({
     queryKey: ["user_stats", profile?.id],
     queryFn: async () => {
-      const [projectsRes, questionsRes, answersRes, commentsRes] = await Promise.all([
+      const [projectsRes, questionsRes, blogsRes, commentsRes] = await Promise.all([
         supabase.from("projects").select("id", { count: "exact", head: true }).eq("author_id", profile!.id),
         supabase.from("questions").select("id", { count: "exact", head: true }).eq("author_id", profile!.id),
-        supabase.from("answers").select("id", { count: "exact", head: true }).eq("author_id", profile!.id),
+        supabase.from("blog_posts").select("id", { count: "exact", head: true }).eq("author_id", profile!.id),
         supabase.from("comments").select("id", { count: "exact", head: true }).eq("author_id", profile!.id),
       ]);
       return {
         projects: projectsRes.count ?? 0,
         questions: questionsRes.count ?? 0,
-        answers: answersRes.count ?? 0,
+        blogs: blogsRes.count ?? 0,
         comments: commentsRes.count ?? 0,
       };
     },
@@ -115,7 +115,7 @@ const Profile = () => {
             {[
               { label: "پڕۆژە", value: stats?.projects ?? 0, icon: FolderOpen },
               { label: "پرسیار", value: stats?.questions ?? 0, icon: MessageCircleQuestion },
-              { label: "وەڵام", value: stats?.answers ?? 0, icon: MessageSquare },
+              { label: "بابەت", value: stats?.blogs ?? 0, icon: FileText },
               { label: "لێدوان", value: stats?.comments ?? 0, icon: MessageSquare },
             ].map((s) => (
               <div key={s.label} className="flex flex-col items-center gap-1 rounded-xl border border-border bg-background p-3">

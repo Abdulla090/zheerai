@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { User, FolderOpen, MessageCircleQuestion, Crown, Shield, Calendar, Heart, MessageSquare, Eye } from "lucide-react";
+import { User, FolderOpen, MessageCircleQuestion, Crown, Shield, Calendar, Heart, MessageSquare, Eye, FileText } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -56,12 +56,12 @@ const UserProfile = () => {
   const { data: stats } = useQuery({
     queryKey: ["public_user_stats", id],
     queryFn: async () => {
-      const [p, q, a] = await Promise.all([
+      const [p, q, b] = await Promise.all([
         supabase.from("projects").select("id", { count: "exact", head: true }).eq("author_id", id!),
         supabase.from("questions").select("id", { count: "exact", head: true }).eq("author_id", id!),
-        supabase.from("answers").select("id", { count: "exact", head: true }).eq("author_id", id!),
+        supabase.from("blog_posts").select("id", { count: "exact", head: true }).eq("author_id", id!),
       ]);
-      return { projects: p.count ?? 0, questions: q.count ?? 0, answers: a.count ?? 0 };
+      return { projects: p.count ?? 0, questions: q.count ?? 0, blogs: b.count ?? 0 };
     },
     enabled: !!id,
   });
@@ -101,7 +101,7 @@ const UserProfile = () => {
             {[
               { label: "پڕۆژە", value: stats?.projects ?? 0, icon: FolderOpen },
               { label: "پرسیار", value: stats?.questions ?? 0, icon: MessageCircleQuestion },
-              { label: "وەڵام", value: stats?.answers ?? 0, icon: MessageSquare },
+              { label: "بابەت", value: stats?.blogs ?? 0, icon: FileText },
             ].map((s) => (
               <div key={s.label} className="flex flex-col items-center gap-1 rounded-xl border border-border bg-background p-3">
                 <s.icon className="h-4 w-4 text-muted-foreground" />
