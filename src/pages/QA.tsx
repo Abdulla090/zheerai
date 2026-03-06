@@ -52,7 +52,7 @@ const QA = () => {
 
         {/* Sort tabs */}
         <div className="mb-5 flex items-center gap-1 border-b border-border pb-2">
-          {(["newest", "votes", "unanswered"] as SortMode[]).map((s) => (
+          {(["newest", "votes", "comments"] as SortMode[]).map((s) => (
             <button
               key={s}
               onClick={() => setSort(s)}
@@ -62,7 +62,7 @@ const QA = () => {
                   : "text-muted-foreground hover:bg-accent hover:text-foreground"
               }`}
             >
-              {s === "newest" ? "نوێترین" : s === "votes" ? "زۆرترین دەنگ" : "بێ وەڵام"}
+              {s === "newest" ? "نوێترین" : s === "votes" ? "زۆرترین دەنگ" : "زۆرترین کۆمێنت"}
             </button>
           ))}
         </div>
