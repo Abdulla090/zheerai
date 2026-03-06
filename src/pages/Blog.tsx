@@ -95,7 +95,7 @@ const Blog = () => {
                 <Link to={`/blog/${post.id}`}>
                   <Card className="group h-full cursor-pointer border-border transition-shadow hover:shadow-md">
                     {post.cover_image_url ? (
-                      <img src={post.cover_image_url} alt={post.title} className="aspect-[16/9] w-full object-cover" />
+                      <img src={post.cover_image_url} alt={post.title} className="aspect-[16/9] w-full object-cover" loading="lazy" decoding="async" />
                     ) : (
                       <div className="aspect-[16/9] w-full bg-accent" />
                     )}
