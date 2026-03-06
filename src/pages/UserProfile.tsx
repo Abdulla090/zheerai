@@ -56,12 +56,12 @@ const UserProfile = () => {
   const { data: stats } = useQuery({
     queryKey: ["public_user_stats", id],
     queryFn: async () => {
-      const [p, q, a] = await Promise.all([
+      const [p, q, b] = await Promise.all([
         supabase.from("projects").select("id", { count: "exact", head: true }).eq("author_id", id!),
         supabase.from("questions").select("id", { count: "exact", head: true }).eq("author_id", id!),
-        supabase.from("answers").select("id", { count: "exact", head: true }).eq("author_id", id!),
+        supabase.from("blog_posts").select("id", { count: "exact", head: true }).eq("author_id", id!),
       ]);
-      return { projects: p.count ?? 0, questions: q.count ?? 0, answers: a.count ?? 0 };
+      return { projects: p.count ?? 0, questions: q.count ?? 0, blogs: b.count ?? 0 };
     },
     enabled: !!id,
   });
