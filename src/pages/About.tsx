@@ -194,7 +194,7 @@ const About = () => {
             ببە بەشێک لە کۆمەڵگاکە
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-sm text-primary-foreground/80 leading-relaxed">
-            تۆمار بکە و ئێستا دەست بکە بە بەشداری لە ZHEERAI — بەخۆڕایی و بە کوردی.
+            تۆمار بکە و ئێستا دەست بکە بە بەشداری لە Kurdistan AI — بەخۆڕایی و بە کوردی.
           </p>
           <Button variant="secondary" size="lg" className="mt-8" asChild>
             <a href="/signup">تۆمارکردن</a>

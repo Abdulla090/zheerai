@@ -52,7 +52,7 @@ const ResetPassword = () => {
       >
         <Card className="border-border">
           <CardHeader className="text-center">
-            <Link to="/" className="mb-4 inline-block text-xl font-bold text-primary">ZHEERAI</Link>
+            <Link to="/" className="mb-4 inline-block text-xl font-bold text-primary">Kurdistan AI</Link>
             <CardTitle className="text-xl">وشەی نهێنی نوێ</CardTitle>
             <CardDescription>وشەی نهێنی نوێ دابنێ</CardDescription>
           </CardHeader>

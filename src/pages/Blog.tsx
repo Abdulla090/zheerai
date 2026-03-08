@@ -37,7 +37,7 @@ const Blog = () => {
       <SEOHead
         title="بڵاوکراوەکان"
         description="بابەت، فێرکاری، و هەواڵی زیرەکی دەستکرد بە زمانی کوردی"
-        canonical="https://zheerai.lovable.app/blog"
+        canonical="https://kurdistanai.app/blog"
       />
     <div className="py-10 md:py-14">
       <div className="container">

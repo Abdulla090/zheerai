@@ -73,8 +73,8 @@ const ProjectDetail = () => {
       {project && (
         <SEOHead
           title={project.title}
-          description={project.description || `پڕۆژەی ${project.title} لە ZHEERAI`}
-          canonical={`https://zheerai.lovable.app/projects/${project.id}`}
+           description={project.description || `پڕۆژەی ${project.title} لە Kurdistan AI`}
+           canonical={`https://kurdistanai.app/projects/${project.id}`}
           ogImage={project.thumbnail_url || undefined}
           jsonLd={jsonLd}
         />

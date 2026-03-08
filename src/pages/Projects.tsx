@@ -28,7 +28,7 @@ const Projects = () => {
       <SEOHead
         title="پڕۆژەکان"
         description="پڕۆژەکانی زیرەکی دەستکرد لە کوردستان — ماڵپەڕ، ئەپ، ئامراز و چارەسەری AI"
-        canonical="https://zheerai.lovable.app/projects"
+        canonical="https://kurdistanai.app/projects"
       />
     <div className="py-10 md:py-14">
       <div className="container">

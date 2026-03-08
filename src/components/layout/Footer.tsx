@@ -42,7 +42,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-10 border-t border-border pt-6 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} ZHEERAI. هەموو مافەکان پارێزراون.
+          © {new Date().getFullYear()} Kurdistan AI. هەموو مافەکان پارێزراون.
         </div>
       </div>
     </footer>

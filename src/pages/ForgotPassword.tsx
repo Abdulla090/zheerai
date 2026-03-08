@@ -39,7 +39,7 @@ const ForgotPassword = () => {
       >
         <Card className="border-border">
           <CardHeader className="text-center">
-            <Link to="/" className="mb-4 inline-block text-xl font-bold text-primary">ZHEERAI</Link>
+            <Link to="/" className="mb-4 inline-block text-xl font-bold text-primary">Kurdistan AI</Link>
             <CardTitle className="text-xl">وشەی نهێنیت لەبیرکردووە؟</CardTitle>
             <CardDescription>ئیمەیلەکەت بنووسە بۆ ڕیسێتکردن</CardDescription>
           </CardHeader>
