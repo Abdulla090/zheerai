@@ -10,8 +10,8 @@ interface SEOHeadProps {
   jsonLd?: Record<string, unknown>;
 }
 
-const SITE_NAME = "ZHEERAI";
-const DEFAULT_DESC = "ZHEERAI - کۆمەڵگای زیرەکی دەستکرد لە کوردستان. پڕۆژەکانت پیشان بدە، پرسیار بکە، بڵاوکراوە بنووسە.";
+const SITE_NAME = "Kurdistan AI";
+const DEFAULT_DESC = "Kurdistan AI - کۆمەڵگای زیرەکی دەستکرد لە کوردستان. پڕۆژەکانت پیشان بدە، پرسیار بکە، بڵاوکراوە بنووسە.";
 const DEFAULT_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/7HKgE5HYYOc2kQnwrUNNYt63kLm1/social-images/social-1772745656712-1000104485.webp";
 
 const SEOHead = ({

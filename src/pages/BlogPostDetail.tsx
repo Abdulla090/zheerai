@@ -73,7 +73,7 @@ const BlogPostDetail = () => {
         <SEOHead
           title={post.title}
           description={post.excerpt || post.body?.slice(0, 160)}
-          canonical={`https://zheerai.lovable.app/blog/${post.id}`}
+          canonical={`https://kurdistanai.app/blog/${post.id}`}
           ogImage={post.cover_image_url || undefined}
           ogType="article"
           jsonLd={jsonLd}

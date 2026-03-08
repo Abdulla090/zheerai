@@ -191,7 +191,7 @@ const QuestionDetail = () => {
         <SEOHead
           title={question.title}
           description={question.body?.slice(0, 160)}
-          canonical={`https://zheerai.lovable.app/qa/${question.id}`}
+          canonical={`https://kurdistanai.app/qa/${question.id}`}
           ogType="article"
           jsonLd={{
             "@context": "https://schema.org",

@@ -61,8 +61,8 @@ const About = () => {
     <>
       <SEOHead
         title="دەربارەی ئێمە"
-        description="دەربارەی ZHEERAI — پلاتفۆرمی زیرەکی دەستکرد لە کوردستان لەلایەن ژیرساز و Kurdistan AI"
-        canonical="https://zheerai.lovable.app/about"
+         description="دەربارەی Kurdistan AI — پلاتفۆرمی زیرەکی دەستکرد لە کوردستان لەلایەن ژیرساز و Kurdistan AI"
+         canonical="https://kurdistanai.app/about"
       />
     <div>
       {/* Hero */}
@@ -74,11 +74,11 @@ const About = () => {
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             className="mx-auto max-w-3xl text-center"
           >
-            <h1 className="text-3xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
-              دەربارەی <span className="text-primary">ZHEERAI</span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground leading-relaxed md:text-lg">
-              ZHEERAI پلاتفۆرمێکی یەکگرتووە کە لەلایەن دوو ڕێکخراوی پێشەنگەوە دامەزراوە، بۆ ئەوەی کۆمەڵگای کوردی بتوانێت بە زمانی خۆی فێری زیرەکی دەستکرد ببێت، زانیاری بدات و وەربگرێت — بەتەواوی بەخۆڕایی.
+             <h1 className="text-3xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
+               دەربارەی <span className="text-primary">Kurdistan AI</span>
+             </h1>
+             <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground leading-relaxed md:text-lg">
+               Kurdistan AI پلاتفۆرمێکی یەکگرتووە کە لەلایەن دوو ڕێکخراوی پێشەنگەوە دامەزراوە، بۆ ئەوەی کۆمەڵگای کوردی بتوانێت بە زمانی خۆی فێری زیرەکی دەستکرد ببێت، زانیاری بدات و وەربگرێت — بەتەواوی بەخۆڕایی.
             </p>
           </motion.div>
         </div>
@@ -146,7 +146,7 @@ const About = () => {
           >
             <h2 className="text-2xl font-bold text-foreground">ئامانجی ئێمە</h2>
             <p className="mt-5 text-base text-muted-foreground leading-relaxed md:text-lg">
-              ئێمە باوەڕمان وایە هەموو کوردێک مافی ئەوەی هەیە بە زمانی خۆی فێری تەکنەلۆژیای هەرە نوێ ببێت. ZHEERAI شوێنێکە کە تێیدا گەشەپێدەران، خوێندکاران، و توێژەران دەتوانن پڕۆژەکانیان پیشان بدەن، پرسیار بکەن، زانیاری بگوازنەوە، و پێکەوە کۆمەڵگایەکی بەهێز بنیاد بنێن — بەدوور لە هەر کۆسپ و بەرگرییەک.
+              ئێمە باوەڕمان وایە هەموو کوردێک مافی ئەوەی هەیە بە زمانی خۆی فێری تەکنەلۆژیای هەرە نوێ ببێت. Kurdistan AI شوێنێکە کە تێیدا گەشەپێدەران، خوێندکاران، و توێژەران دەتوانن پڕۆژەکانیان پیشان بدەن، پرسیار بکەن، زانیاری بگوازنەوە، و پێکەوە کۆمەڵگایەکی بەهێز بنیاد بنێن — بەدوور لە هەر کۆسپ و بەرگرییەک.
             </p>
           </motion.div>
         </div>
@@ -194,7 +194,7 @@ const About = () => {
             ببە بەشێک لە کۆمەڵگاکە
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-sm text-primary-foreground/80 leading-relaxed">
-            تۆمار بکە و ئێستا دەست بکە بە بەشداری لە ZHEERAI — بەخۆڕایی و بە کوردی.
+            تۆمار بکە و ئێستا دەست بکە بە بەشداری لە Kurdistan AI — بەخۆڕایی و بە کوردی.
           </p>
           <Button variant="secondary" size="lg" className="mt-8" asChild>
             <a href="/signup">تۆمارکردن</a>

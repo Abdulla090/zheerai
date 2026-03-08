@@ -36,7 +36,7 @@ const QA = () => {
       <SEOHead
         title="پرسیار و وەڵام"
         description="پرسیار بکە و وەڵام وەربگرە لە کۆمەڵگای زیرەکی دەستکرد لە کوردستان"
-        canonical="https://zheerai.lovable.app/qa"
+        canonical="https://kurdistanai.app/qa"
       />
     <div className="py-8 md:py-12">
       <div className="container max-w-3xl">

@@ -15,7 +15,7 @@ import SEOHead from "@/components/SEOHead";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BASE_URL = "https://zheerai.lovable.app";
+const BASE_URL = "https://kurdistanai.app";
 
 const ProjectCard = memo(({ project }: { project: any }) => (
   <Link to={`/projects/${project.id}`}>
@@ -94,7 +94,7 @@ const Index = () => {
   const jsonLd = useMemo(() => ({
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "ZHEERAI",
+    name: "Kurdistan AI",
     url: BASE_URL,
     description: "کۆمەڵگای زیرەکی دەستکرد لە کوردستان",
     inLanguage: "ckb",
@@ -124,7 +124,7 @@ const Index = () => {
               پڕۆژەکانت پیشان بدە،<br /><span className="text-primary">فێربە و هاوکاری بکە</span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground leading-relaxed md:text-lg">
-              ZHEERAI شوێنێکە بۆ گەشەپێدەران، توێژەران، و خولیاکانی زیرەکی دەستکرد لە کوردستان.
+              Kurdistan AI شوێنێکە بۆ گەشەپێدەران، توێژەران، و خولیاکانی زیرەکی دەستکرد لە کوردستان.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Button size="lg" asChild><Link to="/projects">پڕۆژەکان ببینە <ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" /></Link></Button>
