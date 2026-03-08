@@ -82,10 +82,7 @@ const BlogPostDetail = () => {
       )}
     <div className="py-10 md:py-14">
       <div className="container max-w-3xl">
-        <Link to="/blog" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6">
-          <ArrowRight className="h-4 w-4" />
-          گەڕانەوە بۆ بڵاوکراوەکان
-        </Link>
+        <BackButton fallback="/blog" label="بابەتەکان" />
 
         {post.cover_image_url && (
           <img src={post.cover_image_url} alt={post.title} className="w-full aspect-video object-cover rounded-lg mb-6" loading="lazy" decoding="async" />
