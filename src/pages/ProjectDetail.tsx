@@ -82,6 +82,7 @@ const ProjectDetail = () => {
       )}
     <div className="py-10 md:py-14">
       <div className="container max-w-3xl">
+        <BackButton fallback="/projects" label="پڕۆژەکان" />
         {project.thumbnail_url ? (
           <img src={project.thumbnail_url} alt={project.title} className="aspect-video w-full rounded-lg object-cover border border-border mb-6" loading="lazy" decoding="async" />
         ) : (

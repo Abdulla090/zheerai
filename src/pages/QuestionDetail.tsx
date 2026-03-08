@@ -209,6 +209,7 @@ const QuestionDetail = () => {
       )}
     <div className="py-6 md:py-10">
       <div className="container max-w-3xl">
+        <BackButton fallback="/qa" label="پرسیارەکان" />
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
