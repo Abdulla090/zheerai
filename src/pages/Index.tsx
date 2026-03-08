@@ -127,9 +127,9 @@ const Index = () => {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-purple-soft py-24 md:py-32" aria-labelledby="hero-heading">
+      <section className="relative overflow-hidden bg-purple-soft py-20 md:py-32" aria-labelledby="hero-heading">
         <div className="container relative z-10">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }} className="mx-auto max-w-3xl text-center">
+          <motion.div initial={isMobile ? false : { opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }} className="mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-1.5 text-xs text-muted-foreground">
               <Cpu className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
               کۆمەڵگای زیرەکی دەستکرد لە کوردستان
@@ -146,8 +146,9 @@ const Index = () => {
             </div>
           </motion.div>
         </div>
-        <div className="absolute -top-40 -left-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl" aria-hidden="true" />
-        <div className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl" aria-hidden="true" />
+        {/* Decorative blurs - hidden on mobile for GPU performance */}
+        <div className="absolute -top-40 -left-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl hidden md:block" aria-hidden="true" />
+        <div className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl hidden md:block" aria-hidden="true" />
       </section>
 
       {/* Stats */}
