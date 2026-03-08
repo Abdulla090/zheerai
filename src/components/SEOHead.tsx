@@ -87,7 +87,7 @@ const SEOHead = ({
       const ld = document.querySelector('script[data-seo-ld]');
       if (ld) ld.remove();
     };
-  }, [fullTitle, description, canonical, ogImage, ogType, noindex, jsonLd, keywords]);
+  }, [fullTitle, description, resolvedCanonical, ogImage, ogType, noindex, jsonLd, keywords]);
 
   return null;
 };
