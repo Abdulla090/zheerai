@@ -74,11 +74,11 @@ const About = () => {
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             className="mx-auto max-w-3xl text-center"
           >
-            <h1 className="text-3xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
-              دەربارەی <span className="text-primary">ZHEERAI</span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground leading-relaxed md:text-lg">
-              ZHEERAI پلاتفۆرمێکی یەکگرتووە کە لەلایەن دوو ڕێکخراوی پێشەنگەوە دامەزراوە، بۆ ئەوەی کۆمەڵگای کوردی بتوانێت بە زمانی خۆی فێری زیرەکی دەستکرد ببێت، زانیاری بدات و وەربگرێت — بەتەواوی بەخۆڕایی.
+             <h1 className="text-3xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
+               دەربارەی <span className="text-primary">Kurdistan AI</span>
+             </h1>
+             <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground leading-relaxed md:text-lg">
+               Kurdistan AI پلاتفۆرمێکی یەکگرتووە کە لەلایەن دوو ڕێکخراوی پێشەنگەوە دامەزراوە، بۆ ئەوەی کۆمەڵگای کوردی بتوانێت بە زمانی خۆی فێری زیرەکی دەستکرد ببێت، زانیاری بدات و وەربگرێت — بەتەواوی بەخۆڕایی.
             </p>
           </motion.div>
         </div>
