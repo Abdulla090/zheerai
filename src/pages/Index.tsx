@@ -15,7 +15,7 @@ import SEOHead from "@/components/SEOHead";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BASE_URL = "https://zheerai.lovable.app";
+const BASE_URL = "https://kurdistanai.app";
 
 const ProjectCard = memo(({ project }: { project: any }) => (
   <Link to={`/projects/${project.id}`}>
