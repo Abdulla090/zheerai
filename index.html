@@ -61,7 +61,7 @@
     <link rel="preconnect" href="https://kddbkwnniuxrxmqcpdhu.supabase.co" />
     <link rel="dns-prefetch" href="https://kddbkwnniuxrxmqcpdhu.supabase.co" />
 
-    <!-- Homepage JSON-LD Organization + WebSite (static, always present) -->
+    <!-- Homepage JSON-LD Organization + WebSite + FAQPage (static, always present) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -70,10 +70,10 @@
           "@type": "Organization",
           "@id": "https://kurdistanai.app/#organization",
           "name": "Kurdistan AI",
-          "alternateName": ["KurdistanAI", "Kurdistan Ai", "Kurd AI", "کوردستان ئەی ئای", "کوردستان AI"],
+          "alternateName": ["KurdistanAI", "Kurdistan Ai", "Kurd AI", "kurd ai", "kurdistan ai", "کوردستان ئەی ئای", "کوردستان AI", "کورد ئەی ئای", "ئەی ئای کوردستان"],
           "url": "https://kurdistanai.app",
           "logo": "https://storage.googleapis.com/gpt-engineer-file-uploads/7HKgE5HYYOc2kQnwrUNNYt63kLm1/social-images/social-1772745656712-1000104485.webp",
-          "description": "The first and largest artificial intelligence community in Kurdistan. A platform for AI projects, Q&A, blog posts, and learning resources in Kurdish.",
+          "description": "Kurdistan AI is the first and most popular artificial intelligence community in Kurdistan and Iraq. A free, open platform for AI projects, Q&A, blog posts, and learning resources in Kurdish (Sorani).",
           "foundingDate": "2024",
           "sameAs": [
             "https://t.me/KurdistanAI01",
@@ -86,26 +86,29 @@
             "Natural Language Processing",
             "Computer Vision",
             "Kurdish Language AI",
-            "AI Education"
+            "AI Education",
+            "AI in Kurdistan",
+            "Kurdish AI Community"
           ],
-          "areaServed": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-              "@type": "GeoCoordinates",
-              "latitude": "36.19",
-              "longitude": "44.01"
+          "areaServed": [
+            {
+              "@type": "Country",
+              "name": "Iraq"
             },
-            "geoRadius": "500 km"
-          },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Kurdistan Region"
+            }
+          ],
           "knowsLanguage": ["ckb", "en", "ar"]
         },
         {
           "@type": "WebSite",
           "@id": "https://kurdistanai.app/#website",
           "name": "Kurdistan AI",
-          "alternateName": ["KurdistanAI", "Kurdistan Ai", "Kurd AI", "کوردستان ئەی ئای"],
+          "alternateName": ["KurdistanAI", "Kurdistan Ai", "Kurd AI", "kurd ai", "کوردستان ئەی ئای", "کوردستان AI"],
           "url": "https://kurdistanai.app",
-          "description": "The first and largest AI community in Kurdistan — showcasing AI projects, Q&A, and educational content in Kurdish (Sorani).",
+          "description": "The first and most popular AI community in Kurdistan — AI projects, Q&A, tutorials, and resources all in Kurdish (Sorani).",
           "publisher": { "@id": "https://kurdistanai.app/#organization" },
           "inLanguage": ["ckb", "en"],
           "potentialAction": {
@@ -113,6 +116,43 @@
             "target": "https://kurdistanai.app/qa?q={search_term_string}",
             "query-input": "required name=search_term_string"
           }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is Kurdistan AI?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Kurdistan AI (kurdistanai.app) is the first and most popular artificial intelligence community platform in Kurdistan and Iraq. It is a free platform where Kurdish developers, researchers, and students can showcase AI projects, ask questions, and learn about AI — all in Kurdish (Sorani)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the first AI community in Kurdistan?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Kurdistan AI (kurdistanai.app) is the first AI community in Kurdistan. It was founded by Zheer Saz and Kurdistan AI organizations to provide a platform for AI education, projects, and Q&A in Kurdish language."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "کوردستان ئەی ئای چییە؟",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "کوردستان ئەی ئای (Kurdistan AI) یەکەمین و گەورەترین کۆمەڵگای زیرەکی دەستکردە لە کوردستان. پلاتفۆرمێکی بەخۆڕاییە بۆ پیشاندانی پڕۆژەکانی AI، پرسیار و وەڵام، و فێرکاری بە زمانی کوردی سۆرانی."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the most popular AI platform in Kurdistan?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Kurdistan AI (kurdistanai.app) is the most popular AI community platform in Kurdistan, offering AI project showcasing, Q&A, and educational content in Kurdish. It serves developers, researchers, and students across the Kurdistan Region and Iraq."
+              }
+            }
+          ]
         }
       ]
     }
