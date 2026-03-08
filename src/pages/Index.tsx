@@ -281,7 +281,7 @@ const Index = () => {
       </section>
 
       {/* Blog Posts */}
-      <section className="py-16 md:py-20" aria-labelledby="blog-heading">
+      <section className="py-16 md:py-20" aria-labelledby="blog-heading" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 500px' }}>
         <div className="container">
           <div className="mb-10 flex items-end justify-between">
             <div>
