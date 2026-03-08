@@ -181,13 +181,21 @@ const Index = () => {
               {[1,2,3,4].map(i => <Skeleton key={i} className="h-56" />)}
             </div>
           ) : (
-            <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {projects?.slice(0, 4).map((project) => (
-                <motion.div key={project.id} variants={fadeUp}>
-                  <ProjectCard project={project} />
-                </motion.div>
-              ))}
-            </motion.div>
+            isMobile ? (
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                {projects?.slice(0, 4).map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+              </div>
+            ) : (
+              <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                {projects?.slice(0, 4).map((project) => (
+                  <motion.div key={project.id} variants={fadeUp}>
+                    <ProjectCard project={project} />
+                  </motion.div>
+                ))}
+              </motion.div>
+            )
           )}
           {!projectsLoading && projects?.length === 0 && (
             <div className="py-10 text-center text-sm text-muted-foreground">هێشتا هیچ پڕۆژەیەک زیاد نەکراوە</div>
