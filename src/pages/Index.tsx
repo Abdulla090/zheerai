@@ -1,8 +1,6 @@
 import { useEffect, useRef, memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowLeft, Cpu, MessageCircleQuestion, FileText, FolderOpen, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,8 +10,7 @@ import { useQuestions } from "@/hooks/useQuestions";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { container, fadeUp } from "@/lib/animations";
 import SEOHead from "@/components/SEOHead";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const BASE_URL = "https://kurdistanai.app";
 
@@ -71,19 +68,29 @@ BlogCard.displayName = "BlogCard";
 
 const Index = () => {
   const statsRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   const { data: projects, isLoading: projectsLoading } = useProjects();
   const { data: questions, isLoading: questionsLoading } = useQuestions();
   const { data: blogPosts, isLoading: blogLoading } = useBlogPosts();
 
+  // Only load GSAP on desktop for stat animations
   useEffect(() => {
-    if (!statsRef.current) return;
-    const items = statsRef.current.querySelectorAll(".stat-item");
-    gsap.fromTo(items, { y: 40, opacity: 0 }, {
-      y: 0, opacity: 1, duration: 0.6, stagger: 0.12, ease: "power3.out",
-      scrollTrigger: { trigger: statsRef.current, start: "top 85%" },
-    });
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
-  }, []);
+    if (isMobile || !statsRef.current) return;
+    let cleanup: (() => void) | undefined;
+    import("gsap").then(({ default: gsap }) =>
+      import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger);
+        const items = statsRef.current?.querySelectorAll(".stat-item");
+        if (!items) return;
+        gsap.fromTo(items, { y: 40, opacity: 0 }, {
+          y: 0, opacity: 1, duration: 0.6, stagger: 0.12, ease: "power3.out",
+          scrollTrigger: { trigger: statsRef.current, start: "top 85%" },
+        });
+        cleanup = () => ScrollTrigger.getAll().forEach((t) => t.kill());
+      })
+    );
+    return () => cleanup?.();
+  }, [isMobile]);
 
   const stats = useMemo(() => [
     { icon: FolderOpen, value: projects?.length ?? 0, label: "پڕۆژە" },
@@ -120,9 +127,9 @@ const Index = () => {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-purple-soft py-24 md:py-32" aria-labelledby="hero-heading">
+      <section className="relative overflow-hidden bg-purple-soft py-20 md:py-32" aria-labelledby="hero-heading">
         <div className="container relative z-10">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }} className="mx-auto max-w-3xl text-center">
+          <motion.div initial={isMobile ? false : { opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }} className="mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-1.5 text-xs text-muted-foreground">
               <Cpu className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
               کۆمەڵگای زیرەکی دەستکرد لە کوردستان
@@ -139,15 +146,16 @@ const Index = () => {
             </div>
           </motion.div>
         </div>
-        <div className="absolute -top-40 -left-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl" aria-hidden="true" />
-        <div className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl" aria-hidden="true" />
+        {/* Decorative blurs - hidden on mobile for GPU performance */}
+        <div className="absolute -top-40 -left-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl hidden md:block" aria-hidden="true" />
+        <div className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl hidden md:block" aria-hidden="true" />
       </section>
 
       {/* Stats */}
       <section ref={statsRef} className="border-b border-border bg-background py-12" aria-label="ئامارەکان">
         <div className="container grid grid-cols-3 gap-6">
           {stats.map((stat) => (
-            <div key={stat.label} className="stat-item flex flex-col items-center gap-2 text-center opacity-0">
+            <div key={stat.label} className={`stat-item flex flex-col items-center gap-2 text-center ${isMobile ? '' : 'opacity-0'}`}>
               <stat.icon className="h-5 w-5 text-primary" aria-hidden="true" />
               <span className="text-2xl font-bold text-foreground">{stat.value}</span>
               <span className="text-xs text-muted-foreground">{stat.label}</span>
@@ -157,7 +165,7 @@ const Index = () => {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-16 md:py-20" aria-labelledby="projects-heading">
+      <section className="py-16 md:py-20" aria-labelledby="projects-heading" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 600px' }}>
         <div className="container">
           <div className="mb-10 flex items-end justify-between">
             <div>
@@ -173,13 +181,21 @@ const Index = () => {
               {[1,2,3,4].map(i => <Skeleton key={i} className="h-56" />)}
             </div>
           ) : (
-            <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {projects?.slice(0, 4).map((project) => (
-                <motion.div key={project.id} variants={fadeUp}>
-                  <ProjectCard project={project} />
-                </motion.div>
-              ))}
-            </motion.div>
+            isMobile ? (
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                {projects?.slice(0, 4).map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+              </div>
+            ) : (
+              <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                {projects?.slice(0, 4).map((project) => (
+                  <motion.div key={project.id} variants={fadeUp}>
+                    <ProjectCard project={project} />
+                  </motion.div>
+                ))}
+              </motion.div>
+            )
           )}
           {!projectsLoading && projects?.length === 0 && (
             <div className="py-10 text-center text-sm text-muted-foreground">هێشتا هیچ پڕۆژەیەک زیاد نەکراوە</div>
@@ -188,7 +204,7 @@ const Index = () => {
       </section>
 
       {/* Latest Questions */}
-      <section className="bg-purple-soft py-16 md:py-20" aria-labelledby="questions-heading">
+      <section className="bg-purple-soft py-16 md:py-20" aria-labelledby="questions-heading" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 700px' }}>
         <div className="container">
           <div className="mb-10 flex items-end justify-between">
             <div>
@@ -202,10 +218,10 @@ const Index = () => {
           {questionsLoading ? (
             <div className="space-y-3">{[1,2,3].map(i => <Skeleton key={i} className="h-24" />)}</div>
           ) : (
-            <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="space-y-3">
-              {questions?.slice(0, 5).map((q) => (
-                <motion.div key={q.id} variants={fadeUp}>
-                  <Link to={`/qa/${q.id}`}>
+            isMobile ? (
+              <div className="space-y-3">
+                {questions?.slice(0, 5).map((q) => (
+                  <Link key={q.id} to={`/qa/${q.id}`}>
                     <Card className="border-border transition-shadow hover:shadow-sm">
                       <CardContent className="flex items-start gap-4 p-5">
                         <div className="flex shrink-0 flex-col items-center gap-1 rounded-md bg-accent px-3 py-2 text-center">
@@ -213,7 +229,7 @@ const Index = () => {
                           <span className="text-[10px] text-muted-foreground">دەنگ</span>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-sm font-semibold text-foreground leading-snug hover:text-primary transition-colors cursor-pointer">{q.title}</h3>
+                          <h3 className="text-sm font-semibold text-foreground leading-snug">{q.title}</h3>
                           <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2 leading-relaxed">{q.body}</p>
                           <div className="mt-2 flex flex-wrap items-center gap-2">
                             {q.tags?.map((tag) => (
@@ -226,9 +242,37 @@ const Index = () => {
                       </CardContent>
                     </Card>
                   </Link>
-                </motion.div>
-              ))}
-            </motion.div>
+                ))}
+              </div>
+            ) : (
+              <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="space-y-3">
+                {questions?.slice(0, 5).map((q) => (
+                  <motion.div key={q.id} variants={fadeUp}>
+                    <Link to={`/qa/${q.id}`}>
+                      <Card className="border-border transition-shadow hover:shadow-sm">
+                        <CardContent className="flex items-start gap-4 p-5">
+                          <div className="flex shrink-0 flex-col items-center gap-1 rounded-md bg-accent px-3 py-2 text-center">
+                            <span className="text-lg font-bold text-primary">{q.votes_count}</span>
+                            <span className="text-[10px] text-muted-foreground">دەنگ</span>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-sm font-semibold text-foreground leading-snug hover:text-primary transition-colors cursor-pointer">{q.title}</h3>
+                            <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2 leading-relaxed">{q.body}</p>
+                            <div className="mt-2 flex flex-wrap items-center gap-2">
+                              {q.tags?.map((tag) => (
+                                <span key={tag} className="rounded-sm bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">{tag}</span>
+                              ))}
+                              <span className="text-[10px] text-muted-foreground">{q.answers_count} وەڵام</span>
+                              {q.is_solved && <span className="rounded-sm bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">چارەسەرکراو</span>}
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )
           )}
           {!questionsLoading && questions?.length === 0 && (
             <div className="py-10 text-center text-sm text-muted-foreground">هێشتا هیچ پرسیارێک نییە</div>
@@ -237,7 +281,7 @@ const Index = () => {
       </section>
 
       {/* Blog Posts */}
-      <section className="py-16 md:py-20" aria-labelledby="blog-heading">
+      <section className="py-16 md:py-20" aria-labelledby="blog-heading" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 500px' }}>
         <div className="container">
           <div className="mb-10 flex items-end justify-between">
             <div>
@@ -251,13 +295,21 @@ const Index = () => {
           {blogLoading ? (
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3">{[1,2,3].map(i => <Skeleton key={i} className="h-56" />)}</div>
           ) : (
-            <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 gap-5 md:grid-cols-3">
-              {blogPosts?.slice(0, 3).map((post) => (
-                <motion.div key={post.id} variants={fadeUp}>
-                  <BlogCard post={post} />
-                </motion.div>
-              ))}
-            </motion.div>
+            isMobile ? (
+              <div className="grid grid-cols-1 gap-5">
+                {blogPosts?.slice(0, 3).map((post) => (
+                  <BlogCard key={post.id} post={post} />
+                ))}
+              </div>
+            ) : (
+              <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 gap-5 md:grid-cols-3">
+                {blogPosts?.slice(0, 3).map((post) => (
+                  <motion.div key={post.id} variants={fadeUp}>
+                    <BlogCard post={post} />
+                  </motion.div>
+                ))}
+              </motion.div>
+            )
           )}
           {!blogLoading && blogPosts?.length === 0 && (
             <div className="py-10 text-center text-sm text-muted-foreground">هێشتا هیچ بابەتێک نییە</div>
