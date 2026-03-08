@@ -1,8 +1,6 @@
 import { useEffect, useRef, memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowLeft, Cpu, MessageCircleQuestion, FileText, FolderOpen, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,8 +10,7 @@ import { useQuestions } from "@/hooks/useQuestions";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { container, fadeUp } from "@/lib/animations";
 import SEOHead from "@/components/SEOHead";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const BASE_URL = "https://kurdistanai.app";
 
