@@ -94,7 +94,7 @@ const Index = () => {
   const jsonLd = useMemo(() => ({
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "ZHEERAI",
+    name: "Kurdistan AI",
     url: BASE_URL,
     description: "کۆمەڵگای زیرەکی دەستکرد لە کوردستان",
     inLanguage: "ckb",
