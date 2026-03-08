@@ -218,10 +218,10 @@ const Index = () => {
           {questionsLoading ? (
             <div className="space-y-3">{[1,2,3].map(i => <Skeleton key={i} className="h-24" />)}</div>
           ) : (
-            <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="space-y-3">
-              {questions?.slice(0, 5).map((q) => (
-                <motion.div key={q.id} variants={fadeUp}>
-                  <Link to={`/qa/${q.id}`}>
+            isMobile ? (
+              <div className="space-y-3">
+                {questions?.slice(0, 5).map((q) => (
+                  <Link key={q.id} to={`/qa/${q.id}`}>
                     <Card className="border-border transition-shadow hover:shadow-sm">
                       <CardContent className="flex items-start gap-4 p-5">
                         <div className="flex shrink-0 flex-col items-center gap-1 rounded-md bg-accent px-3 py-2 text-center">
@@ -229,7 +229,7 @@ const Index = () => {
                           <span className="text-[10px] text-muted-foreground">دەنگ</span>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-sm font-semibold text-foreground leading-snug hover:text-primary transition-colors cursor-pointer">{q.title}</h3>
+                          <h3 className="text-sm font-semibold text-foreground leading-snug">{q.title}</h3>
                           <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2 leading-relaxed">{q.body}</p>
                           <div className="mt-2 flex flex-wrap items-center gap-2">
                             {q.tags?.map((tag) => (
@@ -242,9 +242,37 @@ const Index = () => {
                       </CardContent>
                     </Card>
                   </Link>
-                </motion.div>
-              ))}
-            </motion.div>
+                ))}
+              </div>
+            ) : (
+              <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="space-y-3">
+                {questions?.slice(0, 5).map((q) => (
+                  <motion.div key={q.id} variants={fadeUp}>
+                    <Link to={`/qa/${q.id}`}>
+                      <Card className="border-border transition-shadow hover:shadow-sm">
+                        <CardContent className="flex items-start gap-4 p-5">
+                          <div className="flex shrink-0 flex-col items-center gap-1 rounded-md bg-accent px-3 py-2 text-center">
+                            <span className="text-lg font-bold text-primary">{q.votes_count}</span>
+                            <span className="text-[10px] text-muted-foreground">دەنگ</span>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-sm font-semibold text-foreground leading-snug hover:text-primary transition-colors cursor-pointer">{q.title}</h3>
+                            <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2 leading-relaxed">{q.body}</p>
+                            <div className="mt-2 flex flex-wrap items-center gap-2">
+                              {q.tags?.map((tag) => (
+                                <span key={tag} className="rounded-sm bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground">{tag}</span>
+                              ))}
+                              <span className="text-[10px] text-muted-foreground">{q.answers_count} وەڵام</span>
+                              {q.is_solved && <span className="rounded-sm bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">چارەسەرکراو</span>}
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )
           )}
           {!questionsLoading && questions?.length === 0 && (
             <div className="py-10 text-center text-sm text-muted-foreground">هێشتا هیچ پرسیارێک نییە</div>
