@@ -28,6 +28,9 @@ const SEOHead = ({
 }: SEOHeadProps) => {
   const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} - کۆمەڵگای زیرەکی دەستکرد لە کوردستان | AI Community`;
 
+  // Auto-generate canonical from current path if not provided
+  const resolvedCanonical = canonical || `https://kurdistanai.app${window.location.pathname === '/' ? '' : window.location.pathname}`;
+
   useEffect(() => {
     document.title = fullTitle;
 
