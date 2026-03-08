@@ -61,8 +61,8 @@ const About = () => {
     <>
       <SEOHead
         title="دەربارەی ئێمە"
-        description="دەربارەی ZHEERAI — پلاتفۆرمی زیرەکی دەستکرد لە کوردستان لەلایەن ژیرساز و Kurdistan AI"
-        canonical="https://zheerai.lovable.app/about"
+         description="دەربارەی Kurdistan AI — پلاتفۆرمی زیرەکی دەستکرد لە کوردستان لەلایەن ژیرساز و Kurdistan AI"
+         canonical="https://kurdistanai.app/about"
       />
     <div>
       {/* Hero */}
