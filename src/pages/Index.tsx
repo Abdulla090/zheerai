@@ -155,7 +155,7 @@ const Index = () => {
       <section ref={statsRef} className="border-b border-border bg-background py-12" aria-label="ئامارەکان">
         <div className="container grid grid-cols-3 gap-6">
           {stats.map((stat) => (
-            <div key={stat.label} className="stat-item flex flex-col items-center gap-2 text-center opacity-0">
+            <div key={stat.label} className={`stat-item flex flex-col items-center gap-2 text-center ${isMobile ? '' : 'opacity-0'}`}>
               <stat.icon className="h-5 w-5 text-primary" aria-hidden="true" />
               <span className="text-2xl font-bold text-foreground">{stat.value}</span>
               <span className="text-xs text-muted-foreground">{stat.label}</span>
