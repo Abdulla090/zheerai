@@ -68,19 +68,29 @@ BlogCard.displayName = "BlogCard";
 
 const Index = () => {
   const statsRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   const { data: projects, isLoading: projectsLoading } = useProjects();
   const { data: questions, isLoading: questionsLoading } = useQuestions();
   const { data: blogPosts, isLoading: blogLoading } = useBlogPosts();
 
+  // Only load GSAP on desktop for stat animations
   useEffect(() => {
-    if (!statsRef.current) return;
-    const items = statsRef.current.querySelectorAll(".stat-item");
-    gsap.fromTo(items, { y: 40, opacity: 0 }, {
-      y: 0, opacity: 1, duration: 0.6, stagger: 0.12, ease: "power3.out",
-      scrollTrigger: { trigger: statsRef.current, start: "top 85%" },
-    });
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
-  }, []);
+    if (isMobile || !statsRef.current) return;
+    let cleanup: (() => void) | undefined;
+    import("gsap").then(({ default: gsap }) =>
+      import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger);
+        const items = statsRef.current?.querySelectorAll(".stat-item");
+        if (!items) return;
+        gsap.fromTo(items, { y: 40, opacity: 0 }, {
+          y: 0, opacity: 1, duration: 0.6, stagger: 0.12, ease: "power3.out",
+          scrollTrigger: { trigger: statsRef.current, start: "top 85%" },
+        });
+        cleanup = () => ScrollTrigger.getAll().forEach((t) => t.kill());
+      })
+    );
+    return () => cleanup?.();
+  }, [isMobile]);
 
   const stats = useMemo(() => [
     { icon: FolderOpen, value: projects?.length ?? 0, label: "پڕۆژە" },
