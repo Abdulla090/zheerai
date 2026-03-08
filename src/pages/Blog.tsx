@@ -35,9 +35,10 @@ const Blog = () => {
   return (
     <>
       <SEOHead
-        title="بڵاوکراوەکان"
-        description="بابەت، فێرکاری، و هەواڵی زیرەکی دەستکرد بە زمانی کوردی"
+        title="بڵاوکراوەکان — AI Blog"
+        description="AI articles, tutorials, and news in Kurdish. بابەت، فێرکاری، و هەواڵی زیرەکی دەستکرد بە زمانی کوردی لە Kurdistan AI."
         canonical="https://kurdistanai.app/blog"
+        keywords="Kurdistan AI blog, AI articles Kurdish, فێرکاری AI کوردی, Kurdish AI tutorials, AI news Kurdistan"
       />
     <div className="py-10 md:py-14">
       <div className="container">

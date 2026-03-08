@@ -95,9 +95,14 @@ const Index = () => {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Kurdistan AI",
+    alternateName: ["KurdistanAI", "Kurdistan Ai", "Kurd AI", "کوردستان ئەی ئای", "کوردستان AI"],
     url: BASE_URL,
-    description: "کۆمەڵگای زیرەکی دەستکرد لە کوردستان",
-    inLanguage: "ckb",
+    description: "The first and largest artificial intelligence community in Kurdistan. A platform for AI projects, Q&A, and educational content in Kurdish (Sorani).",
+    inLanguage: ["ckb", "en"],
+    publisher: {
+      "@type": "Organization",
+      "@id": `${BASE_URL}/#organization`,
+    },
     potentialAction: {
       "@type": "SearchAction",
       target: `${BASE_URL}/qa?q={search_term_string}`,
@@ -109,7 +114,9 @@ const Index = () => {
     <>
       <SEOHead
         canonical={BASE_URL}
+        description="Kurdistan AI (کوردستان ئەی ئای) — یەکەمین و گەورەترین کۆمەڵگای زیرەکی دەستکرد لە کوردستان. پڕۆژە، پرسیار و وەڵام، فێرکاری AI بە کوردی. The first and most popular AI community in Kurdistan."
         jsonLd={jsonLd}
+        keywords="Kurdistan AI, کوردستان ئەی ئای, Kurd AI, Kurdish AI, artificial intelligence Kurdistan, AI community Kurdistan, زیرەکی دەستکرد, AI کوردستان, KurdistanAI, most popular AI Kurdistan, first AI Kurdistan, AI in Kurdish language"
       />
 
       {/* Hero */}

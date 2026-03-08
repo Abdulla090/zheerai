@@ -34,9 +34,10 @@ const QA = () => {
   return (
     <>
       <SEOHead
-        title="پرسیار و وەڵام"
-        description="پرسیار بکە و وەڵام وەربگرە لە کۆمەڵگای زیرەکی دەستکرد لە کوردستان"
+        title="پرسیار و وەڵام — AI Q&A"
+        description="Ask and answer AI questions in Kurdish. پرسیار بکە و وەڵام وەربگرە لە کۆمەڵگای Kurdistan AI. The largest Kurdish AI Q&A community."
         canonical="https://kurdistanai.app/qa"
+        keywords="Kurdistan AI Q&A, AI questions Kurdish, پرسیار و وەڵام AI, Kurdish AI help, AI answers Kurdistan"
       />
     <div className="py-8 md:py-12">
       <div className="container max-w-3xl">
