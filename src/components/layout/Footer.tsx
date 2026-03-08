@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-1">
-            <span className="text-lg font-bold text-primary">ZHEERAI</span>
+            <span className="text-lg font-bold text-primary">Kurdistan AI</span>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
               کۆمەڵگای زیرەکی دەستکرد لە کوردستان. شوێنێک بۆ پیشاندان، فێربوون، و هاوکاری.
             </p>
