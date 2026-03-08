@@ -21,7 +21,7 @@ const MobileBottomNav = () => {
   const allItems = [...navItems, profileItem];
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-50 border-t border-border bg-background/98 md:hidden">
+    <nav className="fixed bottom-0 inset-x-0 z-50 border-t border-border bg-background backdrop-blur-md md:hidden">
       <div className="flex items-center justify-around h-16 px-1">
         {allItems.map((item) => {
           const isActive =
