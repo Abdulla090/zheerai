@@ -2,7 +2,8 @@ import { useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Calendar, Eye, ArrowRight, User, Pencil } from "lucide-react";
+import { Calendar, Eye, User, Pencil } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -81,10 +82,7 @@ const BlogPostDetail = () => {
       )}
     <div className="py-10 md:py-14">
       <div className="container max-w-3xl">
-        <Link to="/blog" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6">
-          <ArrowRight className="h-4 w-4" />
-          گەڕانەوە بۆ بڵاوکراوەکان
-        </Link>
+        <BackButton fallback="/blog" label="بابەتەکان" />
 
         {post.cover_image_url && (
           <img src={post.cover_image_url} alt={post.title} className="w-full aspect-video object-cover rounded-lg mb-6" loading="lazy" decoding="async" />
