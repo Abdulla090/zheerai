@@ -28,6 +28,9 @@ const SEOHead = ({
 }: SEOHeadProps) => {
   const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} - کۆمەڵگای زیرەکی دەستکرد لە کوردستان | AI Community`;
 
+  // Auto-generate canonical from current path if not provided
+  const resolvedCanonical = canonical || `https://kurdistanai.app${window.location.pathname === '/' ? '' : window.location.pathname}`;
+
   useEffect(() => {
     document.title = fullTitle;
 
@@ -60,18 +63,14 @@ const SEOHead = ({
       if (robotsMeta) robotsMeta.remove();
     }
 
-    // Canonical
+    // Canonical - always set for proper indexing
     let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (canonical) {
-      if (!link) {
-        link = document.createElement("link");
-        link.rel = "canonical";
-        document.head.appendChild(link);
-      }
-      link.href = canonical;
-    } else if (link) {
-      link.remove();
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "canonical";
+      document.head.appendChild(link);
     }
+    link.href = resolvedCanonical;
 
     // JSON-LD
     const existingLd = document.querySelector('script[data-seo-ld]');
@@ -88,7 +87,7 @@ const SEOHead = ({
       const ld = document.querySelector('script[data-seo-ld]');
       if (ld) ld.remove();
     };
-  }, [fullTitle, description, canonical, ogImage, ogType, noindex, jsonLd, keywords]);
+  }, [fullTitle, description, resolvedCanonical, ogImage, ogType, noindex, jsonLd, keywords]);
 
   return null;
 };
