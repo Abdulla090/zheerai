@@ -204,7 +204,7 @@ const Index = () => {
       </section>
 
       {/* Latest Questions */}
-      <section className="bg-purple-soft py-16 md:py-20" aria-labelledby="questions-heading">
+      <section className="bg-purple-soft py-16 md:py-20" aria-labelledby="questions-heading" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 700px' }}>
         <div className="container">
           <div className="mb-10 flex items-end justify-between">
             <div>
