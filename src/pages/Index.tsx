@@ -295,13 +295,21 @@ const Index = () => {
           {blogLoading ? (
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3">{[1,2,3].map(i => <Skeleton key={i} className="h-56" />)}</div>
           ) : (
-            <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 gap-5 md:grid-cols-3">
-              {blogPosts?.slice(0, 3).map((post) => (
-                <motion.div key={post.id} variants={fadeUp}>
-                  <BlogCard post={post} />
-                </motion.div>
-              ))}
-            </motion.div>
+            isMobile ? (
+              <div className="grid grid-cols-1 gap-5">
+                {blogPosts?.slice(0, 3).map((post) => (
+                  <BlogCard key={post.id} post={post} />
+                ))}
+              </div>
+            ) : (
+              <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 gap-5 md:grid-cols-3">
+                {blogPosts?.slice(0, 3).map((post) => (
+                  <motion.div key={post.id} variants={fadeUp}>
+                    <BlogCard post={post} />
+                  </motion.div>
+                ))}
+              </motion.div>
+            )
           )}
           {!blogLoading && blogPosts?.length === 0 && (
             <div className="py-10 text-center text-sm text-muted-foreground">هێشتا هیچ بابەتێک نییە</div>
