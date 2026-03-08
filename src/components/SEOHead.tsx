@@ -8,11 +8,13 @@ interface SEOHeadProps {
   ogType?: string;
   noindex?: boolean;
   jsonLd?: Record<string, unknown>;
+  keywords?: string;
 }
 
 const SITE_NAME = "Kurdistan AI";
-const DEFAULT_DESC = "Kurdistan AI - کۆمەڵگای زیرەکی دەستکرد لە کوردستان. پڕۆژەکانت پیشان بدە، پرسیار بکە، بڵاوکراوە بنووسە.";
+const DEFAULT_DESC = "Kurdistan AI (کوردستان ئەی ئای) — یەکەمین و گەورەترین کۆمەڵگای زیرەکی دەستکرد لە کوردستان. پڕۆژە، پرسیار و وەڵام، و فێرکاری AI بە کوردی. The first AI community in Kurdistan.";
 const DEFAULT_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/7HKgE5HYYOc2kQnwrUNNYt63kLm1/social-images/social-1772745656712-1000104485.webp";
+const DEFAULT_KEYWORDS = "Kurdistan AI, کوردستان ئەی ئای, Kurd AI, Kurdish AI, artificial intelligence Kurdistan, زیرەکی دەستکرد, AI کوردستان, KurdistanAI";
 
 const SEOHead = ({
   title,
@@ -22,8 +24,9 @@ const SEOHead = ({
   ogType = "website",
   noindex = false,
   jsonLd,
+  keywords = DEFAULT_KEYWORDS,
 }: SEOHeadProps) => {
-  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} - کۆمەڵگای زیرەکی دەستکرد لە کوردستان`;
+  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} - کۆمەڵگای زیرەکی دەستکرد لە کوردستان | AI Community`;
 
   useEffect(() => {
     document.title = fullTitle;
@@ -39,13 +42,16 @@ const SEOHead = ({
     };
 
     setMeta("name", "description", description);
+    setMeta("name", "keywords", keywords);
     setMeta("property", "og:title", fullTitle);
     setMeta("property", "og:description", description);
     setMeta("property", "og:type", ogType);
     setMeta("property", "og:image", ogImage);
+    setMeta("property", "og:image:alt", `${SITE_NAME} — AI Community in Kurdistan`);
     setMeta("name", "twitter:title", fullTitle);
     setMeta("name", "twitter:description", description);
     setMeta("name", "twitter:image", ogImage);
+    setMeta("name", "twitter:image:alt", `${SITE_NAME} — AI Community in Kurdistan`);
 
     if (noindex) {
       setMeta("name", "robots", "noindex,nofollow");
@@ -82,7 +88,7 @@ const SEOHead = ({
       const ld = document.querySelector('script[data-seo-ld]');
       if (ld) ld.remove();
     };
-  }, [fullTitle, description, canonical, ogImage, ogType, noindex, jsonLd]);
+  }, [fullTitle, description, canonical, ogImage, ogType, noindex, jsonLd, keywords]);
 
   return null;
 };

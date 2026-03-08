@@ -26,9 +26,10 @@ const Projects = () => {
   return (
     <>
       <SEOHead
-        title="پڕۆژەکان"
-        description="پڕۆژەکانی زیرەکی دەستکرد لە کوردستان — ماڵپەڕ، ئەپ، ئامراز و چارەسەری AI"
+        title="پڕۆژەکان — AI Projects"
+        description="Browse AI projects built in Kurdistan. Web apps, mobile apps, AI tools, and solutions. پڕۆژەکانی زیرەکی دەستکرد لە کوردستان — Kurdistan AI projects showcase."
         canonical="https://kurdistanai.app/projects"
+        keywords="Kurdistan AI projects, AI projects Kurdish, پڕۆژەکانی AI کوردستان, Kurdish AI tools, Kurdish AI apps"
       />
     <div className="py-10 md:py-14">
       <div className="container">

@@ -60,9 +60,10 @@ const About = () => {
   return (
     <>
       <SEOHead
-        title="دەربارەی ئێمە"
-         description="دەربارەی Kurdistan AI — پلاتفۆرمی زیرەکی دەستکرد لە کوردستان لەلایەن ژیرساز و Kurdistan AI"
-         canonical="https://kurdistanai.app/about"
+        title="دەربارەی ئێمە — About Kurdistan AI"
+        description="Kurdistan AI is the first AI community in Kurdistan, founded by Zheer Saz and Kurdistan AI. Learn about our mission to bring AI education to Kurdish people. دەربارەی کوردستان ئەی ئای."
+        canonical="https://kurdistanai.app/about"
+        keywords="Kurdistan AI about, دەربارەی کوردستان AI, Zheer Saz, who is Kurdistan AI, AI community Kurdistan mission"
       />
     <div>
       {/* Hero */}
