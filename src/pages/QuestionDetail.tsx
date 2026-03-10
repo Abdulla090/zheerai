@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
-import { MessageCircle, Clock, User, Send, ChevronDown, ChevronUp, Pencil } from "lucide-react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { MessageCircle, Clock, User, Send, ChevronDown, ChevronUp, Pencil, Trash2 } from "lucide-react";
 import BackButton from "@/components/BackButton";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -153,10 +153,22 @@ const InlineComments = ({ targetId, targetType }: { targetId: string; targetType
 
 const QuestionDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const { data: question, isLoading } = useQuestion(id!);
   const { data: questionComments } = useComments(id!, "question");
   const { data: profile } = useCurrentProfile();
   const [showQuestionComments, setShowQuestionComments] = useState(false);
+
+  const handleDeleteQuestion = async () => {
+    if (!window.confirm("دڵنیایت لە سڕینەوەی ئەم پرسیارە؟")) return;
+    const { error } = await supabase.from("questions").delete().eq("id", id!);
+    if (error) {
+      toast.error("نەتوانرا بسڕدرێتەوە");
+      return;
+    }
+    toast.success("پرسیارەکە سڕایەوە");
+    navigate("/qa");
+  };
 
   useEffect(() => {
     if (id) {
@@ -245,11 +257,16 @@ const QuestionDetail = () => {
                 </div>
               </div>
               {profile && question.author_id === profile.id && (
-                <Link to={`/qa/${question.id}/edit`} className="shrink-0">
-                  <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-foreground">
-                    <Pencil className="h-3.5 w-3.5" />دەستکاری
+                <div className="flex items-center gap-1 shrink-0">
+                  <Link to={`/qa/${question.id}/edit`}>
+                    <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-foreground">
+                      <Pencil className="h-3.5 w-3.5" />دەستکاری
+                    </Button>
+                  </Link>
+                  <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-destructive" onClick={handleDeleteQuestion}>
+                    <Trash2 className="h-3.5 w-3.5" />سڕینەوە
                   </Button>
-                </Link>
+                </div>
               )}
             </div>
 
