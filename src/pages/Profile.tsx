@@ -208,6 +208,38 @@ const Profile = () => {
               <p className="py-10 text-center text-sm text-muted-foreground">هیچ پرسیارێک نییە</p>
             )}
           </TabsContent>
+
+          <TabsContent value="blogs">
+            {userBlogs && userBlogs.length > 0 ? (
+              <div className="space-y-3">
+                {userBlogs.map((b) => (
+                  <Link key={b.id} to={`/blog/${b.id}`}>
+                    <Card className="border-border transition-shadow hover:shadow-sm">
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="text-sm font-semibold text-foreground flex-1">{b.title}</h3>
+                          {!b.published && (
+                            <Badge variant="outline" className="text-[10px] text-amber-600 border-amber-300">چاوەڕوانی</Badge>
+                          )}
+                          {b.published && (
+                            <Badge variant="secondary" className="text-[10px]">بڵاوکراوە</Badge>
+                          )}
+                        </div>
+                        {b.excerpt && <p className="text-xs text-muted-foreground line-clamp-2">{b.excerpt}</p>}
+                        <div className="mt-2 flex items-center gap-3 text-[10px] text-muted-foreground">
+                          <span className="flex items-center gap-0.5"><Eye className="h-3 w-3" />{b.views_count}</span>
+                          <span className="flex items-center gap-0.5"><Heart className="h-3 w-3" />{b.likes_count}</span>
+                          <span className="flex items-center gap-0.5"><MessageSquare className="h-3 w-3" />{b.comments_count}</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className="py-10 text-center text-sm text-muted-foreground">هیچ بابەتێک نییە</p>
+            )}
+          </TabsContent>
         </Tabs>
       </div>
     </div>
