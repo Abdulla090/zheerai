@@ -12,7 +12,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Navigate } from "react-router-dom";
 
 const Profile = () => {
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, signOut } = useAuth();
+  const navigate = useNavigate();
   const { data: profile, isLoading: profileLoading } = useCurrentProfile();
   const { data: roles } = useUserRole();
 
