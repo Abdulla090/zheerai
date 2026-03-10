@@ -99,7 +99,7 @@ const InlineComments = ({ targetId, targetType }: { targetId: string; targetType
                 </div>
                 <div className="flex items-center gap-3 mt-1 px-1">
                   <span className="text-[11px] text-muted-foreground">{timeAgo(c.created_at)}</span>
-                  {user && profile && c.author_id === profile.id && (
+                  {user && profile && (c.author_id === profile.id || isAdmin) && (
                     <button
                       onClick={() => handleDelete(c.id)}
                       className="text-[11px] text-muted-foreground hover:text-destructive transition-colors"
