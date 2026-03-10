@@ -26,8 +26,11 @@ const categories: Record<string, string> = {
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { data: profile } = useCurrentProfile();
+  const { data: roles } = useUserRole();
+  const isAdmin = roles?.includes("admin");
   const { data: project, isLoading } = useQuery({
     queryKey: ["project", id],
     queryFn: async () => {
