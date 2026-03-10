@@ -153,10 +153,22 @@ const InlineComments = ({ targetId, targetType }: { targetId: string; targetType
 
 const QuestionDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const { data: question, isLoading } = useQuestion(id!);
   const { data: questionComments } = useComments(id!, "question");
   const { data: profile } = useCurrentProfile();
   const [showQuestionComments, setShowQuestionComments] = useState(false);
+
+  const handleDeleteQuestion = async () => {
+    if (!window.confirm("دڵنیایت لە سڕینەوەی ئەم پرسیارە؟")) return;
+    const { error } = await supabase.from("questions").delete().eq("id", id!);
+    if (error) {
+      toast.error("نەتوانرا بسڕدرێتەوە");
+      return;
+    }
+    toast.success("پرسیارەکە سڕایەوە");
+    navigate("/qa");
+  };
 
   useEffect(() => {
     if (id) {
