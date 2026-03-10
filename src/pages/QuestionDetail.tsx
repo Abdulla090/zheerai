@@ -258,13 +258,15 @@ const QuestionDetail = () => {
                   {timeAgo(question.created_at)} لەمەوبەر
                 </div>
               </div>
-              {profile && question.author_id === profile.id && (
+              {profile && (question.author_id === profile.id || isAdmin) && (
                 <div className="flex items-center gap-1 shrink-0">
-                  <Link to={`/qa/${question.id}/edit`}>
-                    <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-foreground">
-                      <Pencil className="h-3.5 w-3.5" />دەستکاری
-                    </Button>
-                  </Link>
+                  {question.author_id === profile.id && (
+                    <Link to={`/qa/${question.id}/edit`}>
+                      <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-foreground">
+                        <Pencil className="h-3.5 w-3.5" />دەستکاری
+                      </Button>
+                    </Link>
+                  )}
                   <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-destructive" onClick={handleDeleteQuestion}>
                     <Trash2 className="h-3.5 w-3.5" />سڕینەوە
                   </Button>
