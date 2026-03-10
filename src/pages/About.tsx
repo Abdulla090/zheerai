@@ -30,7 +30,7 @@ const container = {
 const organizations = [
   {
     name: "ژیرساز • ZHEER SAZ",
-    logo: "/kurdistan-ai-logo.jpg",
+    logo: "/zheer-saz-logo.jpg",
     telegram: "https://t.me/zheer_saz",
     description:
       "ژیرساز گرووپێکی تایبەتمەندە لە بواری زیرەکی دەستکرد و تەکنەلۆژیا، کە ئامانجی بەهێزکردنی کۆمەڵگای کوردی تەکنەلۆژییە لەڕێگەی فێرکاری، پڕۆژە، و ناوەڕۆکی بەسوودەوە.",
