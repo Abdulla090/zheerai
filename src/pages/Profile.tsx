@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { User, FolderOpen, MessageCircleQuestion, Crown, Shield, Calendar, Heart, MessageSquare, Eye, Settings, Mail, FileText } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { User, FolderOpen, MessageCircleQuestion, Crown, Shield, Calendar, Heart, MessageSquare, Eye, Settings, Mail, FileText, LogOut } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
