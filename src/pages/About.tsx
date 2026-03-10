@@ -171,8 +171,6 @@ const About = () => {
               <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
                 Kurdistan AI تەنها پلاتفۆرمێک نییە — بزوتنەوەیەکە بۆ بەرزکردنەوەی ئاستی تەکنەلۆژی لە نێو کوردستاندا. سەردانی <Link to="/projects" className="text-primary hover:underline">پڕۆژەکان</Link> بکە، لە <Link to="/qa" className="text-primary hover:underline">پرسیار و وەڵام</Link> بەشداری بکە، یان <Link to="/blog" className="text-primary hover:underline">بابەتەکان</Link> بخوێنەوە.
               </p>
-                </CardContent>
-              </Card>
             </motion.div>
           </div>
         </section>
