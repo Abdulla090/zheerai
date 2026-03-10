@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
-import { Eye, ExternalLink, Github, Calendar, MessageSquare, User, Pencil } from "lucide-react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { Eye, ExternalLink, Github, Calendar, MessageSquare, User, Pencil, Trash2 } from "lucide-react";
 import BackButton from "@/components/BackButton";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,8 +12,9 @@ import type { Project } from "@/hooks/useProjects";
 import LikeButton from "@/components/LikeButton";
 import CommentsSection from "@/components/CommentsSection";
 import { useAuth } from "@/hooks/useAuth";
-import { useCurrentProfile } from "@/hooks/useProfile";
+import { useCurrentProfile, useUserRole } from "@/hooks/useProfile";
 import SEOHead from "@/components/SEOHead";
+import { toast } from "sonner";
 
 const categories: Record<string, string> = {
   ai_website: "ماڵپەڕی AI",
