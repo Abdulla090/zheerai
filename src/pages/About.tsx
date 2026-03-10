@@ -146,17 +146,31 @@ const About = () => {
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                   <Code className="h-5 w-5 text-primary" />
                 </div>
-                <h2 className="text-2xl font-bold text-foreground">پەیامی دامەزرێنەر</h2>
+                <h2 className="text-2xl font-bold text-foreground">دامەزرێنەران</h2>
               </div>
-              <Card className="border-border">
-                <CardContent className="p-6 md:p-8">
-                  <p className="text-base text-muted-foreground leading-relaxed md:text-lg">
-                    من وەک <strong className="text-foreground">Full Stack AI Solution Developer</strong>، Kurdistan AI م دامەزراند بۆ ئەوەی پردێک دروست بکەم نێوان زیرەکی دەستکرد و خەڵکی کوردستان. ئامانجم ئەوەیە هەموو فێرخوازێک و گەشەپێدەرێکی کورد بتوانێت بە زمانی خۆی فێری AI ببێت، پڕۆژە دروست بکات، و لە کۆمەڵگایەکی بەهێزدا بەشداری بکات.
-                  </p>
-                  <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-                    Kurdistan AI تەنها پلاتفۆرمێک نییە — بزوتنەوەیەکە بۆ بەرزکردنەوەی ئاستی تەکنەلۆژی لە نێو کوردستاندا. سەردانی <Link to="/projects" className="text-primary hover:underline">پڕۆژەکان</Link> بکە، لە <Link to="/qa" className="text-primary hover:underline">پرسیار و وەڵام</Link> بەشداری بکە، یان <Link to="/blog" className="text-primary hover:underline">بابەتەکان</Link> بخوێنەوە.
-                  </p>
-                  <p className="mt-4 text-sm font-semibold text-foreground">— ژیرساز، دامەزرێنەری Kurdistan AI</p>
+              <div className="space-y-4">
+                <Card className="border-border">
+                  <CardContent className="p-6 md:p-8">
+                    <h3 className="text-lg font-bold text-foreground mb-2">Abdulla Aziz Hameed</h3>
+                    <p className="text-xs text-primary font-medium mb-3">Full Stack AI Solution Developer — دامەزرێنەری ئەم وێبسایتە و ZHEER SAZ</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      ئەم وێبسایتەی دروستکردووە و ژیرسازی دامەزراندووە، بۆ ئەوەی پردێک دروست بکات نێوان زیرەکی دەستکرد و خەڵکی کوردستان. ئامانجی ئەوەیە هەموو فێرخوازێک و گەشەپێدەرێکی کورد بتوانێت بە زمانی خۆی فێری AI ببێت.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className="border-border">
+                  <CardContent className="p-6 md:p-8">
+                    <h3 className="text-lg font-bold text-foreground mb-2">Ahmad Nasradin</h3>
+                    <p className="text-xs text-primary font-medium mb-3">دامەزرێنەری ئەم وێبسایتە و Kurdistan AI</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      هاوبەشی دامەزراندنی ئەم پلاتفۆرمە و Kurdistan AI، بۆ بەرزکردنەوەی ئاستی زانستی تەکنەلۆژی لە نێو کۆمەڵگای کوردیدا.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+              <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
+                Kurdistan AI تەنها پلاتفۆرمێک نییە — بزوتنەوەیەکە بۆ بەرزکردنەوەی ئاستی تەکنەلۆژی لە نێو کوردستاندا. سەردانی <Link to="/projects" className="text-primary hover:underline">پڕۆژەکان</Link> بکە، لە <Link to="/qa" className="text-primary hover:underline">پرسیار و وەڵام</Link> بەشداری بکە، یان <Link to="/blog" className="text-primary hover:underline">بابەتەکان</Link> بخوێنەوە.
+              </p>
                 </CardContent>
               </Card>
             </motion.div>
