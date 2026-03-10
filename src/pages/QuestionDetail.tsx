@@ -12,7 +12,7 @@ import { useQuestion } from "@/hooks/useQuestions";
 import { useComments, useCreateComment } from "@/hooks/useComments";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { useCurrentProfile } from "@/hooks/useProfile";
+import { useCurrentProfile, useUserRole } from "@/hooks/useProfile";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import VoteButtons from "@/components/VoteButtons";
