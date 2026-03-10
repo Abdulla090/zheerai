@@ -157,6 +157,8 @@ const QuestionDetail = () => {
   const { data: question, isLoading } = useQuestion(id!);
   const { data: questionComments } = useComments(id!, "question");
   const { data: profile } = useCurrentProfile();
+  const { data: roles } = useUserRole();
+  const isAdmin = roles?.includes("admin");
   const [showQuestionComments, setShowQuestionComments] = useState(false);
 
   const handleDeleteQuestion = async () => {
