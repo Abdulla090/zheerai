@@ -66,6 +66,8 @@ const CommentItem = ({
 const CommentsSection = ({ targetId, targetType }: CommentsSectionProps) => {
   const { user } = useAuth();
   const { data: profile } = useCurrentProfile();
+  const { data: roles } = useUserRole();
+  const isAdmin = roles?.includes("admin");
   const { data: comments, isLoading } = useComments(targetId, targetType);
   const createComment = useCreateComment();
   const queryClient = useQueryClient();
