@@ -107,6 +107,22 @@ const ProjectDetail = () => {
               <Button variant="outline" size="sm" className="gap-1.5"><Pencil className="h-3.5 w-3.5" />دەستکاری</Button>
             </Link>
           )}
+          {(isAdmin || (profile && project.author_id === profile.id)) && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1.5 text-destructive border-destructive/30 hover:bg-destructive/10"
+              onClick={async () => {
+                if (!window.confirm("دڵنیایت لە سڕینەوەی ئەم پڕۆژەیە؟")) return;
+                const { error } = await supabase.from("projects").delete().eq("id", project.id);
+                if (error) { toast.error("نەتوانرا بسڕدرێتەوە"); return; }
+                toast.success("پڕۆژەکە سڕایەوە");
+                navigate("/projects");
+              }}
+            >
+              <Trash2 className="h-3.5 w-3.5" />سڕینەوە
+            </Button>
+          )}
         </div>
 
         <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
