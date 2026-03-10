@@ -12,9 +12,9 @@ interface SEOHeadProps {
 }
 
 const SITE_NAME = "Kurdistan AI";
-const DEFAULT_DESC = "Kurdistan AI (کوردستان ئەی ئای) — یەکەمین و گەورەترین کۆمەڵگای زیرەکی دەستکرد لە کوردستان. پڕۆژە، پرسیار و وەڵام، و فێرکاری AI بە کوردی. The first AI community in Kurdistan.";
+const DEFAULT_DESC = "Kurdistan AI is the first and largest artificial intelligence community in Kurdistan. Explore AI projects, ask questions, read tutorials, and connect with Kurdish AI developers.";
 const DEFAULT_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/7HKgE5HYYOc2kQnwrUNNYt63kLm1/social-images/social-1772745656712-1000104485.webp";
-const DEFAULT_KEYWORDS = "Kurdistan AI, کوردستان ئەی ئای, Kurd AI, Kurdish AI, artificial intelligence Kurdistan, زیرەکی دەستکرد, AI کوردستان, KurdistanAI";
+const DEFAULT_KEYWORDS = "Kurdistan AI, Kurd AI, Kurdish AI, artificial intelligence Kurdistan, AI community Kurdistan, KurdistanAI, AI projects Kurdistan, AI Iraq, کوردستان ئەی ئای";
 
 const SEOHead = ({
   title,
@@ -26,7 +26,7 @@ const SEOHead = ({
   jsonLd,
   keywords = DEFAULT_KEYWORDS,
 }: SEOHeadProps) => {
-  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} - کۆمەڵگای زیرەکی دەستکرد لە کوردستان | AI Community`;
+  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} — The First AI Community in Kurdistan`;
 
   // Auto-generate canonical from current path if not provided
   const resolvedCanonical = canonical || `https://kurdistanai.app${window.location.pathname === '/' ? '' : window.location.pathname}`;
