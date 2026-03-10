@@ -34,6 +34,8 @@ const timeAgo = (dateStr: string) => {
 const InlineComments = ({ targetId, targetType }: { targetId: string; targetType: string }) => {
   const { user } = useAuth();
   const { data: profile } = useCurrentProfile();
+  const { data: roles } = useUserRole();
+  const isAdmin = roles?.includes("admin");
   const { data: comments } = useComments(targetId, targetType);
   const createComment = useCreateComment();
   const queryClient = useQueryClient();
