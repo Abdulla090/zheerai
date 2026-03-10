@@ -21,6 +21,7 @@ const CommentItem = ({
   onDelete,
   onReply,
   isReply = false,
+  isAdmin = false,
 }: {
   comment: Comment;
   user: any;
@@ -28,6 +29,7 @@ const CommentItem = ({
   onDelete: (id: string) => void;
   onReply: (comment: Comment) => void;
   isReply?: boolean;
+  isAdmin?: boolean;
 }) => (
   <div className={`flex gap-3 rounded-lg border border-border bg-card p-3 ${isReply ? "mr-8 border-muted bg-muted/30" : ""}`}>
     <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent overflow-hidden">
