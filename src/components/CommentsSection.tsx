@@ -49,7 +49,7 @@ const CommentItem = ({
               <Reply className="h-3 w-3" />وەڵام
             </Button>
           )}
-          {user && profileId && comment.author_id === profileId && (
+          {user && profileId && (comment.author_id === profileId || isAdmin) && (
             <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-muted-foreground hover:text-destructive" onClick={() => onDelete(comment.id)}>
               <Trash2 className="h-3 w-3" />
             </Button>
