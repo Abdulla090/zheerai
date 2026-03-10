@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useComments, useCreateComment, type Comment } from "@/hooks/useComments";
 import { useAuth } from "@/hooks/useAuth";
-import { useCurrentProfile } from "@/hooks/useProfile";
+import { useCurrentProfile, useUserRole } from "@/hooks/useProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -21,6 +21,7 @@ const CommentItem = ({
   onDelete,
   onReply,
   isReply = false,
+  isAdmin = false,
 }: {
   comment: Comment;
   user: any;
@@ -28,6 +29,7 @@ const CommentItem = ({
   onDelete: (id: string) => void;
   onReply: (comment: Comment) => void;
   isReply?: boolean;
+  isAdmin?: boolean;
 }) => (
   <div className={`flex gap-3 rounded-lg border border-border bg-card p-3 ${isReply ? "mr-8 border-muted bg-muted/30" : ""}`}>
     <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent overflow-hidden">
@@ -49,7 +51,7 @@ const CommentItem = ({
               <Reply className="h-3 w-3" />وەڵام
             </Button>
           )}
-          {user && profileId && comment.author_id === profileId && (
+          {user && profileId && (comment.author_id === profileId || isAdmin) && (
             <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-muted-foreground hover:text-destructive" onClick={() => onDelete(comment.id)}>
               <Trash2 className="h-3 w-3" />
             </Button>
@@ -64,6 +66,8 @@ const CommentItem = ({
 const CommentsSection = ({ targetId, targetType }: CommentsSectionProps) => {
   const { user } = useAuth();
   const { data: profile } = useCurrentProfile();
+  const { data: roles } = useUserRole();
+  const isAdmin = roles?.includes("admin");
   const { data: comments, isLoading } = useComments(targetId, targetType);
   const createComment = useCreateComment();
   const queryClient = useQueryClient();
@@ -110,11 +114,11 @@ const CommentsSection = ({ targetId, targetType }: CommentsSectionProps) => {
         <div className="space-y-3 mb-6">
           {comments.map((c) => (
             <div key={c.id}>
-              <CommentItem comment={c} user={user} profileId={profile?.id} onDelete={handleDelete} onReply={setReplyingTo} />
+              <CommentItem comment={c} user={user} profileId={profile?.id} onDelete={handleDelete} onReply={setReplyingTo} isAdmin={isAdmin} />
               {c.replies && c.replies.length > 0 && (
                 <div className="space-y-2 mt-2">
                   {c.replies.map((r) => (
-                    <CommentItem key={r.id} comment={r} user={user} profileId={profile?.id} onDelete={handleDelete} onReply={setReplyingTo} isReply />
+                    <CommentItem key={r.id} comment={r} user={user} profileId={profile?.id} onDelete={handleDelete} onReply={setReplyingTo} isReply isAdmin={isAdmin} />
                   ))}
                 </div>
               )}

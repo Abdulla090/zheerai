@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { User, FolderOpen, MessageCircleQuestion, Crown, Shield, Calendar, Heart, MessageSquare, Eye, Settings, Mail, FileText } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { User, FolderOpen, MessageCircleQuestion, Crown, Shield, Calendar, Heart, MessageSquare, Eye, Settings, Mail, FileText, LogOut } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -12,7 +12,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Navigate } from "react-router-dom";
 
 const Profile = () => {
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, signOut } = useAuth();
+  const navigate = useNavigate();
   const { data: profile, isLoading: profileLoading } = useCurrentProfile();
   const { data: roles } = useUserRole();
 
@@ -95,13 +96,25 @@ const Profile = () => {
                 )}
               </div>
               <p className="mt-1 text-sm text-muted-foreground">{profile?.bio || "هێشتا بایۆیەک نەنووسراوە"}</p>
-              <div className="mt-2">
+              <div className="mt-2 flex gap-2">
                 <Link to="/profile/edit">
                   <Button variant="outline" size="sm" className="gap-1.5 text-xs">
                     <Settings className="h-3 w-3" />
                     دەستکاریکردنی پرۆفایل
                   </Button>
                 </Link>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-1.5 text-xs text-destructive border-destructive/30 hover:bg-destructive/10"
+                  onClick={async () => {
+                    await signOut();
+                    navigate("/login");
+                  }}
+                >
+                  <LogOut className="h-3 w-3" />
+                  چوونەدەرەوە
+                </Button>
               </div>
               <div className="mt-3 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground sm:justify-start">
                 <span className="flex items-center gap-1"><Mail className="h-3 w-3" />{user.email}</span>

@@ -12,7 +12,7 @@ import { useQuestion } from "@/hooks/useQuestions";
 import { useComments, useCreateComment } from "@/hooks/useComments";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { useCurrentProfile } from "@/hooks/useProfile";
+import { useCurrentProfile, useUserRole } from "@/hooks/useProfile";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import VoteButtons from "@/components/VoteButtons";
@@ -34,6 +34,8 @@ const timeAgo = (dateStr: string) => {
 const InlineComments = ({ targetId, targetType }: { targetId: string; targetType: string }) => {
   const { user } = useAuth();
   const { data: profile } = useCurrentProfile();
+  const { data: roles } = useUserRole();
+  const isAdmin = roles?.includes("admin");
   const { data: comments } = useComments(targetId, targetType);
   const createComment = useCreateComment();
   const queryClient = useQueryClient();
@@ -97,7 +99,7 @@ const InlineComments = ({ targetId, targetType }: { targetId: string; targetType
                 </div>
                 <div className="flex items-center gap-3 mt-1 px-1">
                   <span className="text-[11px] text-muted-foreground">{timeAgo(c.created_at)}</span>
-                  {user && profile && c.author_id === profile.id && (
+                  {user && profile && (c.author_id === profile.id || isAdmin) && (
                     <button
                       onClick={() => handleDelete(c.id)}
                       className="text-[11px] text-muted-foreground hover:text-destructive transition-colors"
@@ -157,6 +159,8 @@ const QuestionDetail = () => {
   const { data: question, isLoading } = useQuestion(id!);
   const { data: questionComments } = useComments(id!, "question");
   const { data: profile } = useCurrentProfile();
+  const { data: roles } = useUserRole();
+  const isAdmin = roles?.includes("admin");
   const [showQuestionComments, setShowQuestionComments] = useState(false);
 
   const handleDeleteQuestion = async () => {
@@ -256,13 +260,15 @@ const QuestionDetail = () => {
                   {timeAgo(question.created_at)} لەمەوبەر
                 </div>
               </div>
-              {profile && question.author_id === profile.id && (
+              {profile && (question.author_id === profile.id || isAdmin) && (
                 <div className="flex items-center gap-1 shrink-0">
-                  <Link to={`/qa/${question.id}/edit`}>
-                    <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-foreground">
-                      <Pencil className="h-3.5 w-3.5" />دەستکاری
-                    </Button>
-                  </Link>
+                  {question.author_id === profile.id && (
+                    <Link to={`/qa/${question.id}/edit`}>
+                      <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-foreground">
+                        <Pencil className="h-3.5 w-3.5" />دەستکاری
+                      </Button>
+                    </Link>
+                  )}
                   <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-destructive" onClick={handleDeleteQuestion}>
                     <Trash2 className="h-3.5 w-3.5" />سڕینەوە
                   </Button>

@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
-import { Eye, ExternalLink, Github, Calendar, MessageSquare, User, Pencil } from "lucide-react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { Eye, ExternalLink, Github, Calendar, MessageSquare, User, Pencil, Trash2 } from "lucide-react";
 import BackButton from "@/components/BackButton";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,8 +12,9 @@ import type { Project } from "@/hooks/useProjects";
 import LikeButton from "@/components/LikeButton";
 import CommentsSection from "@/components/CommentsSection";
 import { useAuth } from "@/hooks/useAuth";
-import { useCurrentProfile } from "@/hooks/useProfile";
+import { useCurrentProfile, useUserRole } from "@/hooks/useProfile";
 import SEOHead from "@/components/SEOHead";
+import { toast } from "sonner";
 
 const categories: Record<string, string> = {
   ai_website: "ماڵپەڕی AI",
@@ -25,8 +26,11 @@ const categories: Record<string, string> = {
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { data: profile } = useCurrentProfile();
+  const { data: roles } = useUserRole();
+  const isAdmin = roles?.includes("admin");
   const { data: project, isLoading } = useQuery({
     queryKey: ["project", id],
     queryFn: async () => {
@@ -102,6 +106,22 @@ const ProjectDetail = () => {
             <Link to={`/projects/${project.id}/edit`}>
               <Button variant="outline" size="sm" className="gap-1.5"><Pencil className="h-3.5 w-3.5" />دەستکاری</Button>
             </Link>
+          )}
+          {(isAdmin || (profile && project.author_id === profile.id)) && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1.5 text-destructive border-destructive/30 hover:bg-destructive/10"
+              onClick={async () => {
+                if (!window.confirm("دڵنیایت لە سڕینەوەی ئەم پڕۆژەیە؟")) return;
+                const { error } = await supabase.from("projects").delete().eq("id", project.id);
+                if (error) { toast.error("نەتوانرا بسڕدرێتەوە"); return; }
+                toast.success("پڕۆژەکە سڕایەوە");
+                navigate("/projects");
+              }}
+            >
+              <Trash2 className="h-3.5 w-3.5" />سڕینەوە
+            </Button>
           )}
         </div>
 
