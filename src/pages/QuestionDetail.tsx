@@ -257,11 +257,16 @@ const QuestionDetail = () => {
                 </div>
               </div>
               {profile && question.author_id === profile.id && (
-                <Link to={`/qa/${question.id}/edit`} className="shrink-0">
-                  <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-foreground">
-                    <Pencil className="h-3.5 w-3.5" />دەستکاری
+                <div className="flex items-center gap-1 shrink-0">
+                  <Link to={`/qa/${question.id}/edit`}>
+                    <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-foreground">
+                      <Pencil className="h-3.5 w-3.5" />دەستکاری
+                    </Button>
+                  </Link>
+                  <Button variant="ghost" size="sm" className="gap-1 text-xs text-muted-foreground hover:text-destructive" onClick={handleDeleteQuestion}>
+                    <Trash2 className="h-3.5 w-3.5" />سڕینەوە
                   </Button>
-                </Link>
+                </div>
               )}
             </div>
 
