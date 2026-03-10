@@ -39,6 +39,16 @@ const Profile = () => {
     enabled: !!profile,
   });
 
+  const { data: userBlogs } = useQuery({
+    queryKey: ["user_blogs", profile?.id],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("blog_posts").select("*").eq("author_id", profile!.id).order("created_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!profile,
+  });
+
   const { data: stats } = useQuery({
     queryKey: ["user_stats", profile?.id],
     queryFn: async () => {
