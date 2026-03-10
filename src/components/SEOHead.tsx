@@ -16,6 +16,7 @@ const DEFAULT_DESC = "Kurdistan AI is the first and largest artificial intellige
 const DEFAULT_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/7HKgE5HYYOc2kQnwrUNNYt63kLm1/social-images/social-1772745656712-1000104485.webp";
 const DEFAULT_KEYWORDS = "Kurdistan AI, Kurd AI, Kurdish AI, artificial intelligence Kurdistan, AI community Kurdistan, KurdistanAI, AI projects Kurdistan, AI Iraq, کوردستان ئەی ئای";
 
+
 const SEOHead = ({
   title,
   description = DEFAULT_DESC,
@@ -26,7 +27,7 @@ const SEOHead = ({
   jsonLd,
   keywords = DEFAULT_KEYWORDS,
 }: SEOHeadProps) => {
-  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} — The First AI Community in Kurdistan`;
+  const fullTitle = title ? (title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`) : `${SITE_NAME} — The First AI Community in Kurdistan`;
 
   // Auto-generate canonical from current path if not provided
   const resolvedCanonical = canonical || `https://kurdistanai.app${window.location.pathname === '/' ? '' : window.location.pathname}`;
