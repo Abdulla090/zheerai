@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
-import { MessageCircle, Clock, User, Send, ChevronDown, ChevronUp, Pencil } from "lucide-react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { MessageCircle, Clock, User, Send, ChevronDown, ChevronUp, Pencil, Trash2 } from "lucide-react";
 import BackButton from "@/components/BackButton";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
