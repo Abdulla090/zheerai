@@ -155,6 +155,7 @@ const Profile = () => {
           <TabsList className="mb-6 w-full justify-start">
             <TabsTrigger value="projects" className="gap-1.5"><FolderOpen className="h-3.5 w-3.5" />پڕۆژەکان</TabsTrigger>
             <TabsTrigger value="questions" className="gap-1.5"><MessageCircleQuestion className="h-3.5 w-3.5" />پرسیارەکان</TabsTrigger>
+            <TabsTrigger value="blogs" className="gap-1.5"><FileText className="h-3.5 w-3.5" />بابەتەکان</TabsTrigger>
           </TabsList>
 
           <TabsContent value="projects">
