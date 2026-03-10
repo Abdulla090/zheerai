@@ -39,6 +39,16 @@ const Profile = () => {
     enabled: !!profile,
   });
 
+  const { data: userBlogs } = useQuery({
+    queryKey: ["user_blogs", profile?.id],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("blog_posts").select("*").eq("author_id", profile!.id).order("created_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!profile,
+  });
+
   const { data: stats } = useQuery({
     queryKey: ["user_stats", profile?.id],
     queryFn: async () => {
@@ -145,6 +155,7 @@ const Profile = () => {
           <TabsList className="mb-6 w-full justify-start">
             <TabsTrigger value="projects" className="gap-1.5"><FolderOpen className="h-3.5 w-3.5" />پڕۆژەکان</TabsTrigger>
             <TabsTrigger value="questions" className="gap-1.5"><MessageCircleQuestion className="h-3.5 w-3.5" />پرسیارەکان</TabsTrigger>
+            <TabsTrigger value="blogs" className="gap-1.5"><FileText className="h-3.5 w-3.5" />بابەتەکان</TabsTrigger>
           </TabsList>
 
           <TabsContent value="projects">
@@ -195,6 +206,38 @@ const Profile = () => {
               </div>
             ) : (
               <p className="py-10 text-center text-sm text-muted-foreground">هیچ پرسیارێک نییە</p>
+            )}
+          </TabsContent>
+
+          <TabsContent value="blogs">
+            {userBlogs && userBlogs.length > 0 ? (
+              <div className="space-y-3">
+                {userBlogs.map((b) => (
+                  <Link key={b.id} to={`/blog/${b.id}`}>
+                    <Card className="border-border transition-shadow hover:shadow-sm">
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="text-sm font-semibold text-foreground flex-1">{b.title}</h3>
+                          {!b.published && (
+                            <Badge variant="outline" className="text-[10px] text-amber-600 border-amber-300">چاوەڕوانی</Badge>
+                          )}
+                          {b.published && (
+                            <Badge variant="secondary" className="text-[10px]">بڵاوکراوە</Badge>
+                          )}
+                        </div>
+                        {b.excerpt && <p className="text-xs text-muted-foreground line-clamp-2">{b.excerpt}</p>}
+                        <div className="mt-2 flex items-center gap-3 text-[10px] text-muted-foreground">
+                          <span className="flex items-center gap-0.5"><Eye className="h-3 w-3" />{b.views_count}</span>
+                          <span className="flex items-center gap-0.5"><Heart className="h-3 w-3" />{b.likes_count}</span>
+                          <span className="flex items-center gap-0.5"><MessageSquare className="h-3 w-3" />{b.comments_count}</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className="py-10 text-center text-sm text-muted-foreground">هیچ بابەتێک نییە</p>
             )}
           </TabsContent>
         </Tabs>
