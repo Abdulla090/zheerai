@@ -114,11 +114,11 @@ const CommentsSection = ({ targetId, targetType }: CommentsSectionProps) => {
         <div className="space-y-3 mb-6">
           {comments.map((c) => (
             <div key={c.id}>
-              <CommentItem comment={c} user={user} profileId={profile?.id} onDelete={handleDelete} onReply={setReplyingTo} />
+              <CommentItem comment={c} user={user} profileId={profile?.id} onDelete={handleDelete} onReply={setReplyingTo} isAdmin={isAdmin} />
               {c.replies && c.replies.length > 0 && (
                 <div className="space-y-2 mt-2">
                   {c.replies.map((r) => (
-                    <CommentItem key={r.id} comment={r} user={user} profileId={profile?.id} onDelete={handleDelete} onReply={setReplyingTo} isReply />
+                    <CommentItem key={r.id} comment={r} user={user} profileId={profile?.id} onDelete={handleDelete} onReply={setReplyingTo} isReply isAdmin={isAdmin} />
                   ))}
                 </div>
               )}
