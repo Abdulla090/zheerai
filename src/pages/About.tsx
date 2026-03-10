@@ -77,12 +77,19 @@ const aboutJsonLd = {
     "@type": "Organization",
     "@id": "https://kurdistanai.app/#organization",
     "name": "Kurdistan AI",
-    "founder": {
-      "@type": "Person",
-      "name": "Zheer Saz",
-      "jobTitle": "Full Stack AI Solution Developer",
-      "description": "Dedicated to bridging the gap between AI and Kurdish people learning in Kurdistan."
-    }
+    "founder": [
+      {
+        "@type": "Person",
+        "name": "Abdulla Aziz Hameed",
+        "jobTitle": "Full Stack AI Solution Developer",
+        "description": "Founder of this website and ZHEER SAZ. Dedicated to bridging the gap between AI and Kurdish people learning in Kurdistan."
+      },
+      {
+        "@type": "Person",
+        "name": "Ahmad Nasradin",
+        "description": "Co-founder of this website and Kurdistan AI."
+      }
+    ]
   }
 };
 
