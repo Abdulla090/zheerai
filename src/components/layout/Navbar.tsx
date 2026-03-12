@@ -97,6 +97,7 @@ const Navbar = () => {
 
         {/* Mobile: only show theme toggle and logo, nav is in bottom bar */}
         <div className="flex items-center gap-2 md:hidden">
+          {user && <NotificationBell />}
           <ThemeToggle />
         </div>
       </div>
