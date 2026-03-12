@@ -4,6 +4,7 @@ import { Search, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import ThemeToggle from "@/components/ThemeToggle";
+import NotificationBell from "@/components/NotificationBell";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -64,6 +65,7 @@ const Navbar = () => {
 
         <div className="hidden items-center gap-2 md:flex">
           <ThemeToggle />
+          {user && <NotificationBell />}
           <Button variant="ghost" size="icon" aria-label="گەڕان">
             <Search className="h-4 w-4" />
           </Button>
@@ -95,6 +97,7 @@ const Navbar = () => {
 
         {/* Mobile: only show theme toggle and logo, nav is in bottom bar */}
         <div className="flex items-center gap-2 md:hidden">
+          {user && <NotificationBell />}
           <ThemeToggle />
         </div>
       </div>
