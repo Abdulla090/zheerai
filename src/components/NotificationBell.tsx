@@ -1,4 +1,4 @@
-import { Bell, MessageSquare, FolderOpen, HelpCircle, BookOpen } from "lucide-react";
+import { Bell, MessageSquare, FolderOpen, HelpCircle, BookOpen, BellRing } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useNotifications } from "@/hooks/useNotifications";
+import { usePushNotifications } from "@/hooks/usePushNotifications";
 import { cn } from "@/lib/utils";
 import { formatDistanceToNow } from "date-fns";
 
@@ -28,11 +29,14 @@ const typeLabel: Record<string, string> = {
 const NotificationBell = () => {
   const navigate = useNavigate();
   const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications();
+  const { isSupported, isSubscribed, permission, loading, subscribe } = usePushNotifications();
 
   const handleClick = (id: string, link: string | null) => {
     markAsRead.mutate(id);
     if (link) navigate(link);
   };
+
+  const showPushBanner = isSupported && !isSubscribed && permission !== "denied";
 
   return (
     <Popover>
@@ -47,6 +51,23 @@ const NotificationBell = () => {
         </Button>
       </PopoverTrigger>
       <PopoverContent align="end" className="w-80 p-0" dir="rtl">
+        {/* Push notification opt-in banner */}
+        {showPushBanner && (
+          <div className="flex items-center gap-2 border-b border-border bg-primary/5 px-4 py-2.5">
+            <BellRing className="h-4 w-4 text-primary shrink-0" />
+            <p className="text-xs text-muted-foreground flex-1">ئاگادارییەکان لەسەر مۆبایل وەربگرە</p>
+            <Button
+              variant="default"
+              size="sm"
+              className="h-7 text-xs"
+              onClick={subscribe}
+              disabled={loading}
+            >
+              {loading ? "..." : "چالاککردن"}
+            </Button>
+          </div>
+        )}
+
         <div className="flex items-center justify-between border-b border-border px-4 py-3">
           <h3 className="text-sm font-semibold">ئاگادارییەکان</h3>
           {unreadCount > 0 && (
