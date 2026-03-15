@@ -9,8 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import CommentsSection from "@/components/CommentsSection";
 import LikeButton from "@/components/LikeButton";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 import type { BlogPost } from "@/hooks/useBlogPosts";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrentProfile, useUserRole } from "@/hooks/useProfile";
@@ -119,7 +118,7 @@ const BlogPostDetail = () => {
         </div>
 
         <article className="prose prose-sm dark:prose-invert max-w-none mb-10" dir="auto">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.body}</ReactMarkdown>
+          <MarkdownRenderer content={post.body} />
         </article>
 
         <div className="mb-8">

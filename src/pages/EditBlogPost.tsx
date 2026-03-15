@@ -12,8 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
 import { ImagePlus, X, Loader2, ArrowRight } from "lucide-react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { compressImage } from "@/lib/imageCompression";
 import type { BlogPost } from "@/hooks/useBlogPosts";
 
@@ -154,7 +153,7 @@ const EditBlogPost = () => {
               </TabsContent>
               <TabsContent value="preview">
                 <div className="min-h-[300px] rounded-md border border-border bg-background p-4 prose prose-sm dark:prose-invert max-w-none" dir="auto">
-                  {body ? <ReactMarkdown remarkPlugins={[remarkGfm]}>{body}</ReactMarkdown> : <p className="text-muted-foreground">هیچ ناوەڕۆکێک نیە</p>}
+                  {body ? <MarkdownRenderer content={body} /> : <p className="text-muted-foreground">هیچ ناوەڕۆکێک نیە</p>}
                 </div>
               </TabsContent>
             </Tabs>

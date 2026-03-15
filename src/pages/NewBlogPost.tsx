@@ -10,8 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { ImagePlus, X, Loader2 } from "lucide-react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { compressImage } from "@/lib/imageCompression";
 
 const NewBlogPost = () => {
@@ -182,7 +181,7 @@ const NewBlogPost = () => {
               </TabsContent>
               <TabsContent value="preview">
                 <div className="min-h-[300px] rounded-md border border-border bg-background p-4 prose prose-sm dark:prose-invert max-w-none" dir="auto">
-                  {body ? <ReactMarkdown remarkPlugins={[remarkGfm]}>{body}</ReactMarkdown> : <p className="text-muted-foreground">هیچ ناوەڕۆکێک نیە بۆ پێشبینین</p>}
+                  {body ? <MarkdownRenderer content={body} /> : <p className="text-muted-foreground">هیچ ناوەڕۆکێک نیە بۆ پێشبینین</p>}
                 </div>
               </TabsContent>
             </Tabs>
