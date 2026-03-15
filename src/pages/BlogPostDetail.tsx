@@ -118,7 +118,7 @@ const BlogPostDetail = () => {
         </div>
 
         <article className="prose prose-sm dark:prose-invert max-w-none mb-10" dir="auto">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.body}</ReactMarkdown>
+          <MarkdownRenderer content={post.body} />
         </article>
 
         <div className="mb-8">
