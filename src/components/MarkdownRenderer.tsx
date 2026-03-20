@@ -1,9 +1,18 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Copy, Check } from "lucide-react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, Component, type ReactNode } from "react";
+
+class MarkdownErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() {
+    if (this.state.hasError) return <div className="text-foreground whitespace-pre-wrap">{(this.props as any).fallback}</div>;
+    return this.props.children;
+  }
+}
 
 const CopyButton = ({ code }: { code: string }) => {
   const [copied, setCopied] = useState(false);
