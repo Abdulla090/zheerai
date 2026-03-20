@@ -118,6 +118,7 @@ const MarkdownRenderer = ({ content }: { content: string }) => (
   >
     {content}
   </ReactMarkdown>
+  </MarkdownErrorBoundary>
 );
 
 export default MarkdownRenderer;
