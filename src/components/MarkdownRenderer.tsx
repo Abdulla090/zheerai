@@ -5,11 +5,11 @@ import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Copy, Check } from "lucide-react";
 import { useState, useCallback, Component, type ReactNode } from "react";
 
-class MarkdownErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+class MarkdownErrorBoundary extends Component<{ children: ReactNode; fallback: string }, { hasError: boolean }> {
   state = { hasError: false };
   static getDerivedStateFromError() { return { hasError: true }; }
   render() {
-    if (this.state.hasError) return <div className="text-foreground whitespace-pre-wrap">{(this.props as any).fallback}</div>;
+    if (this.state.hasError) return <div className="text-foreground whitespace-pre-wrap">{this.props.fallback}</div>;
     return this.props.children;
   }
 }
