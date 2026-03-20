@@ -29,6 +29,7 @@ const CopyButton = ({ code }: { code: string }) => {
 };
 
 const MarkdownRenderer = ({ content }: { content: string }) => (
+  <MarkdownErrorBoundary fallback={content}>
   <ReactMarkdown
     remarkPlugins={[remarkGfm]}
     components={{
