@@ -14,9 +14,7 @@ import {
 
 const navLinks = [
   { href: "/", label: "سەرەتا" },
-  { href: "/projects", label: "پڕۆژەکان" },
-  { href: "/qa", label: "پرسیار و وەڵام" },
-  { href: "/blog", label: "بڵاوکراوەکان" },
+  { href: "/blog", label: "بابەتەکان" },
   { href: "/about", label: "دەربارەی ئێمە" },
 ];
 
@@ -39,7 +37,7 @@ const Navbar = () => {
 
         <nav className="hidden items-center gap-0.5 md:flex">
           {navLinks.map((link) => {
-            const isActive = location.pathname === link.href;
+            const isActive = link.href === "/" ? location.pathname === "/" : location.pathname.startsWith(link.href);
             return (
               <Link
                 key={link.href}
@@ -66,9 +64,6 @@ const Navbar = () => {
         <div className="hidden items-center gap-2 md:flex">
           <ThemeToggle />
           {user && <NotificationBell />}
-          <Button variant="ghost" size="icon" aria-label="گەڕان">
-            <Search className="h-4 w-4" />
-          </Button>
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
