@@ -11,14 +11,6 @@ import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 
 // Lazy load non-critical routes
-const Projects = lazy(() => import("./pages/Projects"));
-const NewProject = lazy(() => import("./pages/NewProject"));
-const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
-const EditProject = lazy(() => import("./pages/EditProject"));
-const QA = lazy(() => import("./pages/QA"));
-const NewQuestion = lazy(() => import("./pages/NewQuestion"));
-const QuestionDetail = lazy(() => import("./pages/QuestionDetail"));
-const EditQuestion = lazy(() => import("./pages/EditQuestion"));
 const Blog = lazy(() => import("./pages/Blog"));
 const NewBlogPost = lazy(() => import("./pages/NewBlogPost"));
 const BlogPostDetail = lazy(() => import("./pages/BlogPostDetail"));
