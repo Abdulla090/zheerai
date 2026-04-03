@@ -1,20 +1,13 @@
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Users, BookOpen, Cpu, Heart, Code, ArrowRight } from "lucide-react";
+import { ExternalLink, Users, BookOpen, Cpu, Heart, Code, ArrowRight, Newspaper } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import SEOHead from "@/components/SEOHead";
 
-// Lazy-load heavy images
 const OrgLogo = ({ src, alt }: { src: string; alt: string }) => (
-  <img
-    src={src}
-    alt={alt}
-    loading="lazy"
-    decoding="async"
-    className="h-full w-full object-cover"
-  />
+  <img src={src} alt={alt} loading="lazy" decoding="async" className="h-full w-full object-cover" />
 );
 
 const fadeUp = {
@@ -33,7 +26,7 @@ const organizations = [
     logo: "/zheer-saz-logo.jpg",
     telegram: "https://t.me/zheer_saz",
     description:
-      "ژیرساز گرووپێکی تایبەتمەندە لە بواری زیرەکی دەستکرد و تەکنەلۆژیا، کە ئامانجی بەهێزکردنی کۆمەڵگای کوردی تەکنەلۆژییە لەڕێگەی فێرکاری، پڕۆژە، و ناوەڕۆکی بەسوودەوە.",
+      "ژیرساز گرووپێکی تایبەتمەندە لە بواری زیرەکی دەستکرد و تەکنەلۆژیا، کە ئامانجی بەهێزکردنی کۆمەڵگای کوردی تەکنەلۆژییە لەڕێگەی فێرکاری و ناوەڕۆکی بەسوودەوە.",
   },
   {
     name: "Kurdistan AI",
@@ -48,17 +41,17 @@ const values = [
   {
     icon: BookOpen,
     title: "فێربوونی ئازاد",
-    description: "هەموو ناوەڕۆک و سەرچاوەکان بەخۆڕایین و بە زمانی کوردی سۆرانی بەردەستن.",
+    description: "هەموو بابەت و سەرچاوەکان بەخۆڕایین و بە زمانی کوردی سۆرانی بەردەستن.",
+  },
+  {
+    icon: Newspaper,
+    title: "گۆڤاری AI",
+    description: "بابەت، هەواڵ، فێرکاری، و تیپسی زیرەکی دەستکرد بە شێوازی گۆڤار و ژورنال.",
   },
   {
     icon: Users,
     title: "کۆمەڵگا",
     description: "شوێنێکین بۆ هەموو ئەو کەسانەی حەزیان بە زیرەکی دەستکردە — فێرخواز، گەشەپێدەر، و توێژەر.",
-  },
-  {
-    icon: Cpu,
-    title: "پڕۆژە و کردار",
-    description: "تەنها قسە نییە — پڕۆژەکانت پیشان بدە، پرسیار بکە، و بابەت بنووسە.",
   },
   {
     icon: Heart,
@@ -70,37 +63,37 @@ const values = [
 const aboutJsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  "name": "About Kurdistan AI",
-  "description": "Learn about Kurdistan AI — the first and largest AI community in Kurdistan. Founded to bridge the gap between AI and Kurdish learners.",
-  "url": "https://kurdistanai.app/about",
-  "mainEntity": {
+  name: "About Kurdistan AI",
+  description: "Learn about Kurdistan AI — the first Kurdish AI journal. Articles, news, tutorials, and tips about artificial intelligence in Kurdish Sorani.",
+  url: "https://kurdistanai.app/about",
+  mainEntity: {
     "@type": "Organization",
     "@id": "https://kurdistanai.app/#organization",
-    "name": "Kurdistan AI",
-    "founder": [
+    name: "Kurdistan AI",
+    founder: [
       {
         "@type": "Person",
-        "name": "Abdulla Aziz Hameed",
-        "jobTitle": "Full Stack AI Solution Developer",
-        "description": "Founder of this website and ZHEER SAZ. Dedicated to bridging the gap between AI and Kurdish people learning in Kurdistan."
+        name: "Abdulla Aziz Hameed",
+        jobTitle: "Full Stack AI Solution Developer",
+        description: "Founder of this website and ZHEER SAZ.",
       },
       {
         "@type": "Person",
-        "name": "Ahmad Nasradin",
-        "description": "Co-founder of this website and Kurdistan AI."
-      }
-    ]
-  }
+        name: "Ahmad Nasradin",
+        description: "Co-founder of this website and Kurdistan AI.",
+      },
+    ],
+  },
 };
 
 const About = () => {
   return (
     <>
       <SEOHead
-        title="About Kurdistan AI | The First & Largest AI Community in Kurdistan"
-        description="Join the premier ecosystem for Kurdish AI developers and researchers. Explore projects, technical Q&A, and free AI education in Sorani."
+        title="About Kurdistan AI | The First Kurdish AI Journal & Magazine"
+        description="Kurdistan AI is the first Kurdish-language AI journal. Read articles, news, tutorials, and tips about artificial intelligence — all in Sorani Kurdish, completely free."
         canonical="https://kurdistanai.app/about"
-        keywords="About Kurdistan AI, Kurdistan AI founder, Zheer Saz, AI community Kurdistan, Kurdish AI platform, first AI Kurdistan, AI education Kurdish"
+        keywords="About Kurdistan AI, Kurdistan AI journal, Kurdish AI magazine, AI news Kurdish, AI tutorials Kurdish, first AI journal Kurdistan"
         jsonLd={aboutJsonLd}
       />
 
@@ -115,22 +108,14 @@ const About = () => {
               className="mx-auto max-w-3xl text-center"
             >
               <h1 className="text-3xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
-                دەربارەی <span className="text-primary">Kurdistan AI</span>: یەکەمین ناوەندی زیرەکی دەستکرد
+                دەربارەی <span className="text-primary">Kurdistan AI</span>: یەکەمین گۆڤاری کوردی بۆ زیرەکی دەستکرد
               </h1>
               <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground leading-relaxed md:text-lg">
-                Kurdistan AI پلاتفۆرمێکی یەکگرتووە کە لەلایەن دوو ڕێکخراوی پێشەنگەوە دامەزراوە، بۆ ئەوەی کۆمەڵگای کوردی بتوانێت بە زمانی خۆی فێری زیرەکی دەستکرد ببێت — بەتەواوی بەخۆڕایی.
+                Kurdistan AI گۆڤارێکی ئۆنلاینە بۆ بابەت، هەواڵ، فێرکاری، و تیپسی زیرەکی دەستکرد بە زمانی کوردی سۆرانی — بەتەواوی بەخۆڕایی.
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
-                <Link to="/projects" className="inline-flex items-center gap-1 text-primary hover:underline">
-                  پڕۆژەکان <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-                <span>•</span>
-                <Link to="/qa" className="inline-flex items-center gap-1 text-primary hover:underline">
-                  پرسیار و وەڵام <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-                <span>•</span>
                 <Link to="/blog" className="inline-flex items-center gap-1 text-primary hover:underline">
-                  بڵاوکراوەکان <ArrowRight className="h-3.5 w-3.5" />
+                  بابەتەکان بخوێنەوە <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
             </motion.div>
@@ -176,7 +161,7 @@ const About = () => {
                 </Card>
               </div>
               <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
-                Kurdistan AI تەنها پلاتفۆرمێک نییە — بزوتنەوەیەکە بۆ بەرزکردنەوەی ئاستی تەکنەلۆژی لە نێو کوردستاندا. سەردانی <Link to="/projects" className="text-primary hover:underline">پڕۆژەکان</Link> بکە، لە <Link to="/qa" className="text-primary hover:underline">پرسیار و وەڵام</Link> بەشداری بکە، یان <Link to="/blog" className="text-primary hover:underline">بابەتەکان</Link> بخوێنەوە.
+                Kurdistan AI تەنها وێبسایتێک نییە — گۆڤارێکی کوردییە بۆ زیرەکی دەستکرد. <Link to="/blog" className="text-primary hover:underline">بابەتەکان</Link> بخوێنەوە و لەگەڵمان فێربە.
               </p>
             </motion.div>
           </div>
@@ -196,7 +181,7 @@ const About = () => {
                 دوو ڕێکخراو، یەک ئامانج
               </motion.h2>
               <motion.p variants={fadeUp} className="mb-12 text-center text-sm text-muted-foreground">
-                ژیرساز و Kurdistan AI پێکەوە ئەم پلاتفۆرمەیان دروستکردووە
+                ژیرساز و Kurdistan AI پێکەوە ئەم گۆڤارەیان دروستکردووە
               </motion.p>
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -238,7 +223,7 @@ const About = () => {
             >
               <h2 className="text-2xl font-bold text-foreground">ئامانجی ئێمە</h2>
               <p className="mt-5 text-base text-muted-foreground leading-relaxed md:text-lg">
-                ئێمە باوەڕمان وایە هەموو کوردێک مافی ئەوەی هەیە بە زمانی خۆی فێری تەکنەلۆژیای هەرە نوێ ببێت. Kurdistan AI شوێنێکە کە تێیدا گەشەپێدەران، خوێندکاران، و توێژەران دەتوانن <Link to="/projects" className="text-primary hover:underline">پڕۆژەکانیان پیشان بدەن</Link>، <Link to="/qa" className="text-primary hover:underline">پرسیار بکەن</Link>، زانیاری بگوازنەوە، و پێکەوە کۆمەڵگایەکی بەهێز بنیاد بنێن.
+                ئێمە باوەڕمان وایە هەموو کوردێک مافی ئەوەی هەیە بە زمانی خۆی فێری تەکنەلۆژیای هەرە نوێ ببێت. Kurdistan AI گۆڤارێکە کە تێیدا نوسەران و پسپۆڕان <Link to="/blog" className="text-primary hover:underline">بابەت و فێرکاری</Link> بڵاو دەکەنەوە لەسەر زیرەکی دەستکرد بە زمانی کوردی — هەواڵ، تیپس، ڕێنمایی، و بیرۆکەی نوێ.
               </p>
             </motion.div>
           </div>
@@ -283,10 +268,10 @@ const About = () => {
         <section className="bg-primary py-16 md:py-20">
           <div className="container text-center">
             <h2 className="text-2xl font-bold text-primary-foreground md:text-3xl">
-              ببە بەشێک لە Kurdistan AI
+              دەتەوێت بابەتێک بنووسیت؟
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-sm text-primary-foreground/80 leading-relaxed">
-              تۆمار بکە و ئێستا دەست بکە بە بەشداری لە Kurdistan AI — بەخۆڕایی و بە کوردی.
+              تۆمار بکە و بابەتەکانت لەسەر زیرەکی دەستکرد بنووسە بە کوردی — بەخۆڕایی.
             </p>
             <Button variant="secondary" size="lg" className="mt-8" asChild>
               <Link to="/signup">تۆمارکردن</Link>
