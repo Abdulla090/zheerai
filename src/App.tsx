@@ -56,14 +56,6 @@ const App = () => (
               <Suspense fallback={<PageFallback />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
-                  <Route path="/projects" element={<Projects />} />
-                  <Route path="/projects/new" element={<NewProject />} />
-                  <Route path="/projects/:id" element={<ProjectDetail />} />
-                  <Route path="/projects/:id/edit" element={<EditProject />} />
-                  <Route path="/qa" element={<QA />} />
-                  <Route path="/qa/new" element={<NewQuestion />} />
-                  <Route path="/qa/:id" element={<QuestionDetail />} />
-                  <Route path="/qa/:id/edit" element={<EditQuestion />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/new" element={<NewBlogPost />} />
                   <Route path="/blog/:id" element={<BlogPostDetail />} />
