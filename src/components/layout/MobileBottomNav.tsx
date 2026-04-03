@@ -1,13 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, FolderOpen, HelpCircle, BookOpen, Info, User, LogIn } from "lucide-react";
+import { Home, BookOpen, Info, User, LogIn } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/hooks/useAuth";
 
 const navItems = [
   { href: "/", label: "سەرەتا", icon: Home },
-  { href: "/projects", label: "پڕۆژە", icon: FolderOpen },
-  { href: "/qa", label: "پرسیار", icon: HelpCircle },
-  { href: "/blog", label: "بابەت", icon: BookOpen },
+  { href: "/blog", label: "بابەتەکان", icon: BookOpen },
+  { href: "/about", label: "دەربارە", icon: Info },
 ];
 
 const MobileBottomNav = () => {
@@ -60,7 +59,6 @@ const MobileBottomNav = () => {
           );
         })}
       </div>
-      {/* Safe area for phones with home indicator */}
       <div className="h-[env(safe-area-inset-bottom)]" />
     </nav>
   );

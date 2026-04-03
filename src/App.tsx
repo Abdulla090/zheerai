@@ -11,14 +11,6 @@ import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 
 // Lazy load non-critical routes
-const Projects = lazy(() => import("./pages/Projects"));
-const NewProject = lazy(() => import("./pages/NewProject"));
-const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
-const EditProject = lazy(() => import("./pages/EditProject"));
-const QA = lazy(() => import("./pages/QA"));
-const NewQuestion = lazy(() => import("./pages/NewQuestion"));
-const QuestionDetail = lazy(() => import("./pages/QuestionDetail"));
-const EditQuestion = lazy(() => import("./pages/EditQuestion"));
 const Blog = lazy(() => import("./pages/Blog"));
 const NewBlogPost = lazy(() => import("./pages/NewBlogPost"));
 const BlogPostDetail = lazy(() => import("./pages/BlogPostDetail"));
@@ -64,14 +56,6 @@ const App = () => (
               <Suspense fallback={<PageFallback />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
-                  <Route path="/projects" element={<Projects />} />
-                  <Route path="/projects/new" element={<NewProject />} />
-                  <Route path="/projects/:id" element={<ProjectDetail />} />
-                  <Route path="/projects/:id/edit" element={<EditProject />} />
-                  <Route path="/qa" element={<QA />} />
-                  <Route path="/qa/new" element={<NewQuestion />} />
-                  <Route path="/qa/:id" element={<QuestionDetail />} />
-                  <Route path="/qa/:id/edit" element={<EditQuestion />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/new" element={<NewBlogPost />} />
                   <Route path="/blog/:id" element={<BlogPostDetail />} />
