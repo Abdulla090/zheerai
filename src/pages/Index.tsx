@@ -162,7 +162,7 @@ const Index = () => {
     <>
       <SEOHead
         canonical={BASE_URL}
-        description="Kurdistan AI — The first & largest AI journal in Kurdistan. Read the latest articles, news, tutorials & tips about artificial intelligence in Kurdish Sorani. یەکەمین و گەورەترین گۆڤاری AI بە کوردی."
+        description="Kurdistan AI — The first & largest AI journal in Kurdistan. Read the latest articles, news & tutorials about artificial intelligence in Kurdish Sorani. یەکەمین و گەورەترین گۆڤاری AI بە کوردی."
         jsonLd={jsonLd}
         keywords="Kurdistan AI, کوردستان ئەی ئای, Kurd AI, Kurdish AI journal, AI magazine Kurdistan, AI news Kurdish, AI articles Kurdish, زیرەکی دەستکرد, گۆڤاری AI کوردی"
       />
