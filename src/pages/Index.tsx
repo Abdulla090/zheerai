@@ -150,7 +150,7 @@ const Index = () => {
     name: "Kurdistan AI",
     alternateName: ["KurdistanAI", "Kurdistan Ai", "Kurd AI", "کوردستان ئەی ئای", "کوردستان AI"],
     url: BASE_URL,
-    description: "The first and largest AI journal in Kurdistan. Articles, tutorials, news, and tips about artificial intelligence in Kurdish Sorani.",
+    description: "The first and largest AI journal in Kurdistan. Articles, tutorials, and news about artificial intelligence in Kurdish Sorani.",
     inLanguage: ["ckb", "en"],
     publisher: {
       "@type": "Organization",
