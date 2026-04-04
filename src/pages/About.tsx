@@ -26,14 +26,14 @@ const organizations = [
     logo: "/zheer-saz-logo.jpg",
     telegram: "https://t.me/zheer_saz",
     description:
-      "ژیرساز گرووپێکی تایبەتمەندە لە بواری زیرەکی دەستکرد و تەکنەلۆژیا، کە ئامانجی بەهێزکردنی کۆمەڵگای کوردی تەکنەلۆژییە لەڕێگەی فێرکاری و ناوەڕۆکی بەسوودەوە.",
+      "ژیرساز گرووپێکی تایبەتمەندە لە بواری ژیریی دەستکرد و تەکنەلۆژیا، کە ئامانجی بەهێزکردنی کۆمەڵگای کوردی تەکنەلۆژییە لەڕێگەی فێرکاری و ناوەڕۆکی بەسوودەوە.",
   },
   {
     name: "Kurdistan AI",
     logo: "/kurdistan-ai-logo.jpg",
     telegram: "https://t.me/KurdistanAI01",
     description:
-      "Kurdistan AI کۆمەڵگایەکی چالاکە لە بواری زیرەکی دەستکرد لە کوردستان، کە خەریکی بڵاوکردنەوەی زانست و زانیاری لەسەر AI بۆ کوردان بە زمانی کوردی.",
+      "Kurdistan AI کۆمەڵگایەکی چالاکە لە بواری ژیریی دەستکرد لە کوردستان، کە خەریکی بڵاوکردنەوەی زانست و زانیاری لەسەر AI بۆ کوردان بە زمانی کوردی.",
   },
 ];
 
@@ -46,12 +46,12 @@ const values = [
   {
     icon: Newspaper,
     title: "گۆڤاری AI",
-    description: "بابەت، هەواڵ، و فێرکاری زیرەکی دەستکرد بە شێوازی گۆڤار و ژورنال.",
+    description: "بابەت، هەواڵ، و فێرکاری ژیریی دەستکرد بە شێوازی گۆڤار و ژورنال.",
   },
   {
     icon: Users,
     title: "کۆمەڵگا",
-    description: "شوێنێکین بۆ هەموو ئەو کەسانەی حەزیان بە زیرەکی دەستکردە — فێرخواز، گەشەپێدەر، و توێژەر.",
+    description: "شوێنێکین بۆ هەموو ئەو کەسانەی حەزیان بە ژیریی دەستکردە، فێرخواز، گەشەپێدەر، و توێژەر.",
   },
   {
     icon: Heart,
@@ -108,10 +108,10 @@ const About = () => {
               className="mx-auto max-w-3xl text-center"
             >
               <h1 className="text-3xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
-                دەربارەی <span className="text-primary">Kurdistan AI</span>: یەکەمین گۆڤاری کوردی بۆ زیرەکی دەستکرد
+                دەربارەی <span className="text-primary">Kurdistan AI</span>: یەکەمین گۆڤاری کوردی بۆ ژیریی دەستکرد
               </h1>
               <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground leading-relaxed md:text-lg">
-                Kurdistan AI گۆڤارێکی ئۆنلاینە بۆ بابەت، هەواڵ، فێرکاری، و تیپسی زیرەکی دەستکرد بە زمانی کوردی سۆرانی — بەتەواوی بەخۆڕایی.
+                Kurdistan AI گۆڤارێکی ئۆنلاینە بۆ بابەت، هەواڵ، و فێرکاری ژیریی دەستکرد بە زمانی کوردی سۆرانی، بەتەواوی بەخۆڕایی.
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
                 <Link to="/blog" className="inline-flex items-center gap-1 text-primary hover:underline">
@@ -144,9 +144,9 @@ const About = () => {
                 <Card className="border-border">
                   <CardContent className="p-6 md:p-8">
                     <h3 className="text-lg font-bold text-foreground mb-2">Abdulla Aziz Hameed</h3>
-                    <p className="text-xs text-primary font-medium mb-3">Full Stack AI Solution Developer — دامەزرێنەری ئەم وێبسایتە و ZHEER SAZ</p>
+                    <p className="text-xs text-primary font-medium mb-3">Full Stack AI Solution Developer, دامەزرێنەری ئەم وێبسایتە و ZHEER SAZ</p>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      ئەم وێبسایتەی دروستکردووە و ژیرسازی دامەزراندووە، بۆ ئەوەی پردێک دروست بکات نێوان زیرەکی دەستکرد و خەڵکی کوردستان. ئامانجی ئەوەیە هەموو فێرخوازێک و گەشەپێدەرێکی کورد بتوانێت بە زمانی خۆی فێری AI ببێت.
+                      ئەم وێبسایتەی دروستکردووە و ژیرسازی دامەزراندووە، بۆ ئەوەی پردێک دروست بکات نێوان ژیریی دەستکرد و خەڵکی کوردستان. ئامانجی ئەوەیە هەموو فێرخوازێک و گەشەپێدەرێکی کورد بتوانێت بە زمانی خۆی فێری AI ببێت.
                     </p>
                   </CardContent>
                 </Card>
@@ -161,7 +161,7 @@ const About = () => {
                 </Card>
               </div>
               <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
-                Kurdistan AI تەنها وێبسایتێک نییە — گۆڤارێکی کوردییە بۆ زیرەکی دەستکرد. <Link to="/blog" className="text-primary hover:underline">بابەتەکان</Link> بخوێنەوە و لەگەڵمان فێربە.
+                Kurdistan AI تەنها وێبسایتێک نییە، گۆڤارێکی کوردییە بۆ ژیریی دەستکرد. <Link to="/blog" className="text-primary hover:underline">بابەتەکان</Link> بخوێنەوە و لەگەڵمان فێربە.
               </p>
             </motion.div>
           </div>
@@ -223,7 +223,7 @@ const About = () => {
             >
               <h2 className="text-2xl font-bold text-foreground">ئامانجی ئێمە</h2>
               <p className="mt-5 text-base text-muted-foreground leading-relaxed md:text-lg">
-                ئێمە باوەڕمان وایە هەموو کوردێک مافی ئەوەی هەیە بە زمانی خۆی فێری تەکنەلۆژیای هەرە نوێ ببێت. Kurdistan AI گۆڤارێکە کە تێیدا نوسەران و پسپۆڕان <Link to="/blog" className="text-primary hover:underline">بابەت و فێرکاری</Link> بڵاو دەکەنەوە لەسەر زیرەکی دەستکرد بە زمانی کوردی — هەواڵ، تیپس، ڕێنمایی، و بیرۆکەی نوێ.
+                ئێمە باوەڕمان وایە هەموو کوردێک مافی ئەوەی هەیە بە زمانی خۆی فێری تەکنەلۆژیای هەرە نوێ ببێت. Kurdistan AI گۆڤارێکە کە تێیدا نوسەران و پسپۆڕان <Link to="/blog" className="text-primary hover:underline">بابەت و فێرکاری</Link> بڵاو دەکەنەوە لەسەر ژیریی دەستکرد بە زمانی کوردی، هەواڵ، ڕێنمایی، و بیرۆکەی نوێ.
               </p>
             </motion.div>
           </div>
@@ -271,7 +271,7 @@ const About = () => {
               دەتەوێت بابەتێک بنووسیت؟
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-sm text-primary-foreground/80 leading-relaxed">
-              تۆمار بکە و بابەتەکانت لەسەر زیرەکی دەستکرد بنووسە بە کوردی — بەخۆڕایی.
+              تۆمار بکە و بابەتەکانت لەسەر ژیریی دەستکرد بنووسە بە کوردی، بەخۆڕایی.
             </p>
             <Button variant="secondary" size="lg" className="mt-8" asChild>
               <Link to="/signup">تۆمارکردن</Link>
