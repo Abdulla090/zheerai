@@ -161,7 +161,7 @@ const About = () => {
                 </Card>
               </div>
               <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
-                Kurdistan AI تەنها وێبسایتێک نییە — گۆڤارێکی کوردییە بۆ زیرەکی دەستکرد. <Link to="/blog" className="text-primary hover:underline">بابەتەکان</Link> بخوێنەوە و لەگەڵمان فێربە.
+                Kurdistan AI تەنها وێبسایتێک نییە، گۆڤارێکی کوردییە بۆ ژیریی دەستکرد. <Link to="/blog" className="text-primary hover:underline">بابەتەکان</Link> بخوێنەوە و لەگەڵمان فێربە.
               </p>
             </motion.div>
           </div>
