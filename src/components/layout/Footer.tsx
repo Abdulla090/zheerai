@@ -17,9 +17,8 @@ const Footer = () => {
           <div>
             <h4 className="mb-3 text-sm font-semibold text-foreground">بەستەرەکان</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/projects" className="hover:text-primary transition-colors">پڕۆژەکان</Link></li>
-              <li><Link to="/qa" className="hover:text-primary transition-colors">پرسیار و وەڵام</Link></li>
-              <li><Link to="/blog" className="hover:text-primary transition-colors">بڵاوکراوەکان</Link></li>
+              <li><Link to="/blog" className="hover:text-primary transition-colors">بابەتەکان</Link></li>
+              <li><Link to="/about" className="hover:text-primary transition-colors">دەربارەی ئێمە</Link></li>
             </ul>
           </div>
 
