@@ -223,7 +223,7 @@ const About = () => {
             >
               <h2 className="text-2xl font-bold text-foreground">ئامانجی ئێمە</h2>
               <p className="mt-5 text-base text-muted-foreground leading-relaxed md:text-lg">
-                ئێمە باوەڕمان وایە هەموو کوردێک مافی ئەوەی هەیە بە زمانی خۆی فێری تەکنەلۆژیای هەرە نوێ ببێت. Kurdistan AI گۆڤارێکە کە تێیدا نوسەران و پسپۆڕان <Link to="/blog" className="text-primary hover:underline">بابەت و فێرکاری</Link> بڵاو دەکەنەوە لەسەر زیرەکی دەستکرد بە زمانی کوردی — هەواڵ، تیپس، ڕێنمایی، و بیرۆکەی نوێ.
+                ئێمە باوەڕمان وایە هەموو کوردێک مافی ئەوەی هەیە بە زمانی خۆی فێری تەکنەلۆژیای هەرە نوێ ببێت. Kurdistan AI گۆڤارێکە کە تێیدا نوسەران و پسپۆڕان <Link to="/blog" className="text-primary hover:underline">بابەت و فێرکاری</Link> بڵاو دەکەنەوە لەسەر ژیریی دەستکرد بە زمانی کوردی، هەواڵ، ڕێنمایی، و بیرۆکەی نوێ.
               </p>
             </motion.div>
           </div>
