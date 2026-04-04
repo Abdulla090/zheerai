@@ -80,6 +80,7 @@ const App = () => (
       </TooltipProvider>
     </QueryClientProvider>
   </ThemeProvider>
+  </SplashScreen>
 );
 
 export default App;
