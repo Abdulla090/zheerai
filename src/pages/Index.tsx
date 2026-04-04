@@ -150,7 +150,7 @@ const Index = () => {
     name: "Kurdistan AI",
     alternateName: ["KurdistanAI", "Kurdistan Ai", "Kurd AI", "کوردستان ئەی ئای", "کوردستان AI"],
     url: BASE_URL,
-    description: "The first and largest AI journal in Kurdistan. Articles, tutorials, news, and tips about artificial intelligence in Kurdish Sorani.",
+    description: "The first and largest AI journal in Kurdistan. Articles, tutorials, and news about artificial intelligence in Kurdish Sorani.",
     inLanguage: ["ckb", "en"],
     publisher: {
       "@type": "Organization",
@@ -162,7 +162,7 @@ const Index = () => {
     <>
       <SEOHead
         canonical={BASE_URL}
-        description="Kurdistan AI — The first & largest AI journal in Kurdistan. Read the latest articles, news, tutorials & tips about artificial intelligence in Kurdish Sorani. یەکەمین و گەورەترین گۆڤاری AI بە کوردی."
+        description="Kurdistan AI — The first & largest AI journal in Kurdistan. Read the latest articles, news & tutorials about artificial intelligence in Kurdish Sorani. یەکەمین و گەورەترین گۆڤاری AI بە کوردی."
         jsonLd={jsonLd}
         keywords="Kurdistan AI, کوردستان ئەی ئای, Kurd AI, Kurdish AI journal, AI magazine Kurdistan, AI news Kurdish, AI articles Kurdish, زیرەکی دەستکرد, گۆڤاری AI کوردی"
       />

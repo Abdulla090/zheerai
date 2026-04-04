@@ -46,7 +46,7 @@ const values = [
   {
     icon: Newspaper,
     title: "گۆڤاری AI",
-    description: "بابەت، هەواڵ، فێرکاری، و تیپسی زیرەکی دەستکرد بە شێوازی گۆڤار و ژورنال.",
+    description: "بابەت، هەواڵ، و فێرکاری زیرەکی دەستکرد بە شێوازی گۆڤار و ژورنال.",
   },
   {
     icon: Users,
@@ -64,7 +64,7 @@ const aboutJsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   name: "About Kurdistan AI",
-  description: "Learn about Kurdistan AI — the first Kurdish AI journal. Articles, news, tutorials, and tips about artificial intelligence in Kurdish Sorani.",
+  description: "Learn about Kurdistan AI — the first Kurdish AI journal. Articles, news, and tutorials about artificial intelligence in Kurdish Sorani.",
   url: "https://kurdistanai.app/about",
   mainEntity: {
     "@type": "Organization",
@@ -91,7 +91,7 @@ const About = () => {
     <>
       <SEOHead
         title="About Kurdistan AI | The First Kurdish AI Journal & Magazine"
-        description="Kurdistan AI is the first Kurdish-language AI journal. Read articles, news, tutorials, and tips about artificial intelligence — all in Sorani Kurdish, completely free."
+        description="Kurdistan AI is the first Kurdish-language AI journal. Read articles, news, and tutorials about artificial intelligence — all in Sorani Kurdish, completely free."
         canonical="https://kurdistanai.app/about"
         keywords="About Kurdistan AI, Kurdistan AI journal, Kurdish AI magazine, AI news Kurdish, AI tutorials Kurdish, first AI journal Kurdistan"
         jsonLd={aboutJsonLd}
