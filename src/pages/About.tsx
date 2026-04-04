@@ -271,7 +271,7 @@ const About = () => {
               دەتەوێت بابەتێک بنووسیت؟
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-sm text-primary-foreground/80 leading-relaxed">
-              تۆمار بکە و بابەتەکانت لەسەر زیرەکی دەستکرد بنووسە بە کوردی — بەخۆڕایی.
+              تۆمار بکە و بابەتەکانت لەسەر ژیریی دەستکرد بنووسە بە کوردی، بەخۆڕایی.
             </p>
             <Button variant="secondary" size="lg" className="mt-8" asChild>
               <Link to="/signup">تۆمارکردن</Link>
