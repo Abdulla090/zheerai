@@ -8,6 +8,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { ThemeProvider } from "next-themes";
 import Layout from "@/components/layout/Layout";
 import ScrollToTop from "./components/ScrollToTop";
+import SplashScreen from "./components/SplashScreen";
 import Index from "./pages/Index";
 
 // Lazy load non-critical routes
