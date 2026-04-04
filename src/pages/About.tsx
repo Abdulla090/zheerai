@@ -144,9 +144,9 @@ const About = () => {
                 <Card className="border-border">
                   <CardContent className="p-6 md:p-8">
                     <h3 className="text-lg font-bold text-foreground mb-2">Abdulla Aziz Hameed</h3>
-                    <p className="text-xs text-primary font-medium mb-3">Full Stack AI Solution Developer — دامەزرێنەری ئەم وێبسایتە و ZHEER SAZ</p>
+                    <p className="text-xs text-primary font-medium mb-3">Full Stack AI Solution Developer, دامەزرێنەری ئەم وێبسایتە و ZHEER SAZ</p>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      ئەم وێبسایتەی دروستکردووە و ژیرسازی دامەزراندووە، بۆ ئەوەی پردێک دروست بکات نێوان زیرەکی دەستکرد و خەڵکی کوردستان. ئامانجی ئەوەیە هەموو فێرخوازێک و گەشەپێدەرێکی کورد بتوانێت بە زمانی خۆی فێری AI ببێت.
+                      ئەم وێبسایتەی دروستکردووە و ژیرسازی دامەزراندووە، بۆ ئەوەی پردێک دروست بکات نێوان ژیریی دەستکرد و خەڵکی کوردستان. ئامانجی ئەوەیە هەموو فێرخوازێک و گەشەپێدەرێکی کورد بتوانێت بە زمانی خۆی فێری AI ببێت.
                     </p>
                   </CardContent>
                 </Card>
