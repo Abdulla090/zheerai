@@ -8,6 +8,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { ThemeProvider } from "next-themes";
 import Layout from "@/components/layout/Layout";
 import ScrollToTop from "./components/ScrollToTop";
+import SplashScreen from "./components/SplashScreen";
 import Index from "./pages/Index";
 
 // Lazy load non-critical routes
@@ -44,6 +45,7 @@ const PageFallback = () => (
 );
 
 const App = () => (
+  <SplashScreen>
   <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -78,6 +80,7 @@ const App = () => (
       </TooltipProvider>
     </QueryClientProvider>
   </ThemeProvider>
+  </SplashScreen>
 );
 
 export default App;
