@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="md:col-span-1">
             <span className="text-lg font-bold text-primary">Kurdistan AI</span>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-              کۆمەڵگای زیرەکی دەستکرد لە کوردستان. شوێنێک بۆ پیشاندان، فێربوون، و هاوکاری.
+              یەکەمین و گەورەترین گۆڤاری زیرەکی دەستکرد بە زمانی کوردی سۆرانی.
             </p>
           </div>
 
