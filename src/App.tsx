@@ -45,6 +45,7 @@ const PageFallback = () => (
 );
 
 const App = () => (
+  <SplashScreen>
   <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
