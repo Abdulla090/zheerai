@@ -108,7 +108,7 @@ const About = () => {
               className="mx-auto max-w-3xl text-center"
             >
               <h1 className="text-3xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
-                دەربارەی <span className="text-primary">Kurdistan AI</span>: یەکەمین گۆڤاری کوردی بۆ زیرەکی دەستکرد
+                دەربارەی <span className="text-primary">Kurdistan AI</span>: یەکەمین گۆڤاری کوردی بۆ ژیریی دەستکرد
               </h1>
               <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground leading-relaxed md:text-lg">
                 Kurdistan AI گۆڤارێکی ئۆنلاینە بۆ بابەت، هەواڵ، فێرکاری، و تیپسی زیرەکی دەستکرد بە زمانی کوردی سۆرانی — بەتەواوی بەخۆڕایی.
