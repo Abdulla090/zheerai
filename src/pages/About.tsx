@@ -64,7 +64,7 @@ const aboutJsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   name: "About Kurdistan AI",
-  description: "Learn about Kurdistan AI — the first Kurdish AI journal. Articles, news, tutorials, and tips about artificial intelligence in Kurdish Sorani.",
+  description: "Learn about Kurdistan AI — the first Kurdish AI journal. Articles, news, and tutorials about artificial intelligence in Kurdish Sorani.",
   url: "https://kurdistanai.app/about",
   mainEntity: {
     "@type": "Organization",
