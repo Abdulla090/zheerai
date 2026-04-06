@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, BookOpen, Info, User, LogIn } from "lucide-react";
+import { Home, BookOpen, Info, User, LogIn, GraduationCap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/hooks/useAuth";
 
 const navItems = [
   { href: "/", label: "سەرەتا", icon: Home },
   { href: "/blog", label: "بابەتەکان", icon: BookOpen },
+  { href: "/tutorials", label: "فێرکاری", icon: GraduationCap },
   { href: "/about", label: "دەربارە", icon: Info },
 ];
 
