@@ -23,7 +23,6 @@ const Tutorials = () => {
       <SEOHead
         title="فێرکارییەکان | Kurdistan AI"
         description="فێرکاری و ڕێنمایی لە بواری ژیریی دەستکرد بە زمانی کوردی"
-        path="/tutorials"
       />
       <div className="py-10 md:py-14">
         <div className="container max-w-5xl">

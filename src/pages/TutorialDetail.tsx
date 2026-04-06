@@ -64,7 +64,6 @@ const TutorialDetail = () => {
       <SEOHead
         title={`${tutorial.title} | Kurdistan AI`}
         description={tutorial.description || tutorial.title}
-        path={`/tutorials/${id}`}
       />
       <div className="py-10 md:py-14">
         <div className="container max-w-4xl">
@@ -108,7 +107,7 @@ const TutorialDetail = () => {
 
           {/* Like */}
           <div className="flex items-center gap-4 border-t border-b border-border py-4 mb-8">
-            <LikeButton targetId={tutorial.id} targetType="tutorial" initialCount={tutorial.likes_count} />
+            <LikeButton targetId={tutorial.id} targetType="tutorial" />
           </div>
 
           {/* Comments */}
