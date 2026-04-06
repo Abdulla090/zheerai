@@ -437,6 +437,68 @@ export type Database = {
         }
         Relationships: []
       }
+      tutorials: {
+        Row: {
+          author_id: string | null
+          body: string | null
+          comments_count: number
+          created_at: string
+          description: string | null
+          id: string
+          likes_count: number
+          published: boolean
+          tags: string[] | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          video_type: string | null
+          video_url: string | null
+          views_count: number
+        }
+        Insert: {
+          author_id?: string | null
+          body?: string | null
+          comments_count?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          likes_count?: number
+          published?: boolean
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          video_type?: string | null
+          video_url?: string | null
+          views_count?: number
+        }
+        Update: {
+          author_id?: string | null
+          body?: string | null
+          comments_count?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          likes_count?: number
+          published?: boolean
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          video_type?: string | null
+          video_url?: string | null
+          views_count?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tutorials_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       unique_views: {
         Row: {
           created_at: string

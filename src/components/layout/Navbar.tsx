@@ -15,6 +15,7 @@ import {
 const navLinks = [
   { href: "/", label: "سەرەتا" },
   { href: "/blog", label: "بابەتەکان" },
+  { href: "/tutorials", label: "فێرکارییەکان" },
   { href: "/about", label: "دەربارەی ئێمە" },
 ];
 
