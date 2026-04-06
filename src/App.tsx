@@ -17,6 +17,9 @@ const NewBlogPost = lazy(() => import("./pages/NewBlogPost"));
 const BlogPostDetail = lazy(() => import("./pages/BlogPostDetail"));
 const EditBlogPost = lazy(() => import("./pages/EditBlogPost"));
 const AdminBlogApproval = lazy(() => import("./pages/AdminBlogApproval"));
+const Tutorials = lazy(() => import("./pages/Tutorials"));
+const TutorialDetail = lazy(() => import("./pages/TutorialDetail"));
+const NewTutorial = lazy(() => import("./pages/NewTutorial"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
@@ -63,6 +66,9 @@ const App = () => (
                   <Route path="/blog/:id" element={<BlogPostDetail />} />
                   <Route path="/blog/:id/edit" element={<EditBlogPost />} />
                   <Route path="/admin/blog-approval" element={<AdminBlogApproval />} />
+                  <Route path="/tutorials" element={<Tutorials />} />
+                  <Route path="/tutorials/new" element={<NewTutorial />} />
+                  <Route path="/tutorials/:id" element={<TutorialDetail />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/profile/edit" element={<EditProfile />} />
