@@ -6,35 +6,16 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-async function getOrCreateVapidKeys(supabaseAdmin: any) {
-  // Check if keys exist
-  const { data: existing } = await supabaseAdmin
-    .from("app_settings")
-    .select("key, value")
-    .in("key", ["vapid_public_key", "vapid_private_key", "vapid_email"]);
+function getVapidConfig() {
+  const publicKey = Deno.env.get("VAPID_PUBLIC_KEY");
+  const privateKey = Deno.env.get("VAPID_PRIVATE_KEY");
+  const email = Deno.env.get("VAPID_EMAIL") || "mailto:admin@kurdistanai.com";
 
-  const settings: Record<string, string> = {};
-  existing?.forEach((s: any) => { settings[s.key] = s.value; });
-
-  if (settings.vapid_public_key && settings.vapid_private_key) {
-    return {
-      publicKey: settings.vapid_public_key,
-      privateKey: settings.vapid_private_key,
-      email: settings.vapid_email || "mailto:admin@kurdistanai.com",
-    };
+  if (!publicKey || !privateKey) {
+    throw new Error("VAPID keys not configured in environment secrets");
   }
 
-  // Generate new VAPID keys
-  const vapidKeys = webpush.generateVAPIDKeys();
-  const email = "mailto:admin@kurdistanai.com";
-
-  await supabaseAdmin.from("app_settings").upsert([
-    { key: "vapid_public_key", value: vapidKeys.publicKey },
-    { key: "vapid_private_key", value: vapidKeys.privateKey },
-    { key: "vapid_email", value: email },
-  ], { onConflict: "key" });
-
-  return { publicKey: vapidKeys.publicKey, privateKey: vapidKeys.privateKey, email };
+  return { publicKey, privateKey, email };
 }
 
 Deno.serve(async (req) => {
@@ -43,29 +24,29 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);
+    const vapid = getVapidConfig();
 
     // GET request = return VAPID public key
     if (req.method === "GET") {
-      const vapid = await getOrCreateVapidKeys(supabaseAdmin);
       return new Response(JSON.stringify({ publicKey: vapid.publicKey }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);
+
     // POST = send push notification
     const { user_id, title, body, link, type } = await req.json();
 
-    if (!user_id) {
-      return new Response(JSON.stringify({ error: "user_id required" }), {
+    if (!user_id || typeof user_id !== "string") {
+      return new Response(JSON.stringify({ error: "valid user_id required" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    const vapid = await getOrCreateVapidKeys(supabaseAdmin);
     webpush.setVapidDetails(vapid.email, vapid.publicKey, vapid.privateKey);
 
     // Get push subscriptions for this user
@@ -87,9 +68,12 @@ Deno.serve(async (req) => {
       new_comment: "کۆمێنتێکی نوێ",
     };
 
+    const safeTitle = typeof title === "string" ? title.slice(0, 200) : "";
+    const safeBody = typeof body === "string" ? body.slice(0, 500) : "";
+
     const payload = JSON.stringify({
       title: typeLabels[type] || "ئاگادارییەکی نوێ",
-      body: title + (body ? ` - ${body}` : ""),
+      body: safeTitle + (safeBody ? ` - ${safeBody}` : ""),
       icon: "/kurdistan-ai-logo.jpg",
       badge: "/kurdistan-ai-logo.jpg",
       data: { url: link || "/" },
@@ -110,8 +94,7 @@ Deno.serve(async (req) => {
         );
         sent++;
       } catch (err: any) {
-        console.error(`Push failed for ${sub.endpoint}:`, err.statusCode);
-        // Remove expired/invalid subscriptions
+        console.error(`Push failed for endpoint:`, err.statusCode);
         if (err.statusCode === 404 || err.statusCode === 410) {
           failedEndpoints.push(sub.endpoint);
         }
@@ -132,7 +115,7 @@ Deno.serve(async (req) => {
     });
   } catch (err) {
     console.error("Push notification error:", err);
-    return new Response(JSON.stringify({ error: err.message }), {
+    return new Response(JSON.stringify({ error: "Internal server error" }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
